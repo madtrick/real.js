@@ -16,6 +16,9 @@
   "author": "Farruco Sanjurjo",
   "license": "MIT",
   "dependencies": {
+    "backbone-collection": "^1.0.6",
+    "backbone-model": "^1.0.6",
+    "fluxxor": "^1.4.0",
     "lodash": "^2.4.1",
     "react": "^0.11.0",
     "react-addons": "^0.9.0"
