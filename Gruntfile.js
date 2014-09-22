@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         }
       },
       sass: {
-        files: 'styles/**/*',
+        files: 'app/styles/**/*',
         tasks: 'sass',
         options: {
           livereload: true
@@ -35,8 +35,8 @@ module.exports = function(grunt) {
         transform:  [ require('grunt-react').browserify ]
       },
       app: {
-        src: 'app/index.react.js',
-        dest: 'build/app/index.js'
+        src: 'app/app.react.js',
+        dest: 'build/bundle.js'
       }
     },
     connect: {
@@ -54,6 +54,16 @@ module.exports = function(grunt) {
       options: {
         logConcurrentOutput: true
       }
+    },
+    sass: {
+      dev: {
+        options: {
+          includePaths: ['bower_components/bootstrap-sass-official/assets/stylesheets/']
+        },
+        files: {
+          'build/bundle.css': 'app/styles/base.scss'
+        }
+      }
     }
   });
 
@@ -63,6 +73,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-react');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-sass');
 
   grunt.registerTask('default', ['concurrent:target']);
 };
