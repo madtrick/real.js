@@ -1,18 +1,35 @@
 /** @jsx React.DOM */
 
-var React        = require('react');
-var Fluxxor      = require('fluxxor');
-var FluxxorMixin = Fluxxor.FluxMixin(React);
+var React           = require('react');
+var Fluxxor         = require('fluxxor');
+var FluxxorMixin    = Fluxxor.FluxMixin(React);
+var _               = require('lodash');
+var StoreWatchMixin = Fluxxor.StoreWatchMixin;
+var moment          = require('moment');
 
 var Real = React.createClass({
 
-  mixins: [FluxxorMixin],
+  mixins: [FluxxorMixin, StoreWatchMixin("AccountingStore")],
+
+  getStateFromFlux: function() {
+    return {
+      entries: this.getFlux().store("AccountingStore").entries()
+    };
+  },
 
   render: function(){
     return (
       <div className="row">
         <div className="col-xs-12">
-          <h1> Real in da house </h1>
+          {
+            this.state && _.map(this.state.entries, function(e){
+              return (
+                <div>
+                  <div>{e.get('amount')} -- {moment(e.get('created_at')).format('HH:mm DD/MM/YY')}</div>
+                </div>
+              )
+            })
+          }
           <form role="form" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label for="amount">Amount</label>
