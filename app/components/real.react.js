@@ -33,7 +33,7 @@ var Real = React.createClass({
           <form role="form" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label for="amount">Amount</label>
-              <input ref="inputField" type="number" className="form-control input-xlarge" id="amount" placeholder="Enter amount"/>
+              <input ref="inputField" type="number" className="form-control input-xlarge" id="amount" placeholder="Enter amount" required="required"/>
             </div>
             <button type="submit" className="btn btn-xlarge btn-danger">Expense</button>
           </form>
