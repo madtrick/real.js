@@ -31,7 +31,7 @@ describe("AccountingStore", function(){
       describe('on success', function(){
 
         beforeEach(function(){
-          AccountingEntry.prototype.save = function(options){
+          AccountingEntry.prototype.save = function(attributes, options){
             options.success(this);
           };
         });
@@ -48,7 +48,7 @@ describe("AccountingStore", function(){
       describe('on failure', function(){
 
         beforeEach(function(){
-          AccountingEntry.prototype.save = function(options){
+          AccountingEntry.prototype.save = function(attributes, options){
             options.error(this);
           };
         });
