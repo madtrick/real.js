@@ -61,10 +61,20 @@ module.exports = function(grunt) {
           includePaths: ['bower_components/bootstrap-sass-official/assets/stylesheets/']
         },
         files: {
-          'build/bundle.css': 'app/styles/base.scss'
+          'build/bundle.css': 'app/styles/index.scss'
         }
       }
-    }
+    },
+    wiredep: {
+      target: {
+        src: "index.html",
+        exclude: [
+          'bower_components/react/react.js',
+          'bower_components/jquery',
+          'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/'
+        ]
+      }
+    },
   });
 
   // These plugins provide necessary tasks.
@@ -74,6 +84,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-wiredep');
 
   grunt.registerTask('default', ['concurrent:target']);
 };

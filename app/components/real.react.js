@@ -17,6 +17,10 @@ var Real = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    this.taggle = new Taggle('tags');
+  },
+
   render: function(){
     return (
       <div className="row">
@@ -34,6 +38,7 @@ var Real = React.createClass({
             <div className="form-group">
               <label for="amount">Amount</label>
               <input ref="inputField" type="number" className="form-control input-xlarge" id="amount" placeholder="Enter amount" required="required"/>
+              <div className="clearfix" id="tags"></div>
             </div>
             <button type="submit" className="btn btn-xlarge btn-danger">Expense</button>
           </form>
@@ -45,7 +50,7 @@ var Real = React.createClass({
   handleSubmit: function(e){
     var amount = this.refs.inputField.getDOMNode().value;
 
-    this.getFlux().actions.createEntry({amount: amount});
+    this.getFlux().actions.createEntry({amount: amount, tag_list: this.taggle.getTagValues()});
     return false;
   }
 

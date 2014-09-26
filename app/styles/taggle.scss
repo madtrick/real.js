@@ -1,0 +1,31 @@
+.taggle_list {
+  float: left;
+  padding: 10px;
+
+  li {
+    float: left;
+    list-style: none;
+  }
+
+  input {
+    float: left;
+    max-width: 100%;
+    width: 100%;
+    margin-top: 8px;
+    border: none;
+    outline: 0;
+  }
+}
+
+.taggle {
+  background-color: #E2E1DF;
+  margin: 8px;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.taggle_sizer {
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+}

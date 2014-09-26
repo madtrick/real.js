@@ -14,17 +14,17 @@ describe("AccountingStore", function(){
     it("creates a new model", function(){
       var numberOfEntries = store.collection.size();
 
-      store.handleAction_createEntry({amount: 4});
+      store.handleAction_createEntry({amount: 4, tag_list: []});
 
       expect(store.collection.size()).toBe(numberOfEntries + 1);
     });
 
-    it('creates a new model with the expected amount', function(){
+    it('creates a new model with the expected amount and tags', function(){
       spyOn(store.collection, 'add').andCallThrough();
 
-      store.handleAction_createEntry({amount: 10});
+      store.handleAction_createEntry({amount: 10, tag_list: ['bla', 'ble']});
 
-      expect(store.collection.add).toHaveBeenCalledWith({amount: 10});
+      expect(store.collection.add).toHaveBeenCalledWith({amount: 10, tag_list: ['bla', 'ble']});
     });
 
     describe('saving to the backend', function(){
