@@ -5,6 +5,11 @@ var Fluxxor           = require('fluxxor');
 var AccountingStore   = require('./stores/accounting');
 var AccountingEntries = require('./collections/accounting_entries');
 var Real              = require('./components/real.react');
+var Auth              = require('./utils/auth');
+
+require('./ext/backbone');
+
+Auth.start();
 
 var stores = { AccountingStore: new AccountingStore({collection: new AccountingEntries()}) };
 var actions = {

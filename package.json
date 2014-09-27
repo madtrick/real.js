@@ -23,14 +23,16 @@
   "author": "Farruco Sanjurjo",
   "license": "MIT",
   "dependencies": {
-    "ampersand-sync": "^2.0.2",
     "backbone-collection": "^1.0.6",
     "backbone-model": "^1.0.6",
+    "backbone-super-sync": "0.0.14",
     "fluxxor": "^1.4.0",
     "grunt-sass": "^0.14.0",
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
+    "qs": "^2.2.4",
     "react": "^0.11.0",
-    "react-addons": "^0.9.0"
+    "react-addons": "^0.9.0",
+    "redefine": "^0.2.0"
   }
 }
