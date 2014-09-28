@@ -36,12 +36,12 @@ describe("AccountingStore", function(){
           };
         });
 
-        it('emits a change event', function(){
-          spyOn(store, 'emit');
+        it('reloads the collection', function(){
+          spyOn(store.collection, 'fetch');
 
           store.handleAction_createEntry({amount: 10});
 
-          expect(store.emit).toHaveBeenCalledWith('change');
+          expect(store.collection.fetch).toHaveBeenCalled();
         });
       });
 
