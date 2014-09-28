@@ -18,6 +18,9 @@ var AccountingEntries = React.createClass({
                 <td><img src={profile.get('image')} /></td>
                 <td>{e.get('amount')}</td>
                 <td>{moment(e.get('created_at')).format('hh:mm DD/mm/YY')}</td>
+                <td>
+                  {_.map(e.get('tags'), function(tag){return <span className="label label-default">{ tag.name }</span>})}
+                </td>
               </tr>
             )
           }, this)
