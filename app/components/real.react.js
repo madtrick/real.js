@@ -33,11 +33,22 @@ var Real = React.createClass({
               <input ref="inputField" type="number" className="form-control input-xlarge" id="amount" placeholder="Enter amount" required="required"/>
               <div className="clearfix" id="tags"></div>
             </div>
-            <button type="submit" className="btn btn-xlarge btn-danger">Expense</button>
+            <button type="submit" onClick={this.handleExpense} className="btn btn-xlarge btn-danger" data-behaviour='expense'>Expense</button>
+            <button type="submit" onClick={this.handleIncome} className="btn btn-xlarge btn-success" data-behaviour='income'>Income</button>
           </form>
         </div>
       </div>
     );
+  },
+
+  handleIncome: function(){
+    this.inputFieldDOMNode().value = Math.abs(this.inputFieldDOMNode().value);
+    return true;
+  },
+
+  handleExpense: function(){
+    this.inputFieldDOMNode().value = -this.inputFieldDOMNode().value;
+    return true;
   },
 
   handleSubmit: function(e){
@@ -45,6 +56,10 @@ var Real = React.createClass({
 
     this.getFlux().actions.createEntry({amount: amount, tag_list: this.taggle.getTagValues()});
     return false;
+  },
+
+  inputFieldDOMNode: function(){
+    return this.refs.inputField.getDOMNode();
   }
 
 });
