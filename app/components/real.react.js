@@ -1,12 +1,11 @@
 /** @jsx React.DOM */
 
-var React           = require('react');
-var Fluxxor         = require('fluxxor');
-var FluxxorMixin    = Fluxxor.FluxMixin(React);
-var _               = require('lodash');
-var StoreWatchMixin = Fluxxor.StoreWatchMixin;
-var moment          = require('moment');
-var NullProfile     = require('../models/null-profile');
+var React             = require('react');
+var Fluxxor           = require('fluxxor');
+var FluxxorMixin      = Fluxxor.FluxMixin(React);
+var _                 = require('lodash');
+var StoreWatchMixin   = Fluxxor.StoreWatchMixin;
+var AccountingEntries = require('./accounting-entries.react');
 
 var Real = React.createClass({
 
@@ -27,16 +26,7 @@ var Real = React.createClass({
     return (
       <div className="row">
         <div className="col-xs-12">
-          {
-            this.state && _.map(this.state.entries, function(e){
-              var profile = this.state.profiles.get(e.get('user').get('google_id')) || new NullProfile();
-              return (
-                <div>
-                  <div>{e.get('amount')} -- {moment(e.get('created_at')).format('HH:mm DD/MM/YY')} -- {profile.get('image')}</div>
-                </div>
-              )
-            }, this)
-          }
+          <AccountingEntries entries={this.state.entries} profiles={this.state.profiles}/>
           <form role="form" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label for="amount">Amount</label>
