@@ -1,5 +1,6 @@
 var redefine = require('redefine');
 var params   = require('./params');
+var hello = require('hellojs');
 
 
 hello.init({google: '147125267354-dbe525glo5mn7jmjnm1cf0hcub4igueh.apps.googleusercontent.com'});
