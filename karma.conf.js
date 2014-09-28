@@ -10,6 +10,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+          'app/ext/backbone.js', //<- Load backbone extensions and tweaks
           'app/**/__tests__/*.js'
         ],
 
@@ -19,6 +20,7 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+          'app/ext/backbone.js': ['browserify'],
           'app/**/__tests__/*.js': ['browserify']
         },
         browserify: {
