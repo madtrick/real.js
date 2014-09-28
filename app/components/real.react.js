@@ -6,14 +6,16 @@ var FluxxorMixin    = Fluxxor.FluxMixin(React);
 var _               = require('lodash');
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 var moment          = require('moment');
+var NullProfile     = require('../models/null-profile');
 
 var Real = React.createClass({
 
-  mixins: [FluxxorMixin, StoreWatchMixin("AccountingStore")],
+  mixins: [FluxxorMixin, StoreWatchMixin("AccountingStore", "ProfilesStore")],
 
   getStateFromFlux: function() {
     return {
-      entries: this.getFlux().store("AccountingStore").entries()
+      entries: this.getFlux().store("AccountingStore").entries(),
+      profiles: this.getFlux().store("ProfilesStore").profiles()
     };
   },
 
@@ -27,12 +29,13 @@ var Real = React.createClass({
         <div className="col-xs-12">
           {
             this.state && _.map(this.state.entries, function(e){
+              var profile = this.state.profiles.get(e.get('user').get('google_id')) || new NullProfile();
               return (
                 <div>
-                  <div>{e.get('amount')} -- {moment(e.get('created_at')).format('HH:mm DD/MM/YY')}</div>
+                  <div>{e.get('amount')} -- {moment(e.get('created_at')).format('HH:mm DD/MM/YY')} -- {profile.get('image')}</div>
                 </div>
               )
-            })
+            }, this)
           }
           <form role="form" onSubmit={this.handleSubmit}>
             <div className="form-group">

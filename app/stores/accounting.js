@@ -25,6 +25,14 @@ var AccountingStore = Fluxxor.createStore({
   },
 
   handleSuccessfulCollectionFetch: function(){
+    var ids =
+      _.uniq(
+      _.invoke(
+      _.invoke(this.collection.models,
+        'get', 'user'),
+        'get', 'google_id'));
+
+    this.flux.actions.fetchProfiles({ids: ids});
     this.emit("change");
   },
 
