@@ -39,7 +39,7 @@ var gapiAdapter = {
         .execute(function(response){
           resolve({
             id: id,
-            image: response.image.url
+            image: response.image.url.replace("size=50", "size=80px")
           });
       });
     });
