@@ -21,6 +21,7 @@ var AccountingEntries = React.createClass({
                 <td>
                   {_.map(e.get('tags'), function(tag){return <span className="label label-default">{ tag.name }</span>})}
                 </td>
+                <td><a href="#" onClick={_.partial(this.props.handleClick, e)}>reuse</a></td>
               </tr>
             )
           }, this)

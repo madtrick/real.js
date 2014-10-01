@@ -17,7 +17,7 @@ var AccountingStore = Fluxxor.createStore({
   },
 
   handleAction_createEntry: function(payload){
-    var model = this.collection.add({amount: payload.amount, tag_list: payload.tag_list});
+    var model = new this.collection.model({amount: payload.amount, tag_list: payload.tag_list});
     model.save([], {
       success: _.bind(this.handleSuccessfulModelSave, this),
       error: _.bind(this.handleFailedModelSave, this)
