@@ -44,6 +44,7 @@ var Real = React.createClass({
             entries={this.state.entries}
             profiles={this.state.profiles}
             handleClick={this.handleClickAccountingEntry}
+            limit={10}
           />
           <AccountingEntryForm onSubmit={this.handleSubmit} tags={this.state.tags} />
         </div>

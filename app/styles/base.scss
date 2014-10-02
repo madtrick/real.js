@@ -1,14 +1,54 @@
 @import 'bootstrap';
 @import 'bootstrap-extensions';
 
-html {
-  font-size: 14px;
+body {
+  font-size: 33px;
 }
 
+ul.r-accounting-entries {
+  li {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+}
 .r-accounting-entries {
+
+  & .amount,
+  & .picture,
+  & .moment {
+    float: left;
+  }
+
+  & .tags,
+  & .action {
+    float: right;
+
+    a {
+      display: inline-block;
+    }
+  }
+
+  .picture {
+    margin-left: 16px;
+  }
+
   img {
-    width: 25px;
+    width: 80px;
     height: auto;
     border-radius: 150px;
+  }
+
+  .amount {
+    font-size: 74px;
+    margin-left: 18px;
+  }
+
+  .tags {
+    margin-right: 20px;
+
+    .label {
+      font-size: 34px;
+      margin: 8px;
+    }
   }
 }
