@@ -5,6 +5,15 @@ body {
   font-size: 33px;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 650px;
+  background-color: #f5f5f5;
+}
+
 ul.r-accounting-entries {
   li {
     list-style: none;
@@ -49,6 +58,16 @@ ul.r-accounting-entries {
     .label {
       font-size: 34px;
       margin: 8px;
+    }
+  }
+}
+
+.r-accounting-entry-form {
+  button{
+    width: 48%;
+
+    &:last-of-type{
+      float: right;
     }
   }
 }

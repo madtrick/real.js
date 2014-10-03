@@ -38,15 +38,23 @@ var Real = React.createClass({
   render: function(){
 
     return (
-      <div className="row">
-        <div className="col-xs-12">
-          <AccountingEntries
-            entries={this.state.entries}
-            profiles={this.state.profiles}
-            handleClick={this.handleClickAccountingEntry}
-            limit={10}
-          />
-          <AccountingEntryForm onSubmit={this.handleSubmit} tags={this.state.tags} />
+      <div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xs-12">
+              <AccountingEntries
+                entries={this.state.entries}
+                profiles={this.state.profiles}
+                handleClick={this.handleClickAccountingEntry}
+                limit={5}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="footer">
+          <div className="container-fluid">
+            <AccountingEntryForm onSubmit={this.handleSubmit} tags={this.state.tags} />
+          </div>
         </div>
       </div>
     );

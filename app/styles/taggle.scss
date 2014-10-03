@@ -1,3 +1,15 @@
+#tags {
+  background: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-top: 25px;
+  position: relative;
+}
+
+.taggle_placeholder {
+  position: absolute;
+}
+
 .taggle_list {
   float: left;
   padding: 10px;
