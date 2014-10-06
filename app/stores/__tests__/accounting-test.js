@@ -11,20 +11,13 @@ describe("AccountingStore", function(){
       store = new AccountingStore({collection: new AccountingEntries()});
     });
 
-    it("creates a new model", function(){
-      var numberOfEntries = store.collection.size();
+    it('instantiates a new model', function() {
+      var payload = {amount: 4, tag_list: ['a', 'b']};
+      spyOn(store.collection, 'model').andReturn({save: function(){}});
 
-      store.handleAction_createEntry({amount: 4, tag_list: []});
+      store.handleAction_createEntry(payload);
 
-      expect(store.collection.size()).toBe(numberOfEntries + 1);
-    });
-
-    it('creates a new model with the expected amount and tags', function(){
-      spyOn(store.collection, 'add').andCallThrough();
-
-      store.handleAction_createEntry({amount: 10, tag_list: ['bla', 'ble']});
-
-      expect(store.collection.add).toHaveBeenCalledWith({amount: 10, tag_list: ['bla', 'ble']});
+      expect(store.collection.model).toHaveBeenCalledWith(payload);
     });
 
     describe('saving to the backend', function(){
