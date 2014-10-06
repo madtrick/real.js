@@ -21,7 +21,7 @@ module.exports = function(config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
           'app/ext/backbone.js': ['browserify'],
-          'app/**/__tests__/*.js': ['browserify']
+          'app/**/__tests__/*': ['browserify']
         },
         browserify: {
             debug: true,
