@@ -2,7 +2,7 @@ var config = {
   production: {
     backendUrl: 'http://maravedi.heroku.com',
     googleClientId: '147125267354-81lf7cfv1qi4cmedo90ff4fshjqblr7d.apps.googleusercontent.com',
-    googleRedirectUri: 'http://maravedi.heroku.com/auth/google_oauth2/callback'
+    googleRedirectUri: 'http://maravedi.herokuapp.com/auth/google_oauth2/callback'
   },
   development: {
     backendUrl: 'http://127.0.0.1:3000',
