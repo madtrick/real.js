@@ -12,7 +12,9 @@ var Real              = require('./components/real.react');
 var Auth              = require('./utils/auth');
 var Gapi              = require('./adapters/gapi');
 
-Auth.start( function(){
+var config = require("../config");
+
+Auth.start(config.googleClientId, config.googleRedirectUri, function(){
   Gapi.load().then(Gapi.init).then(
     function(){
       var stores = {

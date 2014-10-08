@@ -1,10 +1,10 @@
 var Backbone = require('backbone-associations');
 var moment   = require("moment");
 var User     = require('./user');
+var config   = require("../../config");
 
 var AccountingEntry = Backbone.AssociatedModel.extend({
-  url: 'http://localhost:3000/accounting_entries',
-  //url: 'http://192.168.1.134:3000/accounting_entries'
+  url: config.backendUrl + '/accounting_entries',
   relations: [
     {
       type: Backbone.Associations.One,

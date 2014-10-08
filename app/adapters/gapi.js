@@ -1,6 +1,6 @@
 var Promise = require('promise');
+var config  = require('../../config')
 
-var clientId = "147125267354-dbe525glo5mn7jmjnm1cf0hcub4igueh.apps.googleusercontent.com";
 var scope    = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/plus.login'];
 
 window.onLoadGapi = onLoadGapi;
@@ -25,7 +25,7 @@ var gapiAdapter = {
       gapi.auth.init();
       gapi.auth.authorize({
         immediate: true,
-        client_id: clientId,
+        client_id: config.googleClientId,
         scope: scope
       }, function(response){
         response.error ? reject() : resolve();
