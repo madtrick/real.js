@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     },
     browserify : {
       options:      {
-        transform:  [ require('grunt-react').browserify ]
+        transform:  [ require('grunt-react').browserify, 'envify' ]
       },
       app: {
         src: 'app/app.react.js',
@@ -75,6 +75,36 @@ module.exports = function(grunt) {
         ]
       }
     },
+    useminPrepare: {
+      html: 'index.html',
+      options: {
+        dest: 'dist'
+      }
+    },
+    usemin: {
+      html: 'dist/index.html',
+    },
+    copy: {
+      dist: {
+        files: [
+          {expand: false, src: 'index.html', dest: 'dist/index.html'}
+        ]
+      }
+    },
+    uglify: {
+      options: {
+        sourceMap: true
+      }
+    },
+    env: {
+      dev: {
+        NODE_ENV: 'development'
+      },
+      dist: {
+        NODE_ENV: 'production'
+      }
+    }
+
   });
 
   // These plugins provide necessary tasks.
@@ -85,6 +115,23 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-env');
 
   grunt.registerTask('default', ['concurrent:target']);
+
+  grunt.registerTask('dist', [
+    'env:dist',
+    'browserify',
+    'copy:dist',
+    'useminPrepare',
+    'concat:generated',
+    'uglify:generated',
+    'cssmin:generated',
+    'usemin'
+  ]);
 };
