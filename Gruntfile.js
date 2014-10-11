@@ -122,7 +122,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-env');
 
-  grunt.registerTask('default', ['concurrent:target']);
+  grunt.registerTask('default', ['env:dev', 'concurrent:target']);
 
   grunt.registerTask('dist', [
     'env:dist',
