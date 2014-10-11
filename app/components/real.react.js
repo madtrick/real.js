@@ -1,12 +1,13 @@
 /** @jsx React.DOM */
 
-var React             = require('react');
-var Fluxxor           = require('fluxxor');
-var FluxxorMixin      = Fluxxor.FluxMixin(React);
-var _                 = require('lodash');
-var StoreWatchMixin   = Fluxxor.StoreWatchMixin;
-var AccountingEntries = require('./accounting-entries.react');
+var React               = require('react');
+var Fluxxor             = require('fluxxor');
+var FluxxorMixin        = Fluxxor.FluxMixin(React);
+var StoreWatchMixin     = Fluxxor.StoreWatchMixin;
+var _                   = require('lodash');
+var AccountingEntries   = require('./accounting-entries.react');
 var AccountingEntryForm = require('./accounting-entry-form.react');
+var ErrorsAlert = require("./errors-alert.react");
 
 var Real = React.createClass({
 
@@ -51,6 +52,7 @@ var Real = React.createClass({
             </div>
           </div>
         </div>
+        <ErrorsAlert />
         <div className="footer">
           <div className="container-fluid">
             <AccountingEntryForm onSubmit={this.handleSubmit} tags={this.state.tags} />

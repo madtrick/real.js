@@ -1,5 +1,6 @@
 var Fluxxor = require('fluxxor');
 var _       = require('lodash');
+var Errors  = require("../services/errors");
 
 var AccountingStore = Fluxxor.createStore({
 
@@ -36,16 +37,27 @@ var AccountingStore = Fluxxor.createStore({
     this.emit("change");
   },
 
+  handleFailedCollectionFetch: function() {
+    Errors.add("Couldn't fetch entries. Try again");
+
+    this.emit("change");
+  },
+
   handleSuccessfulModelSave: function(model){
     this._loadCollection();
   },
 
   handleFailedModelSave: function(model){
-    this.collection.remove(model);
+    Errors.add("Couldn't save the entry. Try again");
+
+    this.emit("change");
   },
 
   _loadCollection: function(){
-    this.collection.fetch({success: _.bind(this.handleSuccessfulCollectionFetch, this)});
+    this.collection.fetch({
+      success: _.bind(this.handleSuccessfulCollectionFetch, this),
+      error: _.bind(this.handleFailedCollectionFetch, this)
+    });
   }
 
 });
