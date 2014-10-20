@@ -6,7 +6,6 @@ var AccountingStore = Fluxxor.createStore({
 
   initialize: function(options){
     this.collection = options.collection;
-    this._loadCollection();
 
     this.bindActions(
       'CREATE_ENTRY', this.handleAction_createEntry
@@ -15,6 +14,13 @@ var AccountingStore = Fluxxor.createStore({
 
   entries: function(){
     return this.collection.models;
+  },
+
+  loadEntries: function() {
+    this.collection.fetch({
+      success: _.bind(this.handleSuccessfulCollectionFetch, this),
+      error: _.bind(this.handleFailedCollectionFetch, this)
+    });
   },
 
   handleAction_createEntry: function(payload){
@@ -44,20 +50,13 @@ var AccountingStore = Fluxxor.createStore({
   },
 
   handleSuccessfulModelSave: function(model){
-    this._loadCollection();
+    this.loadEntries();
   },
 
   handleFailedModelSave: function(model){
     Errors.add("Couldn't save the entry. Try again");
 
     this.emit("change");
-  },
-
-  _loadCollection: function(){
-    this.collection.fetch({
-      success: _.bind(this.handleSuccessfulCollectionFetch, this),
-      error: _.bind(this.handleFailedCollectionFetch, this)
-    });
   }
 
 });

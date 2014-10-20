@@ -5,6 +5,16 @@ var AccountingStore   = require('../accounting');
 var store = undefined;
 
 describe("AccountingStore", function(){
+  describe('#loadEntries', function() {
+    it('loads the entries from the remote endpoint', function() {
+      store = new AccountingStore({collection: new AccountingEntries()});
+      spyOn(store.collection, 'fetch');
+
+      store.loadEntries();
+
+      expect(store.collection.fetch).toHaveBeenCalled();
+    });
+  });
   describe("#handleAction_createEntry", function(){
 
     beforeEach(function(){

@@ -30,6 +30,8 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
         }
       };
 
+      stores.AccountingStore.loadEntries();
+
       var flux = new Fluxxor.Flux(stores, actions);
 
       React.renderComponent(<Real flux={flux}/>, document.getElementById('real-container'));
