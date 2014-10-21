@@ -87,7 +87,8 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: [
-          {expand: false, src: 'index.html', dest: 'dist/index.html'}
+          {expand: false, src: 'index.html', dest: 'dist/index.html'},
+          {expand: true, flatten: true, src: 'bower_components/font-awesome/fonts/*', dest: 'dist/fonts/'}
         ]
       }
     },
@@ -103,8 +104,15 @@ module.exports = function(grunt) {
       dist: {
         NODE_ENV: 'production'
       }
+    },
+    sed: {
+      fontAwesome: {
+        path: 'dist/real.min.css',
+        pattern: '../fonts/fontawesome-webfont',
+        replacement: 'fonts/fontawesome-webfont',
+        recursive: false
+      }
     }
-
   });
 
   // These plugins provide necessary tasks.
@@ -121,6 +129,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-sed');
 
   grunt.registerTask('default', ['env:dev', 'concurrent:target']);
 
@@ -132,6 +141,7 @@ module.exports = function(grunt) {
     'concat:generated',
     'uglify:generated',
     'cssmin:generated',
+    'sed',
     'usemin'
   ]);
 };
