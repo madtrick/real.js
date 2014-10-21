@@ -5,9 +5,10 @@ var Fluxxor             = require('fluxxor');
 var FluxxorMixin        = Fluxxor.FluxMixin(React);
 var StoreWatchMixin     = Fluxxor.StoreWatchMixin;
 var _                   = require('lodash');
+var AccountingStore     = require('../stores/accounting');
 var AccountingEntries   = require('./accounting-entries.react');
 var AccountingEntryForm = require('./accounting-entry-form.react');
-var ErrorsAlert = require("./errors-alert.react");
+var ErrorsAlert         = require('./errors-alert.react');
 
 var Real = React.createClass({
 
@@ -21,8 +22,9 @@ var Real = React.createClass({
 
   getStateFromFlux: function() {
     return {
-      entries: this.getFlux().store("AccountingStore").entries(),
-      profiles: this.getFlux().store("ProfilesStore").profiles()
+      accountingStoreState : this.getFlux().store("AccountingStore").state(),
+      entries              : this.getFlux().store("AccountingStore").entries(),
+      profiles             : this.getFlux().store("ProfilesStore").profiles()
     };
   },
 
@@ -43,12 +45,17 @@ var Real = React.createClass({
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <AccountingEntries
-                entries={this.state.entries}
-                profiles={this.state.profiles}
-                handleClick={this.handleClickAccountingEntry}
-                limit={5}
-              />
+              {
+                this.state.accountingStoreState == AccountingStore.States.IDLE ?
+                  <AccountingEntries
+                    entries={this.state.entries}
+                    profiles={this.state.profiles}
+                    handleClick={this.handleClickAccountingEntry}
+                    limit={5}
+                  />
+                  :
+                    <span>Loading <i className="fa fa-spinner fa-spin"></i></span>
+              }
             </div>
           </div>
         </div>
