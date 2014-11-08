@@ -25,9 +25,12 @@
     "karma-bro": "^0.7.0",
     "karma-chrome-launcher": "^0.1.4",
     "karma-cli": "0.0.4",
-    "karma-jasmine": "^0.1.5",
+    "karma-jasmine": "~0.2.0",
+    "proxyquire": "^1.0.1",
+    "proxyquireify": "^1.1.0",
     "react-tools": "^0.11.1",
     "reactify": "^0.14.0",
+    "rewireify": "0.0.11",
     "rosie": "^0.3.1"
   },
   "author": "Farruco Sanjurjo",
@@ -37,14 +40,16 @@
     "backbone-collection": "^1.0.6",
     "backbone-model": "^1.0.6",
     "backbone-super-sync": "0.0.14",
-    "fluxxor": "^1.4.0",
+    "bluebird": "^2.3.6",
     "grunt-sass": "^0.14.0",
     "hellojs": "MrSwitch/hello.js",
     "lodash": "^2.4.1",
+    "microevent": "^1.0.0",
     "moment": "^2.8.3",
     "promise": "^6.0.0",
     "qs": "^2.2.4",
     "react": "^0.11.0",
-    "redefine": "^0.2.0"
+    "redefine": "^0.2.0",
+    "rrouter": "^0.4.2"
   }
 }

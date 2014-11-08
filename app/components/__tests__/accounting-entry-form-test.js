@@ -1,0 +1,53 @@
+/** @jsx React.DOM */
+
+var React               = require('react');
+var TestUtils           = require('react/addons').addons.TestUtils;
+var Flux = require('fluxxor');
+
+var tagInputMock        = React.createClass({
+  getTagValues: function() {
+    return ['tag1', 'tag2'];
+  },
+  render: function(){return <div></div>;}
+});
+var AccountingEntryForm = require('../accounting-entry-form.react');
+AccountingEntryForm.__set__('TagInput', tagInputMock);
+
+describe('AccountingEntryForm', function() {
+  var accountingEntryFrom, spy;
+
+  beforeEach(function() {
+    spy = jasmine.createSpy();
+
+    accountingEntryFrom = TestUtils.renderIntoDocument(<AccountingEntryForm onSubmit={spy}/>);
+  });
+
+  describe('on form submit', function() {
+    beforeEach(function() {
+      var input = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'input');
+      var form = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'form');
+      input.getDOMNode().value = 11;
+
+      TestUtils.Simulate.submit(form);
+    });
+
+    it('executes the callback on the onSubmit prop', function(){
+      expect(spy).toHaveBeenCalled();
+    });
+
+    describe('arguments to callback', function() {
+      var args;
+      beforeEach(function() {
+        args = spy.calls.first().args[0];
+      });
+
+      it('passes the amount', function() {
+        expect(args.amount).toBe(11);
+      });
+
+      it('passes the tags', function() {
+        expect(args.tags).toEqual(['tag1', 'tag2']);
+      });
+    });
+  });
+});

@@ -1,13 +1,13 @@
 /** @jsx React.DOM */
 
+var React = require('react');
 var Factory             = require("rosie").Factory;
+var _                   = require("lodash");
 var TestUtils           = require('react/addons').addons.TestUtils;
 var User                = require("../../models/user");
 var AccountingEntry     = require("../../models/accounting-entry");
 var AccountingEntries   = require("../accounting-entries.react");
 var AccountingEntryItem = require("../accounting-entry-item.react");
-var _                   = require("lodash");
-
 
 var timeOffset = 10000;
 
@@ -25,17 +25,33 @@ var entries = _.times(10, function(){
 
 var profiles = {get: function(){return Factory.build('user');}};
 
+var RRouter             = require('rrouter');
+var Routes = RRouter.Routes;
+var Route  = RRouter.Route;
+var routes = (
+  <Routes>
+    <Route name="edit" path="/edit/:accountingEntryId" view={1} />
+  </Routes>
+);
+
 
 describe('AccountingEntries', function() {
   var accountingEntries, items;
 
   beforeEach(function() {
     // suffle the entries for the ordering test
-    accountingEntries = TestUtils.renderIntoDocument(<AccountingEntries
-      profiles={profiles}
-      entries={_.shuffle(entries)}
-      limit={5}
-      handleClick={function(){}}/>);
+      RRouter.HashRouting.start(routes, function(view) {
+        /*
+         * Create the view inside the RRounter.start method.
+         *
+         * We need to do this so views can use <Link /> components
+         */
+        accountingEntries = TestUtils.renderIntoDocument(<AccountingEntries
+          profiles={profiles}
+          entries={_.shuffle(entries)}
+          limit={5}
+          handleClick={function(){}}/>);
+      });
 
     items = TestUtils.scryRenderedComponentsWithType(accountingEntries, AccountingEntryItem);
   });

@@ -1,20 +1,25 @@
 /** @jsx React.DOM */
 
-var React             = require('react');
-var Fluxxor           = require('fluxxor');
-var TagInput          = require('./tag-input.react');
-var FluxxorChildMixin = Fluxxor.FluxChildMixin(React);
+var React        = require('react');
+var TagInput     = require('./tag-input.react');
 
 var AccountingEntryForm = React.createClass({
-
-  mixins : [FluxxorChildMixin],
 
   render: function(){
     return (
           <form role="form" className="r-accounting-entry-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label for="amount">Amount</label>
-              <input ref="inputField" type="number" className="form-control input-xlarge" id="amount" placeholder="Enter amount" required="required" step="any" />
+              <input
+                ref="inputField"
+                type="number"
+                className="form-control input-xlarge"
+                id="amount"
+                placeholder="Enter amount"
+                required="required"
+                step="any"
+                defaultValue={this.props.amount}
+              />
               <TagInput tags={this.props.tags} ref="tagInput"/>
             </div>
             <button type="submit" className="btn btn-xlarge btn-success" data-behaviour='income'>Income</button>
@@ -24,16 +29,14 @@ var AccountingEntryForm = React.createClass({
   },
 
   handleExpense: function(){
-    this.inputFieldDOMNode().value = -this.inputFieldDOMNodeValue();
+    this.inputFieldDOMNode().value = (this.inputFieldDOMNodeValue() < 0 ? 1 : -1) * this.inputFieldDOMNodeValue();
     return true;
   },
 
   handleSubmit: function(e){
     var amount = this.inputFieldDOMNodeValue();
 
-    this.inputFieldDOMNode().value = null;
-    this.getFlux().actions.createEntry({amount: amount, tag_list: this.refs.tagInput.getTagValues()});
-    return this.props.onSubmit();
+    return this.props.onSubmit({amount: parseInt(amount, 10), tags: this.refs.tagInput.getTagValues()});
   },
 
   inputFieldDOMNodeValue: function(){

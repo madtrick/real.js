@@ -10,6 +10,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+          'bower_components/taggle.js/dist/taggle.min.js',
           'app/ext/backbone.js', //<- Load backbone extensions and tweaks
           'app/**/__tests__/*.js'
         ],
@@ -25,11 +26,12 @@ module.exports = function(config) {
         },
         browserify: {
             debug: true,
-            transform: [ 'reactify' , 'envify']
+            transform: [ 'reactify' , 'envify', 'rewireify']
         },
         reporters: ['progress'],
         port: 9876,
         colors: true,
+        //logLevel: config.LOG_DEBUG,
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['Chrome'],

@@ -1,24 +1,19 @@
 /** @jsx React.DOM */
 
-var React               = require('react');
-var Fluxxor             = require('fluxxor');
-var FluxxorMixin        = Fluxxor.FluxMixin(React);
-var StoreWatchMixin     = Fluxxor.StoreWatchMixin;
-var _                   = require('lodash');
-var AccountingStore     = require('../stores/accounting');
-var AccountingEntries   = require('./accounting-entries.react');
-var AccountingEntryForm = require('./accounting-entry-form.react');
-var ErrorsAlert         = require('./errors-alert.react');
+var React              = require('react');
+var Fluxxor            = require('fluxxor');
+var FluxxorMixin       = Fluxxor.FluxMixin(React);
+var StoreWatchMixin    = Fluxxor.StoreWatchMixin;
+var _                  = require('lodash');
+var bus                = require('../services/bus');
+var AccountingStore    = require('../stores/accounting');
+var AccountingEntries  = require('./accounting-entries.react');
+var AccountingEntryAdd = require('./accounting-entry-add.react');
+var ErrorsAlert        = require('./errors-alert.react');
 
 var Real = React.createClass({
 
   mixins: [FluxxorMixin, StoreWatchMixin("AccountingStore", "ProfilesStore")],
-
-  getInitialState: function() {
-    return {
-      tags: []
-    };
-  },
 
   getStateFromFlux: function() {
     return {
@@ -29,12 +24,7 @@ var Real = React.createClass({
   },
 
   handleClickAccountingEntry: function(entry){
-    this.setState({tags: _.pluck(entry.get('tags'), 'name')});
-    return false;
-  },
-
-  handleSubmit: function(e){
-    this.setState({tags: []});
+    bus.trigger('reuse-entry', {tags: _.pluck(entry.get('tags'), 'name')});
     return false;
   },
 
@@ -62,7 +52,7 @@ var Real = React.createClass({
         <ErrorsAlert />
         <div className="footer">
           <div className="container-fluid">
-            <AccountingEntryForm onSubmit={this.handleSubmit} tags={this.state.tags} />
+            <AccountingEntryAdd flux={this.getFlux()}/>
           </div>
         </div>
       </div>

@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
-var React  = require("react");
-var moment = require('moment');
-var _      = require("lodash");
-var NullProfile         = require('../models/null-profile');
+var React       = require("react");
+var moment      = require('moment');
+var _           = require("lodash");
+var Link        = require('rrouter').Link;
+var NullProfile = require('../models/null-profile');
 
 var AccountingEntryItem = React.createClass({
   render: function(){
@@ -19,6 +20,7 @@ var AccountingEntryItem = React.createClass({
           <div className="amount">{entry.get('amount')}</div>
           <div className="action"><a href="#" onClick={_.partial(this.props.handleClick, entry)}>reuse</a></div>
           <div className="tags">{_.map(entry.get('tags'), function(tag){return <span className="label label-default">{ tag.name }</span>})}</div>
+          <Link to="/edit" accountingEntryId={entry.id}>edit</Link>
       </div>
     )
   }

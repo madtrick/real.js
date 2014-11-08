@@ -2,15 +2,20 @@
 
 require('./ext/backbone');
 
-var React             = require('react');
-var Fluxxor           = require('fluxxor');
-var AccountingStore   = require('./stores/accounting');
-var ProfilesStore     = require('./stores/profiles');
-var AccountingEntries = require('./collections/accounting_entries');
-var Profiles          = require('./collections/profiles');
-var Real              = require('./components/real.react');
-var Auth              = require('./utils/auth');
-var Gapi              = require('./adapters/gapi');
+var React               = require('react');
+var Fluxxor             = require('fluxxor');
+var RRouter             = require('rrouter');
+var AccountingStore     = require('./stores/accounting');
+var ProfilesStore       = require('./stores/profiles');
+var AccountingEntries   = require('./collections/accounting_entries');
+var Profiles            = require('./collections/profiles');
+var Real                = require('./components/real.react');
+var AccountingEntryEdit = require('./components/accounting-entry-edit.react');
+var Auth                = require('./utils/auth');
+var Gapi                = require('./adapters/gapi');
+
+var Routes = RRouter.Routes;
+var Route  = RRouter.Route;
 
 var config = require("../config");
 
@@ -25,6 +30,9 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
         createEntry : function(payload){
           this.dispatch('CREATE_ENTRY', payload);
         },
+        updateEntry : function(payload){
+          this.dispatch('UPDATE_ENTRY', payload);
+        },
         fetchProfiles: function(payload){
           this.dispatch('FETCH_PROFILES', payload);
         }
@@ -34,7 +42,17 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
 
       var flux = new Fluxxor.Flux(stores, actions);
 
-      React.renderComponent(<Real flux={flux}/>, document.getElementById('real-container'));
+      var routes = (
+        <Routes>
+          <Route path="/" view={Real} flux={flux}/>
+          <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit} flux={flux}/>
+        </Routes>
+      );
+
+      RRouter.HashRouting.start(routes, function(view) {
+        React.renderComponent(view, document.getElementById('real-container'));
+      });
+
     },
     function(){
       alert("Gapi initialization failed");

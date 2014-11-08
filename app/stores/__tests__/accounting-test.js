@@ -69,7 +69,7 @@ describe("AccountingStore", function(){
 
     it('instantiates a new model', function() {
       var payload = {amount: 4, tag_list: ['a', 'b']};
-      spyOn(store.collection, 'model').andReturn({save: function(){}});
+      spyOn(store.collection, 'model').and.returnValue({save: function(){}});
 
       store.handleAction_createEntry(payload);
 

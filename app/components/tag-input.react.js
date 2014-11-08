@@ -6,11 +6,11 @@ var _     = require("lodash");
 var TagInput = React.createClass({
   componentDidMount: function(){
     this.taggle = new Taggle('tags');
+    this.setTags(this.props);
   },
 
   componentWillReceiveProps: function(props){
-    this.empty();
-    this.taggle.add(props.tags);
+    this.setTags(props);
   },
 
   getTagValues: function(){
@@ -32,7 +32,12 @@ var TagInput = React.createClass({
     return (
       <div className="clearfix" id="tags"></div>
     );
-  }
+  },
+
+  setTags: function(props) {
+    this.empty();
+    this.taggle.add(props.tags);
+  },
 
 });
 

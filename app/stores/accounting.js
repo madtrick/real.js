@@ -9,12 +9,17 @@ var AccountingStore = Fluxxor.createStore({
     this._state     = AccountingStore.States.IDLE;
 
     this.bindActions(
-      'CREATE_ENTRY', this.handleAction_createEntry
+      'CREATE_ENTRY', this.handleAction_createEntry,
+      'UPDATE_ENTRY', this.handleAction_updateEntry
     );
   },
 
   entries: function(){
     return this.collection.models;
+  },
+
+  entry: function(id) {
+    return this.collection.get(id);
   },
 
   loadEntries: function() {
@@ -34,6 +39,13 @@ var AccountingStore = Fluxxor.createStore({
     var model = new this.collection.model({amount: payload.amount, tag_list: payload.tag_list});
     model.save([], {
       success: _.bind(this.handleSuccessfulModelSave, this),
+      error: _.bind(this.handleFailedModelSave, this)
+    });
+  },
+
+  handleAction_updateEntry: function(payload) {
+    var model = this.entry(payload.entry_id);
+    model.save({amount: payload.amount, tag_list: payload.tags}, {
       error: _.bind(this.handleFailedModelSave, this)
     });
   },
