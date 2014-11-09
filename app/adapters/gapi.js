@@ -24,7 +24,7 @@ var gapiAdapter = {
     return new Promise(function(resolve, reject){
       gapi.auth.init();
       gapi.auth.authorize({
-        immediate: true,
+        immediate: false,
         client_id: config.googleClientId,
         scope: scope
       }, function(response){
