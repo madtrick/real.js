@@ -12,17 +12,15 @@ var AccountingEntries = React.createClass({
 
   render: function(){
     return (
-      <ul className="r-accounting-entries">
+      <div className="r-accounting-entries">
         {
           _.map(_.last(this.order(this.props.entries), this.props.limit), function(e){
             return (
-              <li className="clearfix">
-                <AccountingEntryItem entry={e} profiles={this.props.profiles} handleClick={this.props.handleClick}/>
-              </li>
+              <AccountingEntryItem entry={e} profiles={this.props.profiles} handleClick={this.props.handleClick}/>
             )
           }, this)
         }
-      </ul>
+      </div>
     );
   }
 });

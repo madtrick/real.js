@@ -1,8 +1,17 @@
 @import 'bootstrap';
 @import 'bootstrap-extensions';
+@import 'colors';
+
+@mixin vertical-center {
+}
 
 body {
   font-size: 33px;
+  background-color: $sea;
+}
+
+#real-container {
+  margin-top: 60px;
 }
 
 .footer {
@@ -14,52 +23,73 @@ body {
   background-color: #f5f5f5;
 }
 
-ul.r-accounting-entries {
-  li {
-    list-style: none;
-    margin-bottom: 10px;
+.r-accounting-entries {
+  padding-left: 0;
+}
+
+.r-accounting-entry-item {
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  height: 125px;
+}
+
+.r-accounting-entry-item__action {
+  float: right;
+
+  /*a {*/
+  /*  display: inline-block;*/
+  /*}*/
+}
+
+.r-accounting-entry-item__tags,
+.r-accounting-entry-item__amount,
+.r-accounting-entry-item__moment,
+.r-accounting-entry-item__picture {
+  float: left;
+}
+
+.r-accounting-entry-item__action {
+  margin-left: 10px;
+
+  & > .btn {
+    font-size: inherit;
   }
 }
-.r-accounting-entries {
 
-  & .amount,
-  & .picture,
-  & .moment {
-    float: left;
-  }
-
-  & .tags,
-  & .action {
-    float: right;
-
-    a {
-      display: inline-block;
-    }
-  }
-
-  .picture {
-    margin-left: 16px;
-  }
+.r-accounting-entry-item__picture {
+  margin-left: 20px;
 
   img {
-    width: 80px;
+    width: 96px;
     height: auto;
-    border-radius: 150px;
+    border-radius: 9px;
+    border-width: 4px;
+    border-color: #45ADA8;
+    border-style: solid;
   }
+}
 
-  .amount {
-    font-size: 74px;
-    margin-left: 18px;
-  }
+.r-accounting-entry-item__amount {
+  font-size: 74px;
+  width: 24%;
+  text-align: right;
+  margin-left: 20px;
+}
 
-  .tags {
-    margin-right: 20px;
+.r-accounting-entry-item__moment {
+  margin-left: 20px;
+  font-weight: bold;
+}
 
-    .label {
-      font-size: 34px;
-      margin: 8px;
-    }
-  }
+.r-accounting-entry-item__tags {
+  margin-right: 20px;
+}
+
+.r-accounting-entry-item-tag__label {
+  font-size: 34px;
+  margin: 8px;
 }
 
 .r-accounting-entry-form {

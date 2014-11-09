@@ -11,16 +11,22 @@ var AccountingEntryItem = React.createClass({
     var entry   = this.props.entry,
         profile = this.props.profiles.get(entry.get('user').get('google_id')) || new NullProfile();
     return (
-      <div>
-          <div className="moment">
-            <div className="date">{moment(entry.get('created_at')).format('DD/MM')}</div>
-            <div className="time">{moment(entry.get('created_at')).format('hh:mm')}</div>
+      <div className="r-accounting-entry-item clearfix">
+          <div className="r-accounting-entry-item__moment">
+            <div className="r-accounting-entry-item__date">{moment(entry.get('created_at')).format('DD/MM')}</div>
+            <div className="r-accounting-entry-item__time">{moment(entry.get('created_at')).format('hh:mm')}</div>
           </div>
-          <div className="picture"><img src={profile.get('image')} /></div>
-          <div className="amount">{entry.get('amount')}</div>
-          <div className="action"><a href="#" onClick={_.partial(this.props.handleClick, entry)}>reuse</a></div>
-          <div className="tags">{_.map(entry.get('tags'), function(tag){return <span className="label label-default">{ tag.name }</span>})}</div>
-          <Link to="/edit" accountingEntryId={entry.id}>edit</Link>
+          <div className="r-accounting-entry-item__picture"><img src={profile.get('image')} /></div>
+          <div className="r-accounting-entry-item__amount">{entry.get('amount')}</div>
+          <div className="r-accounting-entry-item__tags">{_.map(entry.get('tags'), function(tag){return <span className="r-accounting-entry-item-tag__label label label-default">{ tag.name }</span>})}</div>
+          <div className="r-accounting-entry-item__action r-accounting-entry-item__action--edit">
+            <a href="#" className="btn" onClick={_.partial(this.props.handleClick, entry)}>
+              <i className="fa fa-refresh"></i>
+            </a>
+          </div>
+          <div className="r-accounting-entry-item__action">
+            <Link to="/edit" accountingEntryId={entry.id}>edit</Link>
+          </div>
       </div>
     )
   }
