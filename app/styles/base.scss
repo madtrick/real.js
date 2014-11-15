@@ -19,7 +19,7 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 650px;
+  height: 500px;
   background-color: #f5f5f5;
 }
 
@@ -32,15 +32,11 @@ body {
   margin-bottom: 15px;
   padding: 15px;
   border-radius: 8px;
-  height: 125px;
+  height: 90px;
 }
 
 .r-accounting-entry-item__action {
   float: right;
-
-  /*a {*/
-  /*  display: inline-block;*/
-  /*}*/
 }
 
 .r-accounting-entry-item__tags,
@@ -62,7 +58,7 @@ body {
   margin-left: 20px;
 
   img {
-    width: 96px;
+    width: 65px;
     height: auto;
     border-radius: 9px;
     border-width: 4px;
@@ -72,7 +68,7 @@ body {
 }
 
 .r-accounting-entry-item__amount {
-  font-size: 74px;
+  font-size: 56px;
   width: 24%;
   text-align: right;
   margin-left: 20px;
@@ -81,6 +77,7 @@ body {
 .r-accounting-entry-item__moment {
   margin-left: 20px;
   font-weight: bold;
+  font-size: 24px;
 }
 
 .r-accounting-entry-item__tags {
@@ -88,7 +85,7 @@ body {
 }
 
 .r-accounting-entry-item-tag__label {
-  font-size: 34px;
+  font-size: 28px;
   margin: 8px;
 }
 
