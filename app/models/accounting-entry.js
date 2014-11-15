@@ -4,6 +4,8 @@ var User     = require('./user');
 var config   = require("../../config");
 
 var AccountingEntry = Backbone.AssociatedModel.extend({
+  urlRoot: config.backendUrl + '/accounting_entries',
+
   relations: [
     {
       type: Backbone.Associations.One,
