@@ -23,9 +23,13 @@ describe('AccountingEntryForm', function() {
   });
 
   describe('on form submit', function() {
+    var input;
+
     beforeEach(function() {
-      var input = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'input');
-      var form = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'form');
+      var form;
+      form  = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'form');
+      input = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'input');
+
       input.getDOMNode().value = 11;
 
       TestUtils.Simulate.submit(form);
@@ -33,6 +37,10 @@ describe('AccountingEntryForm', function() {
 
     it('executes the callback on the onSubmit prop', function(){
       expect(spy).toHaveBeenCalled();
+    });
+
+    it('resets the input field', function() {
+      expect(input.getDOMNode().value).toEqual('');
     });
 
     describe('arguments to callback', function() {

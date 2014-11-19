@@ -35,6 +35,7 @@ var AccountingEntryForm = React.createClass({
 
   handleSubmit: function(e){
     var amount = this.inputFieldDOMNodeValue();
+    this.resetInputField();
 
     return this.props.onSubmit({amount: parseInt(amount, 10), tags: this.refs.tagInput.getTagValues()});
   },
@@ -45,6 +46,10 @@ var AccountingEntryForm = React.createClass({
 
   inputFieldDOMNode: function(){
     return this.refs.inputField.getDOMNode();
+  },
+
+  resetInputField: function() {
+    this.inputFieldDOMNode().value = '';
   }
 });
 
