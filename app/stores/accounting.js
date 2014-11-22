@@ -15,7 +15,7 @@ var AccountingStore = Fluxxor.createStore({
   },
 
   entries: function(){
-    return this.collection.models;
+    return this.collection;
   },
 
   entry: function(id) {

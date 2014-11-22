@@ -38,6 +38,7 @@
     "backbone-collection": "^1.0.6",
     "backbone-model": "^1.0.6",
     "backbone-super-sync": "0.0.14",
+    "backbone.cocktail": "^0.5.9",
     "grunt-sass": "^0.14.0",
     "hellojs": "MrSwitch/hello.js",
     "lodash": "^2.4.1",

@@ -37,12 +37,17 @@ var Real = React.createClass({
             <div className="col-xs-12">
               {
                 this.state.accountingStoreState == AccountingStore.States.IDLE ?
-                  <AccountingEntries
-                    entries={this.state.entries}
-                    profiles={this.state.profiles}
-                    handleClick={this.handleClickAccountingEntry}
-                    limit={5}
-                  />
+                  <div>
+                    <AccountingEntries
+                      entries={this.state.entries.models}
+                      profiles={this.state.profiles}
+                      handleClick={this.handleClickAccountingEntry}
+                      limit={5}
+                    />
+                    <div className="r-expenses-summary">
+                      Expenses this month: {this.state.entries.expenseByMonth(10)}
+                    </div>
+                  </div>
                   :
                     <span>Loading <i className="fa fa-spinner fa-spin"></i></span>
               }

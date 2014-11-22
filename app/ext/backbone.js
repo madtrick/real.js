@@ -1,7 +1,7 @@
-var Backbone          = require('backbone-associations');
-var BackboneSuperSync = require('backbone-super-sync');
-var _                 = require('lodash');
-var Auth              = require('../utils/auth');
+var Backbone           = require('backbone-associations');
+var BackboneSuperSync  = require('backbone-super-sync');
+var _                  = require('lodash');
+var Auth               = require('../utils/auth');
 
 require("../vendor/backbone-mutators");
 

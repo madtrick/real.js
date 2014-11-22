@@ -27,4 +27,32 @@ describe('AccountingEntries', function() {
       expect(matches.indexOf(accountingEntry_3)).not.toEqual(-1);
     });
   });
+
+  describe('expenseByMonth', function() {
+    beforeEach(function() {
+      accountingEntries.add({amount: -5, created_at: moment().month(0)});
+      accountingEntries.add({amount: -5, created_at: moment().month(0)});
+      accountingEntries.add({amount: 10, created_at: moment().month(0)});
+      accountingEntries.add({amount: -5, created_at: moment().month(1)});
+    });
+
+    it('returns the sum of all the expenses in the given month', function() {
+      expenses = accountingEntries.expenseByMonth(0);
+
+      expect(expenses).toEqual(-10);
+    });
+  });
+
+  describe('currentMonthAccumulatedExpense', function() {
+    var currentMonth = (new Date()).getMonth();
+
+    beforeEach(function() {
+      spyOn(accountingEntries, 'expenseByMonth');
+    });
+
+    it('calls #expenseByMonth passing in the current month', function() {
+      accountingEntries.currentMonthAccumulatedExpense();
+      expect(accountingEntries.expenseByMonth).toHaveBeenCalledWith(currentMonth);
+    });
+  });
 });
