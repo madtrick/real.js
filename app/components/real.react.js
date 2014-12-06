@@ -45,7 +45,7 @@ var Real = React.createClass({
                       limit={5}
                     />
                     <div className="r-expenses-summary">
-                      Expenses this month: {this.state.entries.expenseByMonth(10)}
+                      Expenses this month: {this.state.entries.expenseByMonth((new Date()).getMonth())}
                     </div>
                   </div>
                   :
