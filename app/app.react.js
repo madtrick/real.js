@@ -11,6 +11,7 @@ var AccountingEntries   = require('./collections/accounting_entries');
 var Profiles            = require('./collections/profiles');
 var Real                = require('./components/real.react');
 var AccountingEntryEdit = require('./components/accounting-entry-edit.react');
+var Graphs              = require('./components/graphs.react');
 var Auth                = require('./utils/auth');
 var Gapi                = require('./adapters/gapi');
 
@@ -45,6 +46,7 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
       var routes = (
         <Routes>
           <Route path="/" view={Real} flux={flux}/>
+          <Route path="graphs" path="/graphs" view={Graphs} flux={flux}/>
           <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit} flux={flux}/>
         </Routes>
       );
