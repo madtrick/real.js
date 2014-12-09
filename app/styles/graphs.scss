@@ -1,3 +1,12 @@
 .r-graph-container {
   background-color: white;
+
+  path.main-line {
+    stroke-width: 7px !important;
+    stroke-linejoin: round !important;
+  }
+
+  text {
+    font-size: 1.9rem !important;
+  }
 }

@@ -49,8 +49,9 @@ var Graphs = React.createClass({
       {
         data_graphic({
           data: [expensesNovember, [{date: expensesNovember[0].date, value:2200}, {date: expensesNovember[expensesNovember.length - 1].date, value: 2200}]],
+          height: 500,
           width: 1000,
-          interpolate: 'linear',
+          interpolate: 'step',
           target: '#target2',
           x_accessor: 'date',
           y_accessor: 'value'
