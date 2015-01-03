@@ -5,6 +5,7 @@ var Fluxxor            = require('fluxxor');
 var FluxxorMixin       = Fluxxor.FluxMixin(React);
 var StoreWatchMixin    = Fluxxor.StoreWatchMixin;
 var _                  = require('lodash');
+var Link               = require('rrouter').Link;
 var bus                = require('../services/bus');
 var AccountingStore    = require('../stores/accounting');
 var AccountingEntries  = require('./accounting-entries.react');
@@ -55,6 +56,7 @@ var Real = React.createClass({
           </div>
         </div>
         <ErrorsAlert />
+        <Link to="/graphs">Graphs</Link>
         <div className="footer">
           <div className="container-fluid">
             <AccountingEntryAdd flux={this.getFlux()}/>
