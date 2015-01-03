@@ -57,6 +57,8 @@ var Real = React.createClass({
         </div>
         <ErrorsAlert />
         <Link to="/graphs">Graphs</Link>
+        <br/>
+        <Link to="/accounting-entries-list">List</Link>
         <div className="footer">
           <div className="container-fluid">
             <AccountingEntryAdd flux={this.getFlux()}/>

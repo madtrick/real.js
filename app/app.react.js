@@ -2,18 +2,19 @@
 
 require('./ext/backbone');
 
-var React               = require('react');
-var Fluxxor             = require('fluxxor');
-var RRouter             = require('rrouter');
-var AccountingStore     = require('./stores/accounting');
-var ProfilesStore       = require('./stores/profiles');
-var AccountingEntries   = require('./collections/accounting_entries');
-var Profiles            = require('./collections/profiles');
-var Real                = require('./components/real.react');
-var AccountingEntryEdit = require('./components/accounting-entry-edit.react');
-var Graphs              = require('./components/graphs.react');
-var Auth                = require('./utils/auth');
-var Gapi                = require('./adapters/gapi');
+var React                 = require('react');
+var Fluxxor               = require('fluxxor');
+var RRouter               = require('rrouter');
+var AccountingStore       = require('./stores/accounting');
+var ProfilesStore         = require('./stores/profiles');
+var AccountingEntries     = require('./collections/accounting_entries');
+var Profiles              = require('./collections/profiles');
+var Real                  = require('./components/real.react');
+var AccountingEntryEdit   = require('./components/accounting-entry-edit.react');
+var AccountingEntriesList = require('./components/accounting-entries-list.react');
+var Graphs                = require('./components/graphs.react');
+var Auth                  = require('./utils/auth');
+var Gapi                  = require('./adapters/gapi');
 
 var Routes = RRouter.Routes;
 var Route  = RRouter.Route;
@@ -51,6 +52,7 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
             <Route name="main" path="/" view={Real} flux={flux}/>
             <Route name="graphs" path="/graphs" view={Graphs} flux={flux}/>
             <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit} flux={flux}/>
+            <Route name="accounting-entries-list" path="/accounting-entries-list" view={AccountingEntriesList} flux={flux}/>
           </Routes>
         );
 

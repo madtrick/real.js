@@ -11,10 +11,12 @@ var AccountingEntries = React.createClass({
   },
 
   render: function(){
+    var limit = this.props.limit || this.props.entries.length;
+
     return (
       <div className="r-accounting-entries">
         {
-          _.map(_.last(this.order(this.props.entries), this.props.limit), function(e){
+          _.map(_.last(this.order(this.props.entries), limit), function(e){
             return (
               <AccountingEntryItem entry={e} profiles={this.props.profiles} handleClick={this.props.handleClick}/>
             )
