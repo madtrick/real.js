@@ -70,7 +70,6 @@ module.exports = function(grunt) {
         src: "index.html",
         exclude: [
           'bower_components/react/react.js',
-          'bower_components/jquery',
           'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/'
         ]
       }

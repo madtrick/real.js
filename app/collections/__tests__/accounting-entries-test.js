@@ -28,6 +28,23 @@ describe('AccountingEntries', function() {
     });
   });
 
+  describe('findByTags', function() {
+    var accountingEntry_1, accountingEntry_2;
+    beforeEach(function() {
+      accountingEntry_1 = accountingEntries.add({tags: ['bla', 'ble']});
+      accountingEntry_2 = accountingEntries.add({tags: ['ble']});
+      accountingEntries.add({tags: ['blu']});
+    });
+
+    it('returns all the entries which have some tag matching the given tags', function() {
+      var matches = accountingEntries.findByTags(['bla', 'ble']);
+
+      expect(matches.length).toBe(2);
+      expect(matches.indexOf(accountingEntry_1)).not.toEqual(-1);
+      expect(matches.indexOf(accountingEntry_2)).not.toEqual(-1);
+    });
+  });
+
   describe('expenseByMonth', function() {
     beforeEach(function() {
       accountingEntries.add({amount: -5, created_at: moment().month(0)});

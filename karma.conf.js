@@ -12,6 +12,7 @@ module.exports = function(config) {
         files: [
           'bower_components/taggle.js/dist/taggle.min.js',
           'app/ext/backbone.js', //<- Load backbone extensions and tweaks
+          'jasmine-helpers.js', //<- custom jasmine helpers
           'app/**/__tests__/*.js'
         ],
 
@@ -21,6 +22,7 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+          'jasmine-helpers.js': ['browserify'],
           'app/ext/backbone.js': ['browserify'],
           'app/**/__tests__/*': ['browserify']
         },
