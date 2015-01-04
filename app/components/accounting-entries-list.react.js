@@ -5,6 +5,7 @@ var Fluxxor           = require('fluxxor');
 var FluxxorMixin      = Fluxxor.FluxMixin(React);
 var StoreWatchMixin   = Fluxxor.StoreWatchMixin;
 var moment            = require('moment');
+var Link              = require('rrouter').Link;
 var AccountingEntries = require('./accounting-entries.react');
 
 var INPUT_DATE_FORMAT = 'YYYY-MM-DD';
@@ -34,6 +35,7 @@ var AccountingEntriesList = React.createClass({
   render: function() {
     return (
       <div>
+      <Link to="/main">Home</Link>
       <input
         type="date"
         ref='startDate'
