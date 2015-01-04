@@ -19,14 +19,20 @@ var AccountingEntryItem = React.createClass({
           <div className="r-accounting-entry-item__picture"><img src={profile.get('image')} /></div>
           <div className="r-accounting-entry-item__amount">{entry.get('amount')}</div>
           <div className="r-accounting-entry-item__tags">{_.map(entry.get('tags'), function(tag){return <span className="r-accounting-entry-item-tag__label label label-default">{ tag.name }</span>})}</div>
-          <div className="r-accounting-entry-item__action r-accounting-entry-item__action--edit">
-            <a href="#" className="btn" onClick={_.partial(this.props.handleClick, entry)}>
-              <i className="fa fa-refresh"></i>
-            </a>
-          </div>
-          <div className="r-accounting-entry-item__action">
-            <Link to="/edit" accountingEntryId={entry.id}>edit</Link>
-          </div>
+          {
+            this.props.actions && this.props.actions.reuse &&
+              <div className="r-accounting-entry-item__action r-accounting-entry-item__action--edit">
+                <a href="#" className="btn" onClick={_.partial(this.props.handleClick, entry)}>
+                  <i className="fa fa-refresh"></i>
+                </a>
+              </div>
+          }
+          {
+            this.props.actions && this.props.actions.edit &&
+              <div className="r-accounting-entry-item__action">
+                <Link to="/edit" accountingEntryId={entry.id}>edit</Link>
+              </div>
+          }
       </div>
     )
   }

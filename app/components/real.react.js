@@ -44,6 +44,7 @@ var Real = React.createClass({
                       profiles={this.state.profiles}
                       handleClick={this.handleClickAccountingEntry}
                       limit={5}
+                      actions={{edit: true, reuse: true}}
                     />
                     <div className="r-expenses-summary">
                       Expenses this month: {this.state.entries.expenseByMonth((new Date()).getMonth())}
