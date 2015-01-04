@@ -6,21 +6,12 @@
 }
 
 body {
-  font-size: 33px;
   background-color: $sea;
 }
 
-#real-container {
-  margin-top: 60px;
-}
-
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 500px;
   background-color: #f5f5f5;
+  padding-bottom: 10px;
 }
 
 .r-accounting-entries {
@@ -29,10 +20,10 @@ body {
 
 .r-accounting-entry-item {
   background-color: #fff;
-  margin-bottom: 15px;
-  padding: 15px;
-  border-radius: 8px;
-  height: 90px;
+  margin-bottom: 10px;
+  padding: 3px;
+  border-radius: 4px;
+  height: 36px;
 }
 
 .r-accounting-entry-item__action {
@@ -58,26 +49,25 @@ body {
   margin-left: 20px;
 
   img {
-    width: 65px;
+    width: 30px;
     height: auto;
-    border-radius: 9px;
-    border-width: 4px;
+    border-radius: 6px;
+    border-width: 2px;
     border-color: #45ADA8;
     border-style: solid;
   }
 }
 
 .r-accounting-entry-item__amount {
-  font-size: 56px;
+  font-size: 22px;
   width: 24%;
   text-align: right;
   margin-left: 20px;
 }
 
 .r-accounting-entry-item__moment {
-  margin-left: 20px;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 11px;
 }
 
 .r-accounting-entry-item__tags {
@@ -101,5 +91,5 @@ body {
 
 .r-expenses-summary {
   color: white;
-  font-size: 72px;
+  font-size: 26px;
 }
