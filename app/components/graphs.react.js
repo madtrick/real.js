@@ -7,6 +7,7 @@ var Link               = require('rrouter').Link;
 var Graph              = require('./graph.react');
 var Transformations    = require('../classes/graphs-data/transformations');
 var Generators         = require('../classes/graphs-data/generators');
+var MainLayout         = require('./layouts/main.react');
 var MonthlyAccTagsData = require('./graphs/monthly-acc-tags-data');
 var YearExpensesData   = require('./graphs/year-expenses-data');
 
@@ -26,11 +27,12 @@ var Graphs = React.createClass({
     var yearExpensesData = YearExpensesData.data(this.state.entries);
     var tagsData         = MonthlyAccTagsData.data(this.state.entries, new Date().getMonth(), ['food', 'eating out']);
 
-    return <div>
-      <Link to="/main">Home</Link>
-      <Graph data={yearExpensesData}/>
-      <Graph data={tagsData}/>
-    </div>;
+    return (
+      <MainLayout>
+        <Graph data={yearExpensesData}/>
+        <Graph data={tagsData}/>
+      </MainLayout>
+    );
   }
 });
 

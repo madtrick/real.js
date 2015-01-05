@@ -8,9 +8,11 @@ var _                  = require('lodash');
 var Link               = require('rrouter').Link;
 var bus                = require('../services/bus');
 var AccountingStore    = require('../stores/accounting');
+var MainLayout         = require('./layouts/main.react');
 var AccountingEntries  = require('./accounting-entries.react');
 var AccountingEntryAdd = require('./accounting-entry-add.react');
 var ErrorsAlert        = require('./errors-alert.react');
+var Navbar             = require('./navbar.react');
 
 var Real = React.createClass({
 
@@ -32,7 +34,7 @@ var Real = React.createClass({
   render: function(){
 
     return (
-      <div>
+      <MainLayout>
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
@@ -57,15 +59,12 @@ var Real = React.createClass({
           </div>
         </div>
         <ErrorsAlert />
-        <Link to="/graphs">Graphs</Link>
-        <br/>
-        <Link to="/accounting-entries-list">List</Link>
         <div className="footer">
           <div className="container-fluid">
             <AccountingEntryAdd flux={this.getFlux()}/>
           </div>
         </div>
-      </div>
+      </MainLayout>
     );
   }
 
