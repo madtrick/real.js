@@ -9,21 +9,11 @@ var Graph = React.createClass({
   },
 
   componentWillReceiveProps: function(props){
-    if (!this._isDataValid(props.data)){
-      this.setState({isDataValid : false });
-      return;
-    }
+    this._prepareGraph(props.data);
+  },
 
-    data_graphic({
-      title: "Annotations",
-      description: "By setting the graphic's target a class name of main-area-solid, markers don't extend down to the bottom of the graphic, which better draws attention to, say, spikes.",
-      data: props.data,
-      width: 1000,
-      interpolate: 'step',
-      target: '#' + this.state.graphId,
-      x_accessor: 'date',
-      y_accessor: 'value'
-    });
+  componentDidMount: function() {
+    this._prepareGraph(this.props.data);
   },
 
   render: function() {
@@ -32,6 +22,24 @@ var Graph = React.createClass({
     }
 
     return <div id={this.state.graphId} className='r-graph-container'></div>;
+  },
+
+  _prepareGraph: function(data) {
+    if (!this._isDataValid(data)){
+      this.setState({isDataValid : false });
+      return;
+    }
+
+    data_graphic({
+      title: "Annotations",
+      description: "By setting the graphic's target a class name of main-area-solid, markers don't extend down to the bottom of the graphic, which better draws attention to, say, spikes.",
+      data: data,
+      width: 1000,
+      interpolate: 'step',
+      target: '#' + this.state.graphId,
+      x_accessor: 'date',
+      y_accessor: 'value'
+    });
   },
 
   _isDataValid: function(data){
