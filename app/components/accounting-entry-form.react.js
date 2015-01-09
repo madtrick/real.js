@@ -9,7 +9,6 @@ var AccountingEntryForm = React.createClass({
     return (
           <form role="form" className="r-accounting-entry-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label for="amount">Amount</label>
               <input
                 ref="inputField"
                 type="number"

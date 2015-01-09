@@ -2,7 +2,7 @@
   background: white;
   border: 1px solid gray;
   border-radius: 5px;
-  margin-top: 25px;
+  margin-top: 11px;
   position: relative;
 }
 
@@ -12,11 +12,15 @@
 
 .taggle_list {
   float: left;
-  padding: 10px;
+  padding: 0;
 
   li {
     float: left;
     list-style: none;
+  }
+
+  ul {
+    margin-bottom: 0px;
   }
 
   input {
