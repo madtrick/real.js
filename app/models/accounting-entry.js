@@ -15,8 +15,8 @@ var AccountingEntry = Backbone.AssociatedModel.extend({
   ],
 
   mutators : {
-    created_at: function() {
-      return moment(this.attributes['created_at']).toDate();
+    date: function() {
+      return moment(this.attributes.date).toDate();
     }
   }
 });

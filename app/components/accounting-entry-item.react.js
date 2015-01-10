@@ -13,8 +13,8 @@ var AccountingEntryItem = React.createClass({
     return (
       <div className="r-accounting-entry-item clearfix">
           <div className="r-accounting-entry-item__moment">
-            <div className="r-accounting-entry-item__date">{moment(entry.get('created_at')).format('DD/MM')}</div>
-            <div className="r-accounting-entry-item__time">{moment(entry.get('created_at')).format('hh:mm')}</div>
+            <div className="r-accounting-entry-item__date">{moment(entry.get('date')).format('DD/MM')}</div>
+            <div className="r-accounting-entry-item__time">{moment(entry.get('date')).format('hh:mm')}</div>
           </div>
           <div className="r-accounting-entry-item__picture"><img src={profile.get('image')} /></div>
           <div className="r-accounting-entry-item__amount">{entry.get('amount')}</div>

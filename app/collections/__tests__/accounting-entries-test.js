@@ -12,10 +12,10 @@ describe('AccountingEntries', function() {
   describe('findByMonth', function() {
     var accountingEntry_1, accountingEntry_2, accountingEntry_3, accountingEntry_4;
     beforeEach(function() {
-      accountingEntry_1 = accountingEntries.add({id: 0, created_at: moment().month(0)});
-      accountingEntry_2 = accountingEntries.add({id: 1, created_at: moment().month(0)});
-      accountingEntry_3 = accountingEntries.add({id: 2, created_at: moment().month(0)});
-      accountingEntry_4 = accountingEntries.add({id: 3, created_at: moment().month(1)});
+      accountingEntry_1 = accountingEntries.add({id: 0, date: moment().month(0)});
+      accountingEntry_2 = accountingEntries.add({id: 1, date: moment().month(0)});
+      accountingEntry_3 = accountingEntries.add({id: 2, date: moment().month(0)});
+      accountingEntry_4 = accountingEntries.add({id: 3, date: moment().month(1)});
     });
 
     it('returns the entries created on the given month', function() {
@@ -47,10 +47,10 @@ describe('AccountingEntries', function() {
 
   describe('expenseByMonth', function() {
     beforeEach(function() {
-      accountingEntries.add({amount: -5, created_at: moment().month(0)});
-      accountingEntries.add({amount: -5, created_at: moment().month(0)});
-      accountingEntries.add({amount: 10, created_at: moment().month(0)});
-      accountingEntries.add({amount: -5, created_at: moment().month(1)});
+      accountingEntries.add({amount: -5, date: moment().month(0)});
+      accountingEntries.add({amount: -5, date: moment().month(0)});
+      accountingEntries.add({amount: 10, date: moment().month(0)});
+      accountingEntries.add({amount: -5, date: moment().month(1)});
     });
 
     it('returns the sum of all the expenses in the given month', function() {

@@ -24,7 +24,7 @@ var AccountingEntryAdd = React.createClass({
   },
 
   handleSubmit: function(args) {
-    this.getFlux().actions.createEntry({amount: args.amount, tag_list: args.tags});
+    this.getFlux().actions.createEntry({amount: args.amount, tag_list: args.tags, date: args.date});
     this.setState({tags: []});
     return false;
   },

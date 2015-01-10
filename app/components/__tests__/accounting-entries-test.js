@@ -13,7 +13,7 @@ var timeOffset = 10000;
 
 Factory.define('user', User);
 Factory.define('accountingEntry')
-  .attr('created_at', function(){
+  .attr('date', function(){
     var createdAt = timeOffset + (+new Date());
     timeOffset += timeOffset;
     return createdAt;})
@@ -57,7 +57,7 @@ describe('AccountingEntries', function() {
   });
 
   function mapCreatedAt(array) {
-    return _.map(array, function(entry){return +entry.get('created_at');});
+    return _.map(array, function(entry){return +entry.get('date');});
   }
 
   it('shows "limit" number of entries', function() {
@@ -66,7 +66,7 @@ describe('AccountingEntries', function() {
 
   it('shows the older entries', function() {
     var itemsCreatedAt    = mapCreatedAt(_.map(items, function(i){return i.props.entry;}));
-    var sortedByCreatedAt = mapCreatedAt(_.last(_.sortBy(entries, function(e){return +e.get('created_at')}), 5));
+    var sortedByCreatedAt = mapCreatedAt(_.last(_.sortBy(entries, function(e){return +e.get('date')}), 5));
 
     expect(itemsCreatedAt).toEqual(sortedByCreatedAt);
   });

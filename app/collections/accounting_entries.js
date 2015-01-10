@@ -27,17 +27,18 @@ var AccountingEntries = Backbone.Collection.extend({
   findByDateRange: function(startDate, endDate){
     var moment__startDate = moment(startDate);
     var moment__endDate   = moment(endDate);
+    var date;
 
     return this.filter(function(accountingEntry){
-      created_at = accountingEntry.get('created_at');
+      date = accountingEntry.get('date');
 
-      return moment__startDate.isBefore(created_at) && moment__endDate.isAfter(created_at);
+      return moment__startDate.isBefore(date) && moment__endDate.isAfter(date);
     });
   },
 
   findByMonth: function(month) {
     return this.filter(function(accountingEntry){
-      return accountingEntry.get('created_at').getMonth() == month;
+      return accountingEntry.get('date').getMonth() == month;
     });
   },
 

@@ -36,7 +36,7 @@ var AccountingStore = Fluxxor.createStore({
   },
 
   handleAction_createEntry: function(payload){
-    var model = new this.collection.model({amount: payload.amount, tag_list: payload.tag_list});
+    var model = new this.collection.model({amount: payload.amount, tag_list: payload.tag_list, date: payload.date});
     model.save([], {
       success: _.bind(this.handleSuccessfulModelSave, this),
       error: _.bind(this.handleFailedModelSave, this)
@@ -45,7 +45,7 @@ var AccountingStore = Fluxxor.createStore({
 
   handleAction_updateEntry: function(payload) {
     var model = this.entry(payload.entry_id);
-    model.save({amount: payload.amount, tag_list: payload.tags}, {
+    model.save({amount: payload.amount, tag_list: payload.tags, date: payload.date}, {
       error: _.bind(this.handleFailedModelSave, this)
     });
   },

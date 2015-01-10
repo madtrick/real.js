@@ -7,7 +7,7 @@ var AccountingEntryItem = require("./accounting-entry-item.react");
 var AccountingEntries = React.createClass({
   // ASC order
   order: function(items){
-    return _.sortBy(items, function(e){ return +e.get('created_at'); });
+    return _.sortBy(items, function(e){ return +e.get('date'); });
   },
 
   render: function(){

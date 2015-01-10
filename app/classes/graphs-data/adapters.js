@@ -5,7 +5,7 @@ var Adapters = redefine.Class({
   statics: {
     adaptBackboneModels: function(models){
       return _.map(models, function(model){
-        return {date: model.get('created_at'), value: model.get('amount')};
+        return {date: model.get('date'), value: model.get('amount')};
       });
     }
   }
