@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 
-var React        = require('react');
-var TagInput     = require('./tag-input.react');
+var React     = require('react');
+var TagInput  = require('./tag-input.react');
+var DateField = require('./date-field.react');
 
 var AccountingEntryForm = React.createClass({
 
@@ -9,6 +10,7 @@ var AccountingEntryForm = React.createClass({
     return (
           <form role="form" className="r-accounting-entry-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
+              <DateField ref="dateField"/>
               <input
                 ref="inputField"
                 type="number"
@@ -28,27 +30,46 @@ var AccountingEntryForm = React.createClass({
   },
 
   handleExpense: function(){
-    this.inputFieldDOMNode().value = (this.inputFieldDOMNodeValue() < 0 ? 1 : -1) * this.inputFieldDOMNodeValue();
+    this.setInputField( (this.inputFieldDOMNodeValue() < 0 ? 1 : -1) * this.inputFieldDOMNodeValue() );
     return true;
   },
 
   handleSubmit: function(e){
     var amount = this.inputFieldDOMNodeValue();
+    var date   = this.dateFieldDOMNodeValue();
+
     this.resetInputField();
 
-    return this.props.onSubmit({amount: parseInt(amount, 10), tags: this.refs.tagInput.getTagValues()});
+    return this.props.onSubmit({
+      amount: parseInt(amount, 10),
+      tags: this.refs.tagInput.getTagValues(),
+      date: date
+    });
+  },
+
+  dateFieldDOMNodeValue: function(){
+    //return this.DOMNode('dateField').value;
+    return this.refs.dateField.value();
   },
 
   inputFieldDOMNodeValue: function(){
-    return this.inputFieldDOMNode().value;
+    return this.DOMNode('inputField').value;
   },
 
-  inputFieldDOMNode: function(){
-    return this.refs.inputField.getDOMNode();
+  DOMNode: function(ref){
+    return this.refs[ref].getDOMNode();
   },
 
-  resetInputField: function() {
-    this.inputFieldDOMNode().value = '';
+  setInputField: function (value){
+    this.resetField('inputField', value);
+  },
+
+  resetInputField: function () {
+    this.resetField('inputField', '');
+  },
+
+  resetField: function(ref, value) {
+    this.DOMNode(ref).value = value;
   }
 });
 

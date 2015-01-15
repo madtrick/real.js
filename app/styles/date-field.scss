@@ -1,0 +1,7 @@
+.date-field__date {
+  // Setting display: none is not valid
+  // as later we won't be able programatically
+  // launch the date-picker
+  position: absolute;
+  top: -111px;
+}
