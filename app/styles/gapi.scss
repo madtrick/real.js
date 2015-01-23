@@ -1,0 +1,7 @@
+/*
+ * Hide 'welcome back' Google + banner
+ * that is shown afte successful login
+ */
+iframe[src^="https://apis.google.com"] {
+  display: none !important;
+}
