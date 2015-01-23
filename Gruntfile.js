@@ -32,6 +32,9 @@ module.exports = function(grunt) {
     },
     browserify : {
       options:      {
+        browserifyOptions: {
+          debug: true //enable sourceMaps. Will be appended to the bundle file
+        },
         transform:  [ require('grunt-react').browserify, 'envify' ]
       },
       app: {
@@ -93,7 +96,7 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        sourceMap: true
+        sourceMap: false
       }
     },
     env: {
@@ -111,6 +114,17 @@ module.exports = function(grunt) {
         replacement: 'fonts/fontawesome-webfont',
         recursive: false
       }
+    },
+    filerev :{
+      files: {
+        src: [
+          'dist/*.js',
+          'dist/*.css'
+        ]
+      }
+    },
+    clean: {
+      dist: 'dist/'
     }
   });
 
@@ -129,10 +143,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-sed');
+  grunt.loadNpmTasks('grunt-filerev');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['env:dev', 'concurrent:target']);
 
   grunt.registerTask('dist', [
+    'clean',
     'env:dist',
     'browserify',
     'copy:dist',
@@ -141,6 +158,7 @@ module.exports = function(grunt) {
     'uglify:generated',
     'cssmin:generated',
     'sed',
+    'filerev',
     'usemin'
   ]);
 };
