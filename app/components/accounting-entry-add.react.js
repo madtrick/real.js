@@ -14,15 +14,6 @@ var AccountingEntryAdd = React.createClass({
     return {tags: []};
   },
 
-  componentDidMount: function() {
-    var self = this;
-    bus.bind('reuse-entry', reuseEntry);
-
-    function reuseEntry(data) {
-      self.setState({tags: data.tags });
-    }
-  },
-
   handleSubmit: function(args) {
     this.getFlux().actions.createEntry({amount: args.amount, tag_list: args.tags, date: args.date});
     this.setState({tags: []});

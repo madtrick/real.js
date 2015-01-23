@@ -26,11 +26,6 @@ var Real = React.createClass({
     };
   },
 
-  handleClickAccountingEntry: function(entry){
-    bus.trigger('reuse-entry', {tags: _.pluck(entry.get('tags'), 'name')});
-    return false;
-  },
-
   render: function(){
 
     return (
@@ -46,7 +41,7 @@ var Real = React.createClass({
                       profiles={this.state.profiles}
                       handleClick={this.handleClickAccountingEntry}
                       limit={5}
-                      actions={{edit: true, reuse: true}}
+                      actions={{edit: true}}
                     />
                     <div className="r-expenses-summary">
                       Expenses this month: {this.state.entries.expenseByMonth((new Date()).getMonth())}
