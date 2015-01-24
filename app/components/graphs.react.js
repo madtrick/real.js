@@ -29,8 +29,15 @@ var Graphs = React.createClass({
 
     return (
       <MainLayout>
-        <Graph data={yearExpensesData}/>
-        <Graph data={tagsData}/>
+        <Graph
+          data={yearExpensesData}
+          title="Accumulated per year"
+        />
+        <Graph
+          data={tagsData}
+          title="Monthly expenses in food and eating out"
+          labels={['Food', 'Eating out', 'Total']}
+        />
       </MainLayout>
     );
   }

@@ -5,7 +5,10 @@ var _     = require('lodash');
 
 var Graph = React.createClass({
   getInitialState: function (){
-    return {graphId: _.uniqueId('graph-')};
+    var graphId        = _.uniqueId('graph-');
+    var legendsDOMElId = graphId + "-legends";
+
+    return {graphId: graphId, legendsDOMElId: legendsDOMElId};
   },
 
   componentWillReceiveProps: function(props){
@@ -21,6 +24,7 @@ var Graph = React.createClass({
       <div>
         {!this._isDataValid(this.props.data) && <h1>Invalid data. Can not render the graph</h1>}
         <div id={this.state.graphId} className='r-graph-container'></div>;
+        <div id={this.state.legendsDOMElId}></div>
       </div>
     )
   },
@@ -28,14 +32,28 @@ var Graph = React.createClass({
   _prepareGraph: function(data) {
     if (!this._isDataValid(data)) return;
 
-    data_graphic({
-      title: "Annotations",
-      description: "By setting the graphic's target a class name of main-area-solid, markers don't extend down to the bottom of the graphic, which better draws attention to, say, spikes.",
-      data: data,
-      interpolate: 'step',
-      target: '#' + this.state.graphId,
-      x_accessor: 'date',
-      y_accessor: 'value'
+    /*
+     * NOTE
+     *
+     * Don't know why but rendering a graph with just
+     * one element with value == 0 triggers this errors
+     *
+     *  Error: Invalid value for <line> attribute y1="NaN"
+     *  Error: Invalid value for <line> attribute y2="NaN"
+     *
+     * The graphs seems to be rendered ok anyway
+     */
+
+    MG.data_graphic({
+      title         : this.props.title,
+      description   : "By setting the graphic's target a class name of main-area-solid, markers don't extend down to the bottom of the graphic, which better draws attention to, say, spikes.",
+      data          : data,
+      legend        : this.props.labels,
+      legend_target : '#' + this.state.legendsDOMElId,
+      interpolate   : 'step',
+      target        : '#' + this.state.graphId,
+      x_accessor    : 'date',
+      y_accessor    : 'value'
     });
   },
 
