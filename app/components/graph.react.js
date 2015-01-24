@@ -44,14 +44,6 @@ var Graph = React.createClass({
 
     if (data.length == 0) return false;
 
-    /* There's a bug that crashes data_graphics library
-     * when only one data element is on the data set.
-     *
-     * This is the issue:
-     * https://github.com/mozilla/metrics-graphics/issues/289
-     */
-    if (data.length == 1) return false;
-
     var isArrayOfArrays   = _.all(data, function(element){ return _.isArray(element); });
     var hasEmptySubArrays = isArrayOfArrays && _.any(data, function(element){
       return !that._isDataValid(element);
