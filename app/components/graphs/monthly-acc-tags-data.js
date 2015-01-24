@@ -35,10 +35,6 @@ var MonthlyAccTagsData = {
         return new Transformations().accumulate(subArray);
       });
 
-
-    //var transformation = new Transformations();
-
-    //macc = transformation.multiAccumulate.apply(transformation, result);
     result =  transformation.equalizeEndings.apply(transformation, result);
     result.push(macc);
 
