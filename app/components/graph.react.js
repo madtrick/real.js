@@ -32,7 +32,6 @@ var Graph = React.createClass({
       title: "Annotations",
       description: "By setting the graphic's target a class name of main-area-solid, markers don't extend down to the bottom of the graphic, which better draws attention to, say, spikes.",
       data: data,
-      width: 1000,
       interpolate: 'step',
       target: '#' + this.state.graphId,
       x_accessor: 'date',
