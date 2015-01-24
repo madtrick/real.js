@@ -5,7 +5,7 @@ var _     = require('lodash');
 
 var Graph = React.createClass({
   getInitialState: function (){
-    return {graphId: _.uniqueId('graph-'), isDataValid: true};
+    return {graphId: _.uniqueId('graph-')};
   },
 
   componentWillReceiveProps: function(props){
@@ -17,18 +17,16 @@ var Graph = React.createClass({
   },
 
   render: function() {
-    if (!this.state.isDataValid){
-      return <h1>Invalid data. Can not render the graph</h1>
-    }
-
-    return <div id={this.state.graphId} className='r-graph-container'></div>;
+    return (
+      <div>
+        {!this._isDataValid(this.props.data) && <h1>Invalid data. Can not render the graph</h1>}
+        <div id={this.state.graphId} className='r-graph-container'></div>;
+      </div>
+    )
   },
 
   _prepareGraph: function(data) {
-    if (!this._isDataValid(data)){
-      this.setState({isDataValid : false });
-      return;
-    }
+    if (!this._isDataValid(data)) return;
 
     data_graphic({
       title: "Annotations",
