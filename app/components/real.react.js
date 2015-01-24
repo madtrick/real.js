@@ -40,7 +40,7 @@ var Real = React.createClass({
                       entries={this.state.entries.models}
                       profiles={this.state.profiles}
                       handleClick={this.handleClickAccountingEntry}
-                      limit={5}
+                      limit={3}
                       actions={{edit: true}}
                     />
                     <div className="r-expenses-summary">
@@ -54,11 +54,11 @@ var Real = React.createClass({
           </div>
         </div>
         <ErrorsAlert />
-        <div className="footer">
+        <footer>
           <div className="container-fluid">
             <AccountingEntryAdd flux={this.getFlux()}/>
           </div>
-        </div>
+        </footer>
       </MainLayout>
     );
   }
