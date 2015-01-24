@@ -1,3 +1,6 @@
+.date-field-container {
+  position: static;
+}
 .date-field__date {
   // Setting display: none is not valid
   // as later we won't be able programatically

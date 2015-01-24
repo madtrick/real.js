@@ -27,7 +27,8 @@ var DateField  = React.createClass({
      * Remove the limits once fixed
      */
     return (
-      <div>
+      <div className="input-group date-field-container">
+        <div className="input-group-addon"><i className="fa fa-calendar"></i></div>
         <input
           className="form-control input-xlarge"
           onClick={this.showDatePicker}

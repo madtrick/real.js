@@ -30,7 +30,10 @@ var TagInput = React.createClass({
 
   render : function(){
     return (
-      <div className="clearfix" id="tags"></div>
+      <div className="r-tags-container clearfix">
+        <div className="r-tags-icon"><i className="fa fa-tags"></i></div>
+        <div id="tags"></div>
+      </div>
     );
   },
 
