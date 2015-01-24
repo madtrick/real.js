@@ -45,7 +45,7 @@ var AccountingEntries = Backbone.Collection.extend({
   findByTags: function(tags) {
     return this.filter(function(accountingEntry){
       return _.any(accountingEntry.get('tags'), function(tag){
-        return tags.indexOf(tag) != -1;
+        return tags.indexOf(tag.name) != -1;
       });
     });
   },
