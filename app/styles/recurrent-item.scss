@@ -1,0 +1,15 @@
+.r-recurrent-accounting-entry-item {
+  list-style: none;
+  background: white;
+  margin-bottom: 5px;
+}
+
+.r-recurrent-item__amount,
+.r-recurrent-item__tags{
+  float: left;
+}
+
+.r-recurrent-item__overdue,
+.r-recurrent-item__btn {
+  float: right
+}
