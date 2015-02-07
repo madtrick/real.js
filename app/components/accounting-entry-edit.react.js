@@ -3,7 +3,7 @@
 var React               = require('react');
 var Fluxxor             = require('fluxxor');
 var _                   = require('lodash');
-var AccountingEntryForm = require('./accounting-entry-form.react');
+var AccountingEntryForm = require('./forms/accounting-entry-form.react');
 
 var StoreWatchMixin     = Fluxxor.StoreWatchMixin;
 var FluxxorMixin        = Fluxxor.FluxMixin(React);

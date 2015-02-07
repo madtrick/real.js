@@ -26,6 +26,9 @@ var Navbar = React.createClass({
               <li>
                 <Link to="/accounting-entries-list">Accounting entries</Link>
               </li>
+              <li>
+                <Link to="/recurring-accounting-entries">Recurrent entries</Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -3,7 +3,7 @@
 var React               = require('react');
 var Fluxxor             = require('fluxxor');
 var bus                 = require('../services/bus');
-var AccountingEntryForm = require('./accounting-entry-form.react');
+var AccountingEntryForm = require('./forms/accounting-entry-form.react');
 
 var FluxxorMixin = Fluxxor.FluxMixin(React);
 
