@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 
 var React                      = require('react');
+var Link                       = require('rrouter').Link;
 var MainLayout                 = require('./layouts/main.react');
 var RecurrentItem              = require('./recurrent-item.react');
 var RecurrentAccountingEntries = require('../collections/recurrent-accounting-entries');
@@ -25,6 +26,10 @@ var ReccurringAccountinEntries = React.createClass({
   render: function() {
     return (
       <MainLayout>
+        <Link
+          className="btn btn-default"
+          to="/recurrent-accounting-entry-new"
+        >+ Recurrent entry</Link>
         <ul className="r-recurring-accounting-entries">
           {
             recurrentAccountingEntries.map(function (rae) {
