@@ -78,6 +78,7 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
 
     })
     .catch(function(error){
-      console.log(error);
+      // Same as above
+      console.error(error.stack);
     })
 });
