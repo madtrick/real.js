@@ -2,21 +2,23 @@
 
 require('./ext/backbone');
 
-var React                       = require('react');
-var Fluxxor                     = require('fluxxor');
-var RRouter                     = require('rrouter');
-var AccountingStore             = require('./stores/accounting');
-var ProfilesStore               = require('./stores/profiles');
-var AccountingEntries           = require('./collections/accounting_entries');
-var Profiles                    = require('./collections/profiles');
-var Real                        = require('./components/real.react');
-var AccountingEntryEdit         = require('./components/accounting-entry-edit.react');
-var AccountingEntriesList       = require('./components/accounting-entries-list.react');
-var ReccurringAccountinEntries  = require('./components/recurring-accounting-entries.react');
-var RecurrentAccountingEntryNew = require('./components/recurrent-accounting-entry-new.react');
-var Graphs                      = require('./components/graphs.react');
-var Auth                        = require('./utils/auth');
-var Gapi                        = require('./adapters/gapi');
+var React                           = require('react');
+var Fluxxor                         = require('fluxxor');
+var RRouter                         = require('rrouter');
+var AccountingStore                 = require('./stores/accounting');
+var RecurrentAccountingEntriesStore = require('./stores/recurrent-accounting-entries');
+var ProfilesStore                   = require('./stores/profiles');
+var AccountingEntries               = require('./collections/accounting_entries');
+var RecurrentAccountingEntries      = require('./collections/recurrent-accounting-entries');
+var Profiles                        = require('./collections/profiles');
+var Real                            = require('./components/real.react');
+var AccountingEntryEdit             = require('./components/accounting-entry-edit.react');
+var AccountingEntriesList           = require('./components/accounting-entries-list.react');
+var ReccurringAccountinEntries      = require('./components/recurring-accounting-entries.react');
+var RecurrentAccountingEntryNew     = require('./components/recurrent-accounting-entry-new.react');
+var Graphs                          = require('./components/graphs.react');
+var Auth                            = require('./utils/auth');
+var Gapi                            = require('./adapters/gapi');
 
 var Routes = RRouter.Routes;
 var Route  = RRouter.Route;
@@ -28,10 +30,16 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
     .then(Gapi.init)
     .then(
       function(){
+        var accountingEntriesCollection         = new AccountingEntries();
+        var profilesCollection                  = new Profiles();
+        var recurrentAccountinEntriesCollection = new RecurrentAccountingEntries();
+
         var stores = {
-          AccountingStore: new AccountingStore({collection: new AccountingEntries()}),
-          ProfilesStore : new ProfilesStore({collection: new Profiles()})
+          RecurrentAccountingEntriesStore : new RecurrentAccountingEntriesStore({collection: recurrentAccountinEntriesCollection}),
+          AccountingStore                 : new AccountingStore({collection: accountingEntriesCollection}),
+          ProfilesStore                   : new ProfilesStore({collection: profilesCollection})
         };
+
         var actions = {
           createEntry : function(payload){
             this.dispatch('CREATE_ENTRY', payload);
@@ -41,6 +49,9 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
           },
           fetchProfiles: function(payload){
             this.dispatch('FETCH_PROFILES', payload);
+          },
+          createRecurrentEntry : function (payload) {
+            this.dispatch('CREATE_RECURRENT_ENTRY', payload);
           }
         };
 

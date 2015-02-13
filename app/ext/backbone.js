@@ -1,7 +1,7 @@
-var Backbone           = require('backbone-associations');
-var BackboneSuperSync  = require('backbone-super-sync');
-var _                  = require('lodash');
-var Auth               = require('../utils/auth');
+var BackboneAssociations = require('backbone-associations');
+var BackboneSuperSync    = require('backbone-super-sync');
+var _                    = require('lodash');
+var Auth                 = require('../utils/auth');
 
 require("../vendor/backbone-mutators");
 
@@ -30,4 +30,4 @@ function sync(method, model, options){
     return BackboneSuperSync.call(this, method, model, options);
 }
 
-Backbone.sync = sync;
+BackboneAssociations.sync = sync;

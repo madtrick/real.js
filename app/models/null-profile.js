@@ -1,4 +1,4 @@
-var Backbone = require('backbone-model');
+var Backbone = require('backbone-associations');
 
 var NullProfile = Backbone.Model.extend({
   defaults: {

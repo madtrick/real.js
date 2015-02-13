@@ -1,4 +1,4 @@
-var Backbone    = require('backbone-collection');
+var Backbone    = require('backbone-associations');
 var Profile     = require('../models/profile');
 var NullProfile = require('../models/null-profile');
 

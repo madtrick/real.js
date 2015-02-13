@@ -1,29 +1,30 @@
 /** @jsx React.DOM */
 
 var React                      = require('react');
+var Fluxxor                    = require('fluxxor');
 var Link                       = require('rrouter').Link;
 var MainLayout                 = require('./layouts/main.react');
 var RecurrentItem              = require('./recurrent-item.react');
-var RecurrentAccountingEntries = require('../collections/recurrent-accounting-entries');
 
-var FAKE_DATA = [
-  {
-    amount: -1000,
-    tags: [{name: 'flat'}],
-    period: '1:month:1',
-    'last-run': new Date()
-},
-{
-  amount: -23,
-  tags: [{name: 'telephone'}, {name: 'home'}],
-  period: '1:month:1',
-}
-];
-
-var recurrentAccountingEntries = new RecurrentAccountingEntries(FAKE_DATA);
+var FluxxorMixin      = Fluxxor.FluxMixin(React);
+var StoreWatchMixin   = Fluxxor.StoreWatchMixin;
 
 var ReccurringAccountinEntries = React.createClass({
+  mixins: [FluxxorMixin, StoreWatchMixin("RecurrentAccountingEntriesStore")],
+
+  componentWillMount: function() {
+    this.getFlux().store("RecurrentAccountingEntriesStore").loadEntries();
+  },
+
+  getStateFromFlux: function() {
+    return {
+      recurrentEntries : this.getFlux().store("RecurrentAccountingEntriesStore").entries(),
+    };
+  },
+
   render: function() {
+    var recurrentAccountingEntries = this.state.recurrentEntries;
+
     return (
       <MainLayout>
         <Link

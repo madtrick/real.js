@@ -38,8 +38,6 @@
   "license": "MIT",
   "dependencies": {
     "backbone-associations": "^0.6.2",
-    "backbone-collection": "^1.0.6",
-    "backbone-model": "^1.0.6",
     "backbone-super-sync": "0.0.14",
     "backbone.cocktail": "^0.5.9",
     "grunt": "^0.4.5",

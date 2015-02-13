@@ -1,5 +1,6 @@
-var Backbone = require('backbone-model');
-var moment   = require('moment');
+var Backbone = require('backbone-associations');
+var moment    = require('moment');
+var config    = require('../../config');
 
 function MonthlyRecurrentExpression(expression) {
   this.expression      = expression;
@@ -18,6 +19,8 @@ MonthlyRecurrentExpression.prototype.activates = function(last) {
 };
 
 var RecurrentAccountingEntry = Backbone.Model.extend({
+  urlRoot: config.backendUrl + '/recurrent_accounting_entries',
+
   isOverdue : function () {
     return new MonthlyRecurrentExpression(1).activates(this.get('last-run'));
   }
