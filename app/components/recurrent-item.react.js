@@ -1,10 +1,15 @@
 /** @jsx React.DOM */
 
-var React    = require('react/addons');
-var classSet = React.addons.classSet;
-var TagsList = require('./helpers.react').TagsList;
+var React        = require('react/addons');
+var Fluxxor      = require('fluxxor');
+var TagsList     = require('./helpers.react').TagsList;
+
+var classSet     = React.addons.classSet;
+var FluxxorMixin = Fluxxor.FluxMixin(React);
 
 var RecurrentItem = React.createClass({
+  mixins: [FluxxorMixin],
+
   render: function () {
     var recurrentAccountingEntry = this.props.item;
     var buttonClassName = classSet({
@@ -23,8 +28,11 @@ var RecurrentItem = React.createClass({
         />
         <a
           className={buttonClassName}
+          onClick={this.createAccountingEntry}
           href="#"
-          role="button">Input now</a>
+          role="button" >
+          Input now
+        </a>
         <div className="r-recurrent-item__overdue">
           {
             (recurrentAccountingEntry.isOverdue()) &&
@@ -33,6 +41,16 @@ var RecurrentItem = React.createClass({
         </div>
       </li>
     );
+  },
+
+  createAccountingEntry: function () {
+    var recurrentAccountingEntry = this.props.item;
+    var amount                   = recurrentAccountingEntry.get('amount');
+    var tag_list                 = recurrentAccountingEntry.get('tags').map(function(t) {return t.name;});
+    var date                     = new Date();
+
+    this.getFlux().actions.createEntry({amount: amount, tag_list: tag_list, date: date});
+    return false;
   }
 });
 
