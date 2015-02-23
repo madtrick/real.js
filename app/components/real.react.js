@@ -11,7 +11,6 @@ var AccountingStore    = require('../stores/accounting');
 var MainLayout         = require('./layouts/main.react');
 var AccountingEntries  = require('./accounting-entries.react');
 var AccountingEntryAdd = require('./accounting-entry-add.react');
-var ErrorsAlert        = require('./errors-alert.react');
 var Navbar             = require('./navbar.react');
 
 var Real = React.createClass({
@@ -53,7 +52,6 @@ var Real = React.createClass({
             </div>
           </div>
         </div>
-        <ErrorsAlert />
         <footer>
           <div className="container-fluid">
             <AccountingEntryAdd flux={this.getFlux()}/>

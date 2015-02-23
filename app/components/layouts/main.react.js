@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 
-var React  = require('react');
-var Navbar = require('../navbar.react');
+var React       = require('react');
+var Navbar      = require('../navbar.react');
+var ErrorsAlert = require('../errors-alert.react');
 
 var Main = React.createClass({
 
@@ -9,6 +10,7 @@ var Main = React.createClass({
     return (
       <div>
         <Navbar/>
+        <ErrorsAlert />
         {this.props.children}
       </div>
     );
