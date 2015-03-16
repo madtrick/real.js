@@ -1,7 +1,6 @@
 var Reflux                     = require('reflux');
 var _                          = require('lodash');
 var RecurrentAccountingEntries = require('../collections/recurrent-accounting-entries');
-var Errors                     = require("../services/errors");
 var actions                    = require("../actions");
 
 module.exports = Reflux.createStore({
@@ -36,7 +35,7 @@ module.exports = Reflux.createStore({
   },
 
   handleFailedCollectionFetch: function() {
-    Errors.add("Couldn't fetch recurrent entries. Try again");
+    actions.addError("Couldn't fetch recurrent entries. Try again");
   },
 
   handleSuccessfulModelSave: function(model){
@@ -44,6 +43,6 @@ module.exports = Reflux.createStore({
   },
 
   handleFailedModelSave: function(model){
-    Errors.add("Couldn't save recurrent entry. Try again");
+    actions.addError("Couldn't save recurrent entry. Try again");
   }
 });

@@ -1,6 +1,6 @@
 var Fluxxor = require('fluxxor');
 var _       = require('lodash');
-var Errors  = require("../services/errors");
+var actions = require('../actions');
 
 var AccountingStore = Fluxxor.createStore({
 
@@ -60,7 +60,7 @@ var AccountingStore = Fluxxor.createStore({
 
   handleFailedCollectionFetch: function() {
     this._state = AccountingStore.States.IDLE;
-    Errors.add("Couldn't fetch entries. Try again");
+    actions.addError("Couldn't fetch entries. Try again");
     this.emit("change");
   },
 
@@ -69,7 +69,7 @@ var AccountingStore = Fluxxor.createStore({
   },
 
   handleFailedModelSave: function(model){
-    Errors.add("Couldn't save the entry. Try again");
+    actions.addError("Couldn't save the entry. Try again");
 
     this.emit("change");
   },
