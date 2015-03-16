@@ -14,7 +14,7 @@ var Profiles                        = require('./collections/profiles');
 var Real                            = require('./components/real.react');
 var AccountingEntryEdit             = require('./components/accounting-entry-edit.react');
 var AccountingEntriesList           = require('./components/accounting-entries-list.react');
-var ReccurringAccountinEntries      = require('./components/recurring-accounting-entries.react');
+var RecurrentAccountingEntries      = require('./components/recurrent-accounting-entries.react');
 var RecurrentAccountingEntryNew     = require('./components/recurrent-accounting-entry-new.react');
 var Graphs                          = require('./components/graphs.react');
 var Auth                            = require('./utils/auth');
@@ -61,7 +61,7 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
             <Route name="graphs" path="/graphs" view={Graphs} flux={flux}/>
             <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit} flux={flux}/>
             <Route name="accounting-entries-list" path="/accounting-entries-list" view={AccountingEntriesList} flux={flux}/>
-            <Route name="recurring-accounting-entries" path="/recurring-accounting-entries" view={ReccurringAccountinEntries}/>
+            <Route name="recurrent-accounting-entries" path="/recurrent-accounting-entries" view={RecurrentAccountingEntries}/>
             <Route name="recurrent-accounting-entry-new" path="/recurrent-accounting-entries/new" view={RecurrentAccountingEntryNew}/>
           </Routes>
         );

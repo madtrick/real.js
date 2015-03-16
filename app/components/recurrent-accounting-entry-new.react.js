@@ -39,7 +39,7 @@ var RecurrentAccountingEntryNew = React.createClass({
       }
     );
 
-    this.navigateTo('recurring-accounting-entries');
+    this.navigateTo('recurrent-accounting-entries');
   }
 });
 
