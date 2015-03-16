@@ -1,15 +1,11 @@
 /** @jsx React.DOM */
 
 var React        = require('react/addons');
-var Fluxxor      = require('fluxxor');
 var TagsList     = require('./helpers.react').TagsList;
 
 var classSet     = React.addons.classSet;
-var FluxxorMixin = Fluxxor.FluxMixin(React);
 
 var RecurrentItem = React.createClass({
-  mixins: [FluxxorMixin],
-
   render: function () {
     var recurrentAccountingEntry = this.props.item;
     var buttonClassName = classSet({
@@ -44,13 +40,14 @@ var RecurrentItem = React.createClass({
   },
 
   createAccountingEntry: function () {
-    var recurrentAccountingEntry = this.props.item;
-    var amount                   = recurrentAccountingEntry.get('amount');
-    var tag_list                 = recurrentAccountingEntry.get('tags').map(function(t) {return t.name;});
-    var date                     = new Date();
+    //var recurrentAccountingEntry = this.props.item;
+    //var amount                   = recurrentAccountingEntry.get('amount');
+    //var tag_list                 = recurrentAccountingEntry.get('tags').map(function(t) {return t.name;});
+    //var date                     = new Date();
 
-    this.getFlux().actions.createEntry({amount: amount, tag_list: tag_list, date: date});
-    return false;
+    //var ret=    this.getFlux().actions.createEntry({amount: amount, tag_list: tag_list, date: date});
+    //console.log(ret);
+    //return false;
   }
 });
 

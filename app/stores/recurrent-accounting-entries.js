@@ -1,37 +1,26 @@
-var Fluxxor = require('fluxxor');
-var _       = require('lodash');
-var Errors  = require("../services/errors");
+var Reflux                     = require('reflux');
+var _                          = require('lodash');
+var RecurrentAccountingEntries = require('../collections/recurrent-accounting-entries');
+var Errors                     = require("../services/errors");
+var actions                    = require("../actions");
 
-var RecurrentAccountingEntriesStore = Fluxxor.createStore({
+module.exports = Reflux.createStore({
+  init: function () {
+    this.collection = new RecurrentAccountingEntries();
+    this.listenTo(actions.createRecurrentEntry, this.handleAction_createRecurrentEntry);
 
-  initialize: function(options){
-    this.collection = options.collection;
-    this._state     = RecurrentAccountingEntriesStore.States.IDLE;
-
-    this.bindActions(
-      'CREATE_RECURRENT_ENTRY', this.handleAction_createRecurrentEntry
-    );
+    this.loadEntries();
   },
 
-  entries: function(){
+  getInitialState: function () {
     return this.collection;
   },
 
-  entry: function(id) {
-    return this.collection.get(id);
-  },
-
   loadEntries: function() {
-    this._state = RecurrentAccountingEntriesStore.States.LOADING_ENTRIES;
     this.collection.fetch({
       success: _.bind(this.handleSuccessfulCollectionFetch, this),
       error: _.bind(this.handleFailedCollectionFetch, this)
     });
-    this.emit('change');
-  },
-
-  state: function() {
-    return this._state;
   },
 
   handleAction_createRecurrentEntry: function(payload){
@@ -43,14 +32,11 @@ var RecurrentAccountingEntriesStore = Fluxxor.createStore({
   },
 
   handleSuccessfulCollectionFetch: function(){
-    this._state = RecurrentAccountingEntriesStore.States.IDLE;
-    this.emit("change");
+    this.trigger(this.collection);
   },
 
   handleFailedCollectionFetch: function() {
-    this._state = RecurrentAccountingEntriesStore.States.IDLE;
     Errors.add("Couldn't fetch recurrent entries. Try again");
-    this.emit("change");
   },
 
   handleSuccessfulModelSave: function(model){
@@ -58,16 +44,6 @@ var RecurrentAccountingEntriesStore = Fluxxor.createStore({
   },
 
   handleFailedModelSave: function(model){
-    Errors.add("Couldn't save the recurrent entry. Try again");
-
-    this.emit("change");
+    Errors.add("Couldn't save recurrent entry. Try again");
   }
-
 });
-
-RecurrentAccountingEntriesStore.States = {
-  IDLE            : 'idle',
-  LOADING_ENTRIES : 'loading_entries'
-};
-
-module.exports = RecurrentAccountingEntriesStore;

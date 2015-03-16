@@ -32,10 +32,8 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
       function(){
         var accountingEntriesCollection         = new AccountingEntries();
         var profilesCollection                  = new Profiles();
-        var recurrentAccountinEntriesCollection = new RecurrentAccountingEntries();
 
         var stores = {
-          RecurrentAccountingEntriesStore : new RecurrentAccountingEntriesStore({collection: recurrentAccountinEntriesCollection}),
           AccountingStore                 : new AccountingStore({collection: accountingEntriesCollection}),
           ProfilesStore                   : new ProfilesStore({collection: profilesCollection})
         };
@@ -49,9 +47,6 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
           },
           fetchProfiles: function(payload){
             this.dispatch('FETCH_PROFILES', payload);
-          },
-          createRecurrentEntry : function (payload) {
-            this.dispatch('CREATE_RECURRENT_ENTRY', payload);
           }
         };
 
@@ -66,8 +61,8 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
             <Route name="graphs" path="/graphs" view={Graphs} flux={flux}/>
             <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit} flux={flux}/>
             <Route name="accounting-entries-list" path="/accounting-entries-list" view={AccountingEntriesList} flux={flux}/>
-            <Route name="recurring-accounting-entries" path="/recurring-accounting-entries" view={ReccurringAccountinEntries} flux={flux}/>
-            <Route name="recurrent-accounting-entry-new" path="/recurrent-accounting-entries/new" view={RecurrentAccountingEntryNew} flux={flux}/>
+            <Route name="recurring-accounting-entries" path="/recurring-accounting-entries" view={ReccurringAccountinEntries}/>
+            <Route name="recurrent-accounting-entry-new" path="/recurrent-accounting-entries/new" view={RecurrentAccountingEntryNew}/>
           </Routes>
         );
 

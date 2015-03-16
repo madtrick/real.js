@@ -41,6 +41,8 @@ var AccountingStore = Fluxxor.createStore({
       success: _.bind(this.handleSuccessfulModelSave, this),
       error: _.bind(this.handleFailedModelSave, this)
     });
+
+    return 1234;
   },
 
   handleAction_updateEntry: function(payload) {

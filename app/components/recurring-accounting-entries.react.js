@@ -1,26 +1,18 @@
 /** @jsx React.DOM */
 
-var React                      = require('react');
-var Fluxxor                    = require('fluxxor');
-var Link                       = require('rrouter').Link;
-var MainLayout                 = require('./layouts/main.react');
-var RecurrentItem              = require('./recurrent-item.react');
+var React                           = require('react');
+var Reflux                          = require('reflux');
+var Link                            = require('rrouter').Link;
+var RecurrentAccountingEntriesStore = require('../stores/recurrent-accounting-entries');
+var MainLayout                      = require('./layouts/main.react');
+var RecurrentItem                   = require('./recurrent-item.react');
 
-var FluxxorMixin      = Fluxxor.FluxMixin(React);
-var StoreWatchMixin   = Fluxxor.StoreWatchMixin;
+var mixins = [
+  Reflux.connect(RecurrentAccountingEntriesStore, 'recurrentEntries')
+];
 
 var ReccurringAccountinEntries = React.createClass({
-  mixins: [FluxxorMixin, StoreWatchMixin("RecurrentAccountingEntriesStore")],
-
-  componentWillMount: function() {
-    this.getFlux().store("RecurrentAccountingEntriesStore").loadEntries();
-  },
-
-  getStateFromFlux: function() {
-    return {
-      recurrentEntries : this.getFlux().store("RecurrentAccountingEntriesStore").entries(),
-    };
-  },
+  mixins: mixins,
 
   render: function() {
     var recurrentAccountingEntries = this.state.recurrentEntries;

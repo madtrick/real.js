@@ -22,7 +22,7 @@ var RecurrentAccountingEntry = Backbone.Model.extend({
   urlRoot: config.backendUrl + '/recurrent_accounting_entries',
 
   isOverdue : function () {
-    return new MonthlyRecurrentExpression(1).activates(this.get('last-run'));
+    return new MonthlyRecurrentExpression(this.get('period')).activates(this.get('last-run'));
   }
 });
 module.exports = RecurrentAccountingEntry;
