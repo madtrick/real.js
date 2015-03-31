@@ -4,11 +4,6 @@ require('./ext/backbone');
 
 var React                           = require('react');
 var RRouter                         = require('rrouter');
-var RecurrentAccountingEntriesStore = require('./stores/recurrent-accounting-entries');
-var ProfilesStore                   = require('./stores/profiles');
-var AccountingEntries               = require('./collections/accounting_entries');
-var RecurrentAccountingEntries      = require('./collections/recurrent-accounting-entries');
-var Profiles                        = require('./collections/profiles');
 var Real                            = require('./components/real.react');
 var AccountingEntryEdit             = require('./components/accounting-entry-edit.react');
 var AccountingEntriesList           = require('./components/accounting-entries-list.react');
