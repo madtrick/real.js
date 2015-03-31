@@ -1,4 +1,3 @@
-- Remove old accounting store
 - Rewrite all the tests
   - Remove tests for code that has changed a lot and start from scratch
 - Prettify the graphs

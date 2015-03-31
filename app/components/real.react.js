@@ -1,18 +1,17 @@
 /** @jsx React.DOM */
 
-var React              = require('react');
-var Reflux      = require('reflux');
-var _                  = require('lodash');
-var Link               = require('rrouter').Link;
-var bus                = require('../services/bus');
-var AccountingStore    = require('../stores/accounting');
-var MainLayout         = require('./layouts/main.react');
-var AccountingEntries  = require('./accounting-entries.react');
-var AccountingEntryAdd = require('./accounting-entry-add.react');
-var Navbar             = require('./navbar.react');
-
-var actions = require('../actions');
+var React                  = require('react');
+var Reflux                 = require('reflux');
+var _                      = require('lodash');
+var Link                   = require('rrouter').Link;
+var bus                    = require('../services/bus');
 var AccountingEntriesStore = require('../stores/accounting-entries');
+var actions                = require('../actions');
+var MainLayout             = require('./layouts/main.react');
+var AccountingEntries      = require('./accounting-entries.react');
+var AccountingEntryAdd     = require('./accounting-entry-add.react');
+var Navbar                 = require('./navbar.react');
+
 
 var mixins = [
   Reflux.connect(AccountingEntriesStore, 'entries')

@@ -4,7 +4,6 @@ require('./ext/backbone');
 
 var React                           = require('react');
 var RRouter                         = require('rrouter');
-var AccountingStore                 = require('./stores/accounting');
 var RecurrentAccountingEntriesStore = require('./stores/recurrent-accounting-entries');
 var ProfilesStore                   = require('./stores/profiles');
 var AccountingEntries               = require('./collections/accounting_entries');
