@@ -1,0 +1,13 @@
+- Remove old accounting store
+- Rewrite all the tests
+  - Remove tests for code that has changed a lot and start from scratch
+- Prettify the graphs
+- Prettify the accounting entry listing
+- Prettify the main view
+- Add more graphs
+- Reduce load size
+- Don't reload entries/users/... when navigating within the app
+- Do not use backbone-associations as we don't need associations any more
+- Swith to react-router
+- Show a badge with the number of pending recurrent entries (if any)
+- Move to ES6
