@@ -2,7 +2,6 @@
 
 var React               = require('react');
 var TestUtils           = require('react/addons').addons.TestUtils;
-var Flux = require('fluxxor');
 
 var tagInputMock        = React.createClass({
   getTagValues: function() {

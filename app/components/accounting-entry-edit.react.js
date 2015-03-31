@@ -1,36 +1,37 @@
 /** @jsx React.DOM */
 
-var React               = require('react');
-var Fluxxor             = require('fluxxor');
-var _                   = require('lodash');
-var AccountingEntryForm = require('./forms/accounting-entry-form.react');
+var React                  = require('react');
+var Reflux                 = require('reflux');
+var _                      = require('lodash');
+var AccountingEntriesStore = require('../stores/accounting-entries');
+var AccountingEntryForm    = require('./forms/accounting-entry-form.react');
+var actions                = require('../actions');
 
-var StoreWatchMixin     = Fluxxor.StoreWatchMixin;
-var FluxxorMixin        = Fluxxor.FluxMixin(React);
+var mixins = [
+  Reflux.connect(AccountingEntriesStore, 'entry')
+];
 
 var AccountingEntryEdit = React.createClass({
-  mixins : [FluxxorMixin, StoreWatchMixin("AccountingStore")],
+  mixins: mixins,
 
-  getStateFromFlux: function() {
-    return {
-      entry : this.getFlux().store("AccountingStore").entry(this.props.accountingEntryId)
-    };
+  componentWillMount: function() {
+    actions.fetchAccountingEntry({id: this.props.accountingEntryId});
   },
 
   handleSubmit: function(values) {
-    this.getFlux().actions.updateEntry(_.extend(values, {entry_id: this.state.entry.id}));
+    actions.updateAccountingEntry(_.extend(values, {entry_id: this.state.entry.id}));
     return false;
   },
 
   render: function() {
-    return this.state.entry ?
+    return this.state && this.state.entry ?
       <AccountingEntryForm
         amount={this.state.entry.get('amount')}
-        tags={_.pluck(this.state.entry.get('tags'), 'name')}
+        tags={this.state.entry.get('tags')}
         onSubmit={this.handleSubmit}
       />
       :
-       <h1>NOPE</h1>
+      <h1>NOPE</h1>
   }
 });
 

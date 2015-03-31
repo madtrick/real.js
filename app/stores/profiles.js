@@ -1,15 +1,14 @@
-var Fluxxor  = require('fluxxor');
+var Reflux   = require('reflux');
 var Promise  = require('promise');
 var _        = require('lodash');
+var Profiles = require('../collections/profiles');
 var Gapi     = require('../adapters/gapi');
+var actions  = require('../actions');
 
-var ProfilesStore = Fluxxor.createStore({
-  initialize: function(options){
-    this.collection = options.collection;
-
-    this.bindActions(
-      'FETCH_PROFILES', this.handleAction_fetchProfiles
-    );
+module.exports = Reflux.createStore({
+  init: function(){
+    this.collection = new Profiles();
+    this.listenTo(actions.fetchProfiles, this.handleAction_fetchProfiles);
   },
 
   profiles: function(){
@@ -25,10 +24,8 @@ var ProfilesStore = Fluxxor.createStore({
       });
 
     Promise.all(promises).done(function(){
-      store.emit("change");
+      actions.fetchProfiles.completed(store.collection);
+      store.trigger(store.collection);
     });
   }
-
 });
-
-module.exports = ProfilesStore;

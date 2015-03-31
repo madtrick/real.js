@@ -3,7 +3,6 @@
 require('./ext/backbone');
 
 var React                           = require('react');
-var Fluxxor                         = require('fluxxor');
 var RRouter                         = require('rrouter');
 var AccountingStore                 = require('./stores/accounting');
 var RecurrentAccountingEntriesStore = require('./stores/recurrent-accounting-entries');
@@ -30,37 +29,12 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
     .then(Gapi.init)
     .then(
       function(){
-        var accountingEntriesCollection         = new AccountingEntries();
-        var profilesCollection                  = new Profiles();
-
-        var stores = {
-          AccountingStore                 : new AccountingStore({collection: accountingEntriesCollection}),
-          ProfilesStore                   : new ProfilesStore({collection: profilesCollection})
-        };
-
-        var actions = {
-          createEntry : function(payload){
-            this.dispatch('CREATE_ENTRY', payload);
-          },
-          updateEntry : function(payload){
-            this.dispatch('UPDATE_ENTRY', payload);
-          },
-          fetchProfiles: function(payload){
-            this.dispatch('FETCH_PROFILES', payload);
-          }
-        };
-
-        stores.AccountingStore.loadEntries();
-
-        var flux = new Fluxxor.Flux(stores, actions);
-
-
         var routes = (
           <Routes>
-            <Route name="main" path="/" view={Real} flux={flux}/>
-            <Route name="graphs" path="/graphs" view={Graphs} flux={flux}/>
-            <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit} flux={flux}/>
-            <Route name="accounting-entries-list" path="/accounting-entries-list" view={AccountingEntriesList} flux={flux}/>
+            <Route name="main" path="/" view={Real}/>
+            <Route name="graphs" path="/graphs" view={Graphs}/>
+            <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit}/>
+            <Route name="accounting-entries-list" path="/accounting-entries-list" view={AccountingEntriesList}/>
             <Route name="recurrent-accounting-entries" path="/recurrent-accounting-entries" view={RecurrentAccountingEntries}/>
             <Route name="recurrent-accounting-entry-new" path="/recurrent-accounting-entries/new" view={RecurrentAccountingEntryNew}/>
           </Routes>

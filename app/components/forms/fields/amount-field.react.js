@@ -24,7 +24,7 @@ var AmountField  = React.createClass({
           placeholder="Enter amount"
           required="required"
           step="any"
-          defaultValue={this.props.amount}
+          defaultValue={this.props.defaultValue}
         />
       </div>
     );

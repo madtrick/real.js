@@ -31,11 +31,11 @@ var RecurrentAccountingEntryNew = React.createClass({
     var amount = this.refs.inputField.value();
     var tags   = this.refs.tagsField.value();
 
-    actions.createRecurrentEntry(
+    actions.createRecurrentAccountingEntry(
       {
         period: 1, //hardcoded to the first day of the month
         amount: amount,
-        tag_list: tags
+        tags: tags
       }
     );
 

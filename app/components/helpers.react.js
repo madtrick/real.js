@@ -18,7 +18,7 @@ var TagsList     = React.createClass({
           this.props.tags, function(tag){
             return <span
               className="r-tag-list__label label label-default">
-                { tag.name }
+                { tag }
               </span>
           }
         )

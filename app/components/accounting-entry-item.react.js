@@ -10,7 +10,7 @@ var TagsList     = require('./helpers.react').TagsList;
 var AccountingEntryItem = React.createClass({
   render: function(){
     var entry   = this.props.entry,
-        profile = this.props.profiles.get(entry.get('user').get('google_id')) || new NullProfile();
+        profile = entry.get('profile') || new NullProfile();
     return (
       <div className="r-accounting-entry-item clearfix">
           <div className="r-accounting-entry-item__picture"><img src={profile.get('image')} /></div>

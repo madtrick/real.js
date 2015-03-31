@@ -1,9 +1,7 @@
 /** @jsx React.DOM */
 
 var React              = require('react');
-var Fluxxor            = require('fluxxor');
-var FluxxorMixin       = Fluxxor.FluxMixin(React);
-var StoreWatchMixin    = Fluxxor.StoreWatchMixin;
+var Reflux      = require('reflux');
 var _                  = require('lodash');
 var Link               = require('rrouter').Link;
 var bus                = require('../services/bus');
@@ -13,27 +11,28 @@ var AccountingEntries  = require('./accounting-entries.react');
 var AccountingEntryAdd = require('./accounting-entry-add.react');
 var Navbar             = require('./navbar.react');
 
+var actions = require('../actions');
+var AccountingEntriesStore = require('../stores/accounting-entries');
+
+var mixins = [
+  Reflux.connect(AccountingEntriesStore, 'entries')
+];
+
 var Real = React.createClass({
+  mixins: mixins,
 
-  mixins: [FluxxorMixin, StoreWatchMixin("AccountingStore", "ProfilesStore")],
-
-  getStateFromFlux: function() {
-    return {
-      accountingStoreState : this.getFlux().store("AccountingStore").state(),
-      entries              : this.getFlux().store("AccountingStore").entries(),
-      profiles             : this.getFlux().store("ProfilesStore").profiles()
-    };
+  componentWillMount: function() {
+    actions.fetchAccountingEntries();
   },
 
   render: function(){
-
     return (
       <MainLayout>
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
               {
-                this.state.accountingStoreState == AccountingStore.States.IDLE ?
+                this.state && this.state.entries && !this.state.entries.isFetching ?
                   <div>
                     <AccountingEntries
                       entries={this.state.entries.models}
@@ -54,7 +53,7 @@ var Real = React.createClass({
         </div>
         <footer>
           <div className="container-fluid">
-            <AccountingEntryAdd flux={this.getFlux()}/>
+            <AccountingEntryAdd/>
           </div>
         </footer>
       </MainLayout>

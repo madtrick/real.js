@@ -1,23 +1,20 @@
-var Backbone = require('backbone-associations');
-var _        = require('lodash');
-var moment   = require("moment");
-var User     = require('./user');
-var config   = require("../../config");
+var Backbone   = require('backbone-associations');
+var _          = require('lodash');
+var moment     = require("moment");
+var User       = require('./user');
+var UsersStore = require('../stores/users');
+var config     = require("../../config");
 
 var AccountingEntry = Backbone.AssociatedModel.extend({
   urlRoot: config.backendUrl + '/accounting_entries',
 
-  relations: [
-    {
-      type: Backbone.Associations.One,
-      key: 'user',
-      relatedModel: User
-    }
-  ],
-
   mutators : {
     date: function() {
       return moment(this.attributes.date).toDate();
+    },
+
+    user : function () {
+      return UsersStore.users().findWhere({id: this.attributes.user_id});
     }
   },
 

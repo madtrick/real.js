@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
-var React        = require('react/addons');
-var TagsList     = require('./helpers.react').TagsList;
+var React    = require('react/addons');
+var TagsList = require('./helpers.react').TagsList;
+var actions  = require('../actions');
 
-var classSet     = React.addons.classSet;
+var classSet = React.addons.classSet;
 
 var RecurrentItem = React.createClass({
   render: function () {
@@ -40,14 +41,29 @@ var RecurrentItem = React.createClass({
   },
 
   createAccountingEntry: function () {
-    //var recurrentAccountingEntry = this.props.item;
-    //var amount                   = recurrentAccountingEntry.get('amount');
-    //var tag_list                 = recurrentAccountingEntry.get('tags').map(function(t) {return t.name;});
-    //var date                     = new Date();
+    var self                     = this;
+    var recurrentAccountingEntry = this.props.item;
+    var amount                   = recurrentAccountingEntry.get('amount');
+    var tags                     = recurrentAccountingEntry.get('tags');
+    var date                     = new Date();
 
-    //var ret=    this.getFlux().actions.createEntry({amount: amount, tag_list: tag_list, date: date});
-    //console.log(ret);
-    //return false;
+    actions.createAccountingEntry({
+      amount : amount,
+      tags   : tags,
+      date   : date
+    })
+    .then( function () {
+      // TODO: Do not update all properties
+      actions.updateRecurrentAccountingEntry({
+        entry_id : self.props.item,
+        last_run : date,
+        period   : self.props.item.get('period'),
+        amount   : amount,
+        tags : tags
+      });
+
+    });
+    return false;
   }
 });
 
