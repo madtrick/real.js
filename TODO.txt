@@ -12,6 +12,7 @@
 - Don't reload entries/users/... when navigating within the app
 - Do not use backbone-associations as we don't need associations any more
 - Swith to react-router
+  - After this update react
 - Show a badge with the number of pending recurrent entries (if any)
 - Move to ES6
 - Fix the linting (also includes try to figure out what's wrong with jxhint)
