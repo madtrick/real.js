@@ -26,7 +26,12 @@ var RecurrentAccountinEntries = React.createClass({
         <ul className="r-recurrent-accounting-entries">
           {
             recurrentAccountingEntries.map(function (rae) {
-              return <RecurrentItem item={rae}/>;
+              return (
+                <RecurrentItem
+                  key={rae.get('id')}
+                  item={rae}
+                />
+              );
             })
           }
         </ul>

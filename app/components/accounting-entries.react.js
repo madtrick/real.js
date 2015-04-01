@@ -19,6 +19,7 @@ var AccountingEntries = React.createClass({
           _.map(_.last(this.order(this.props.entries), limit), function(e){
             return (
               <AccountingEntryItem
+                key={e.get('id')}
                 entry={e}
                 profiles={this.props.profiles}
                 handleClick={this.props.handleClick}

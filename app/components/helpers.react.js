@@ -16,10 +16,14 @@ var TagsList     = React.createClass({
       {
         _.map(
           this.props.tags, function(tag){
-            return <span
-              className="r-tag-list__label label label-default">
-                { tag }
+            return (
+              <span
+                key={tag}
+                className="r-tag-list__label label label-default"
+              >
+                {tag}
               </span>
+            )
           }
         )
       }
