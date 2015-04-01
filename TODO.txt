@@ -1,5 +1,3 @@
-- Rewrite all the tests
-  - Remove tests for code that has changed a lot and start from scratch
 - Remove React warnings
 - Prettify the view for editing accounting entries
   - Wrap it with the main layout

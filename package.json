@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "test": "karma start"
+  },
   "devDependencies": {
     "browserify": "^5.11.1",
     "connect-livereload": "^0.4.0",

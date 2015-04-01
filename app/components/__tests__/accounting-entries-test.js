@@ -1,13 +1,13 @@
 /** @jsx React.DOM */
 
-var React = require('react');
-var Factory             = require("rosie").Factory;
-var _                   = require("lodash");
+var React               = require('react');
+var Factory             = require('rosie').Factory;
+var _                   = require('lodash');
 var TestUtils           = require('react/addons').addons.TestUtils;
-var User                = require("../../models/user");
-var AccountingEntry     = require("../../models/accounting-entry");
-var AccountingEntries   = require("../accounting-entries.react");
-var AccountingEntryItem = require("../accounting-entry-item.react");
+var AccountingEntry     = require('../../models/accounting-entry');
+var User                = require('../../models/user');
+var AccountingEntries   = require('../accounting-entries.react');
+var AccountingEntryItem = require('../accounting-entry-item.react');
 
 var timeOffset = 10000;
 

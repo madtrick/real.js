@@ -3,14 +3,14 @@
 var React               = require('react');
 var TestUtils           = require('react/addons').addons.TestUtils;
 
-var tagInputMock        = React.createClass({
-  getTagValues: function() {
+var tagsFieldMock = React.createClass({
+  value: function() {
     return ['tag1', 'tag2'];
   },
   render: function(){return <div></div>;}
 });
 var AccountingEntryForm = require('../accounting-entry-form.react');
-AccountingEntryForm.__set__('TagInput', tagInputMock);
+AccountingEntryForm.__set__('TagsField', tagsFieldMock);
 
 describe('AccountingEntryForm', function() {
   var accountingEntryFrom, spy;
@@ -18,18 +18,22 @@ describe('AccountingEntryForm', function() {
   beforeEach(function() {
     spy = jasmine.createSpy();
 
-    accountingEntryFrom = TestUtils.renderIntoDocument(<AccountingEntryForm onSubmit={spy}/>);
+    accountingEntryFrom = TestUtils.renderIntoDocument(
+      <AccountingEntryForm onSubmit={spy}/>
+    );
   });
 
   describe('on form submit', function() {
-    var input;
+    var amountField;
 
     beforeEach(function() {
       var form;
-      form  = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'form');
-      input = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'input');
+      var baseForm;
 
-      input.getDOMNode().value = 11;
+      form        = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'form');
+      amountField = accountingEntryFrom.refs.inputField;
+
+      amountField.value('11');
 
       TestUtils.Simulate.submit(form);
     });
@@ -39,7 +43,7 @@ describe('AccountingEntryForm', function() {
     });
 
     it('resets the input field', function() {
-      expect(input.getDOMNode().value).toEqual('');
+      expect(amountField.value()).toEqual('');
     });
 
     describe('arguments to callback', function() {
