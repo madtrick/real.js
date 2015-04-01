@@ -1,5 +1,6 @@
 - Rewrite all the tests
   - Remove tests for code that has changed a lot and start from scratch
+- Remove React warnings
 - Prettify the view for editing accounting entries
   - Wrap it with the main layout
 - Prettify the view for adding recurrent accounting entries
@@ -15,3 +16,4 @@
 - Swith to react-router
 - Show a badge with the number of pending recurrent entries (if any)
 - Move to ES6
+- Fix the linting (also includes try to figure out what's wrong with jxhint)
