@@ -1,8 +1,8 @@
 - Prettify the view for editing accounting entries
   - Wrap it with the main layout
+- Fix the linting (also includes try to figure out what's wrong with jxhint)
 - Prettify the view for adding recurrent accounting entries
   - Wrap it with the main layout
-- Redirect to the previous view after editing an entry
 - Prettify the graphs
 - Prettify the accounting entry listing
 - Prettify the main view
@@ -12,6 +12,6 @@
 - Do not use backbone-associations as we don't need associations any more
 - Swith to react-router
   - After this update react
+- Redirect to the previous view after editing an entry
 - Show a badge with the number of pending recurrent entries (if any)
 - Move to ES6
-- Fix the linting (also includes try to figure out what's wrong with jxhint)
