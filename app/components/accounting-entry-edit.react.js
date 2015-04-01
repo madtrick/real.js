@@ -27,6 +27,7 @@ var AccountingEntryEdit = React.createClass({
   render: function() {
     return this.state && this.state.entry ?
         <MainLayout>
+          <h2> Edit entry </h2>
           <AccountingEntryForm
             amount={this.state.entry.get('amount')}
             tags={this.state.entry.get('tags')}
