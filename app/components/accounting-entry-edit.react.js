@@ -3,8 +3,9 @@
 var React                  = require('react');
 var Reflux                 = require('reflux');
 var _                      = require('lodash');
-var AccountingEntriesStore = require('../stores/accounting-entries');
+var MainLayout             = require('./layouts/main.react');
 var AccountingEntryForm    = require('./forms/accounting-entry-form.react');
+var AccountingEntriesStore = require('../stores/accounting-entries');
 var actions                = require('../actions');
 
 var mixins = [
@@ -25,13 +26,15 @@ var AccountingEntryEdit = React.createClass({
 
   render: function() {
     return this.state && this.state.entry ?
-      <AccountingEntryForm
-        amount={this.state.entry.get('amount')}
-        tags={this.state.entry.get('tags')}
-        onSubmit={this.handleSubmit}
-      />
-      :
-      <h1>NOPE</h1>
+        <MainLayout>
+          <AccountingEntryForm
+            amount={this.state.entry.get('amount')}
+            tags={this.state.entry.get('tags')}
+            onSubmit={this.handleSubmit}
+          />
+        </MainLayout>
+        :
+        <h1>NOPE</h1>
   }
 });
 
