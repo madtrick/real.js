@@ -32,6 +32,7 @@ var DateField  = React.createClass({
         <input
           className="form-control input-xlarge"
           onClick={this.showDatePicker}
+          onChange={function(){}} //function to remove React warnings
           type="text"
           value={this.state.date}
         />
