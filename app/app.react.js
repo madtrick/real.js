@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+'use strict';
 
 require('./ext/backbone');
 
@@ -16,7 +17,7 @@ var Gapi                            = require('./adapters/gapi');
 var Routes = RRouter.Routes;
 var Route  = RRouter.Route;
 
-var config = require("../config");
+var config = require('../config');
 
 Auth.start(config.googleClientId, config.googleRedirectUri, function(){
   Gapi.load()
@@ -25,12 +26,36 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
       function(){
         var routes = (
           <Routes>
-            <Route name="main" path="/" view={Real}/>
-            <Route name="graphs" path="/graphs" view={Graphs}/>
-            <Route name="edit" path="/edit/:accountingEntryId" view={AccountingEntryEdit}/>
-            <Route name="accounting-entries-list" path="/accounting-entries-list" view={AccountingEntriesList}/>
-            <Route name="recurrent-accounting-entries" path="/recurrent-accounting-entries" view={RecurrentAccountingEntries}/>
-            <Route name="recurrent-accounting-entry-new" path="/recurrent-accounting-entries/new" view={RecurrentAccountingEntryNew}/>
+            <Route
+              name="main"
+              path="/"
+              view={Real}
+            />
+            <Route
+              name="graphs"
+              path="/graphs"
+              view={Graphs}
+            />
+            <Route
+              name="edit"
+              path="/edit/:accountingEntryId"
+              view={AccountingEntryEdit}
+            />
+            <Route
+              name="accounting-entries-list"
+              path="/accounting-entries-list"
+              view={AccountingEntriesList}
+            />
+            <Route
+              name="recurrent-accounting-entries"
+              path="/recurrent-accounting-entries"
+              view={RecurrentAccountingEntries}
+            />
+            <Route
+              name="recurrent-accounting-entry-new"
+              path="/recurrent-accounting-entries/new"
+              view={RecurrentAccountingEntryNew}
+            />
           </Routes>
         );
 
@@ -39,7 +64,7 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
             React.renderComponent(view, document.getElementById('real-container'));
           });
         } catch (e) {
-          // If I don't log the error here then 
+          // If I don't log the error here then
           // the promise library used by the Hello.js library
           // will catch it and only reject the promise. This
           // will silence all kinds of errors making development

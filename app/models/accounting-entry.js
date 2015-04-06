@@ -1,19 +1,20 @@
+'use strict';
+
 var Backbone   = require('backbone-associations');
 var _          = require('lodash');
-var moment     = require("moment");
-var User       = require('./user');
+var moment     = require('moment');
 var UsersStore = require('../stores/users');
-var config     = require("../../config");
+var config     = require('../../config');
 
 var AccountingEntry = Backbone.AssociatedModel.extend({
   urlRoot: config.backendUrl + '/accounting_entries',
 
-  mutators : {
+  mutators: {
     date: function() {
       return moment(this.attributes.date).toDate();
     },
 
-    user : function () {
+    user: function () {
       return UsersStore.users().findWhere({id: this.attributes.user_id});
     }
   },

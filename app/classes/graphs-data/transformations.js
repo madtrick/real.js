@@ -1,3 +1,5 @@
+'use strict';
+
 var moment   = require('moment');
 var redefine = require('redefine');
 var _        = require('lodash');
@@ -25,15 +27,20 @@ var Transformations = redefine.Class({
 
   equalizeEndings: function(){
     var arrays = Array.prototype.slice.call(arguments);
-    var latestDate, date, arraysNeedingPadding = [];
+    var arraysNeedingPadding = [];
+    var date;
+    var padding;
 
     padding = _.reduce(arrays, function(acc, array){
-      if (array.length === 0) return acc;
+      if (array.length === 0) {
+        return acc;
+      }
 
       date = array[array.length - 1].date;
 
-      if(!acc.date)
+      if (!acc.date) {
         return {date: date, array: array};
+      }
       else {
         if (moment(acc).isAfter(date)) {
           arraysNeedingPadding.push(array);
@@ -46,8 +53,9 @@ var Transformations = redefine.Class({
     }, {date: undefined, array: undefined});
 
     return _.map(arrays, function(array){
-      if (arraysNeedingPadding.indexOf(array) != -1)
+      if (arraysNeedingPadding.indexOf(array) !== -1) {
         array.push({date: padding.date, value: array[array.length - 1].value});
+      }
 
       return array;
     });

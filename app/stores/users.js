@@ -1,3 +1,4 @@
+'use strict';
 var Reflux  = require('reflux');
 var _       = require('lodash');
 var actions = require('../actions');
@@ -8,7 +9,7 @@ require('./profiles'); //require to include it in the bundle
 module.exports = Reflux.createStore({
   init: function () {
     this.collection = new Users();
-    this.listenTo(actions.fetchUsers, this.handleAction_fetchUsers);
+    this.listenTo(actions.fetchUsers, this.handleActionFetchUsers);
   },
 
   users: function () {
@@ -16,19 +17,19 @@ module.exports = Reflux.createStore({
   },
 
 
-  handleAction_fetchUsers: function () {
+  handleActionFetchUsers: function () {
     var self = this;
 
     this.collection.fetch({})
     .then(function (){
       self._fetchProfiles()
-      .then( function (profiles) {
+      .then( function () {
         actions.fetchUsers.completed(self.collection);
         self.trigger(self.collection);
       });
     })
-    .catch(function (e) {
-      actions.addError("Couldn't fetch Users. Try again!");
+    .catch(function () {
+      actions.addError('Couldn\'t fetch Users. Try again!');
     });
   },
 
@@ -50,6 +51,7 @@ module.exports = Reflux.createStore({
   },
 
   _profileForUser: function (profile) {
+    /*eslint camelcase: [2, {properties: "never"}]*/
     var user = this.collection.findWhere({google_id: profile.id});
     user.set('profile', profile);
   }

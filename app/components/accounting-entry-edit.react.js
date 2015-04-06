@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React                  = require('react');
 var Reflux                 = require('reflux');
@@ -12,7 +13,7 @@ var mixins = [
   Reflux.connect(AccountingEntriesStore, 'entry')
 ];
 
-var AccountingEntryEdit = React.createClass({
+module.exports = React.createClass({
   mixins: mixins,
 
   componentWillMount: function() {
@@ -20,6 +21,7 @@ var AccountingEntryEdit = React.createClass({
   },
 
   handleSubmit: function(values) {
+    /*eslint camelcase: [2, {properties: "never"}]*/
     actions.updateAccountingEntry(_.extend(values, {entry_id: this.state.entry.id}));
     return false;
   },
@@ -30,13 +32,11 @@ var AccountingEntryEdit = React.createClass({
           <h2> Edit entry </h2>
           <AccountingEntryForm
             amount={this.state.entry.get('amount')}
-            tags={this.state.entry.get('tags')}
             onSubmit={this.handleSubmit}
+            tags={this.state.entry.get('tags')}
           />
         </MainLayout>
         :
         <h1>NOPE</h1>
   }
 });
-
-module.exports = AccountingEntryEdit;

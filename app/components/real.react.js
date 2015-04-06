@@ -1,23 +1,19 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React                  = require('react');
 var Reflux                 = require('reflux');
-var _                      = require('lodash');
-var Link                   = require('rrouter').Link;
-var bus                    = require('../services/bus');
 var AccountingEntriesStore = require('../stores/accounting-entries');
 var actions                = require('../actions');
 var MainLayout             = require('./layouts/main.react');
 var AccountingEntries      = require('./accounting-entries.react');
 var AccountingEntryAdd     = require('./accounting-entry-add.react');
-var Navbar                 = require('./navbar.react');
-
 
 var mixins = [
   Reflux.connect(AccountingEntriesStore, 'entries')
 ];
 
-var Real = React.createClass({
+module.exports = React.createClass({
   mixins: mixins,
 
   componentWillMount: function() {
@@ -34,14 +30,15 @@ var Real = React.createClass({
                 this.state && this.state.entries && !this.state.entries.isFetching ?
                   <div>
                     <AccountingEntries
+                      actions={{edit: true}}
                       entries={this.state.entries.models}
-                      profiles={this.state.profiles}
                       handleClick={this.handleClickAccountingEntry}
                       limit={3}
-                      actions={{edit: true}}
+                      profiles={this.state.profiles}
                     />
                     <div className="r-expenses-summary">
-                      Expenses this month: {this.state.entries.expenseByMonth((new Date()).getMonth())}
+                      Expenses this month:
+                      {this.state.entries.expenseByMonth((new Date()).getMonth())}
                     </div>
                   </div>
                   :
@@ -60,5 +57,3 @@ var Real = React.createClass({
   }
 
 });
-
-module.exports = Real;

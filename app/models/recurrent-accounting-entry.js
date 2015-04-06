@@ -1,6 +1,8 @@
+'use strict';
+
 var Backbone = require('backbone-associations');
-var moment    = require('moment');
-var config    = require('../../config');
+var moment   = require('moment');
+var config   = require('../../config');
 
 function MonthlyRecurrentExpression(expression) {
   this.expression      = expression;
@@ -11,18 +13,18 @@ MonthlyRecurrentExpression.prototype.activates = function(last) {
   var momentLast = moment(last);
   var momentNow  = moment();
 
-  if ( !last )
+  if ( !last ) {
     return true;
+  }
 
   return  this.firstDayOfMonth.isBefore(momentNow) &&
           momentLast.isBefore(this.firstDayOfMonth);
 };
 
-var RecurrentAccountingEntry = Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
   urlRoot: config.backendUrl + '/recurrent_accounting_entries',
 
-  isOverdue : function () {
+  isOverdue: function () {
     return new MonthlyRecurrentExpression(this.get('period')).activates(this.get('last_run'));
   }
 });
-module.exports = RecurrentAccountingEntry;

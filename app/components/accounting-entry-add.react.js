@@ -1,12 +1,12 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React               = require('react');
 var _                   = require('lodash');
-var bus                 = require('../services/bus');
 var actions             = require('../actions');
 var AccountingEntryForm = require('./forms/accounting-entry-form.react');
 
-var AccountingEntryAdd = React.createClass({
+module.exports = React.createClass({
 
   getInitialState: function() {
     return {tags: []};
@@ -22,5 +22,3 @@ var AccountingEntryAdd = React.createClass({
     return <AccountingEntryForm  onSubmit={this.handleSubmit} tags={this.state.tags}/>;
   }
 });
-
-module.exports = AccountingEntryAdd;

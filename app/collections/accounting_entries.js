@@ -1,3 +1,5 @@
+'use strict';
+
 var moment          = require('moment');
 var Backbone        = require('backbone-associations');
 var Cocktail        = require('backbone.cocktail');
@@ -6,9 +8,9 @@ var Stats           = require('./mixins/accounting-entries/stats.js');
 var AccountingEntry = require('../models/accounting-entry');
 var config          = require('../../config');
 
-var AccountingEntries = Backbone.Collection.extend({
-  url    : config.backendUrl + '/accounting_entries',
-  model  : AccountingEntry,
+module.exports = Backbone.Collection.extend({
+  url: config.backendUrl + '/accounting_entries',
+  model: AccountingEntry,
 
   initialize: function() {
     Cocktail.mixin(this, Stats);
@@ -25,27 +27,27 @@ var AccountingEntries = Backbone.Collection.extend({
   },
 
   findByDateRange: function(startDate, endDate){
-    var moment__startDate = moment(startDate);
-    var moment__endDate   = moment(endDate);
+    var momentStartDate = moment(startDate);
+    var momentEndDate   = moment(endDate);
     var date;
 
     return this.filter(function(accountingEntry){
       date = accountingEntry.get('date');
 
-      return moment__startDate.isBefore(date) && moment__endDate.isAfter(date);
+      return momentStartDate.isBefore(date) && momentEndDate.isAfter(date);
     });
   },
 
   findByMonth: function(month) {
     return this.filter(function(accountingEntry){
-      return accountingEntry.get('date').getMonth() == month;
+      return accountingEntry.get('date').getMonth() === month;
     });
   },
 
   findByTags: function(tags) {
     return this.filter(function(accountingEntry){
       return _.any(accountingEntry.get('tags'), function(tag){
-        return tags.indexOf(tag) != -1;
+        return tags.indexOf(tag) !== -1;
       });
     });
   },
@@ -60,7 +62,9 @@ var AccountingEntries = Backbone.Collection.extend({
       self._unchainedMethods[chainable] = self[chainable];
 
       self[chainable] = function(){
-        var result =  self._unchainedMethods[chainable].apply(self, Array.prototype.slice.call(arguments));
+        var args    = Array.prototype.slice.call(arguments);
+        var result  = self._unchainedMethods[chainable].apply(self, args);
+
         self.models = result;
 
         return self;
@@ -77,4 +81,3 @@ var AccountingEntries = Backbone.Collection.extend({
     this.models = this._originalModels;
   }
 });
-module.exports = AccountingEntries;

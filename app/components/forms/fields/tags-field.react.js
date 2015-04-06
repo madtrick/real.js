@@ -1,10 +1,12 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React = require('react');
-var _     = require("lodash");
+var _     = require('lodash');
 
-var TagsField = React.createClass({
+module.exports = React.createClass({
   componentDidMount: function(){
+    /* global Taggle */
     this.taggle = new Taggle('tags');
     this.setTags(this.props);
   },
@@ -19,16 +21,16 @@ var TagsField = React.createClass({
 
   empty: function(){
     /* remove the current tags.
-     * 
+     *
      * can't use directly the array returned from
-     * this.taggle.getTagValues() because we are 
+     * this.taggle.getTagValues() because we are
      * using that very array to iterate in the loop
      */
     _.each(_.clone(this.taggle.getTagValues()), this.taggle.remove);
 
   },
 
-  render : function(){
+  render: function(){
     return (
       <div className="r-tags-container clearfix">
         <div className="r-tags-icon"><i className="fa fa-tags"></i></div>
@@ -40,8 +42,6 @@ var TagsField = React.createClass({
   setTags: function(props) {
     this.empty();
     this.taggle.add(props.tags);
-  },
+  }
 
 });
-
-module.exports = TagsField;

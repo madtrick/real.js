@@ -1,15 +1,18 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React    = require('react/addons');
 var classSet = React.addons.classSet;
 var _        = require('lodash');
 
-var TagsList     = React.createClass({
+exports.TagsList = React.createClass({
   render: function(){
-    var classes = {'r-tag-list': true};
-    classes[this.props.className] = true;
+    var tagListClassName;
+    var classes;
 
-    tagListClassName = classSet(classes);
+    classes                       = {'r-tag-list': true};
+    classes[this.props.className] = true;
+    tagListClassName              = classSet(classes);
 
     return (
       <div className={tagListClassName}>
@@ -18,8 +21,8 @@ var TagsList     = React.createClass({
           this.props.tags, function(tag){
             return (
               <span
-                key={tag}
                 className="r-tag-list__label label label-default"
+                key={tag}
               >
                 {tag}
               </span>
@@ -31,4 +34,3 @@ var TagsList     = React.createClass({
     );
   }
 });
-exports.TagsList = TagsList;

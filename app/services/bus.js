@@ -1,3 +1,3 @@
-var microevent = require('microevent');
+var Microevent = require('microevent');
 
-module.exports = new microevent();
+module.exports = new Microevent();

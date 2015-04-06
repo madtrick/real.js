@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React       = require('react');
 var BaseForm    = require('./base-form.react');
@@ -14,29 +15,42 @@ var AccountingEntryForm = React.createClass({
             ref="dateField"
           />
           <AmountField
-            ref="inputField"
             defaultValue={this.props.amount}
+            ref="inputField"
           />
           <TagsField
             ref="tagsField"
             tags={this.props.tags}
           />
 
-          <button type="submit" className="btn btn-xlarge btn-success" data-behaviour='income'>Income</button>
-          <button type="submit" onClick={this.handleExpense} className="btn btn-xlarge btn-danger" data-behaviour='expense'>Expense</button>
+        <button
+          className="btn btn-xlarge btn-success"
+          data-behaviour='income'
+          type="submit"
+        >
+        Income
+        </button>
+        <button
+          className="btn btn-xlarge btn-danger"
+          data-behaviour='expense'
+          onClick={this.handleExpense}
+          type="submit"
+        >
+          Expense
+        </button>
       </BaseForm>
   );
   },
 
   handleExpense: function(){
     var inputFieldValue         = this.refs.inputField.value();
-    var negativeInputFieldValue = (inputFieldValue < 0 ? 1 : -1) * inputFieldValue ;
+    var negativeInputFieldValue = (inputFieldValue < 0 ? 1 : -1) * inputFieldValue;
 
     this.refs.inputField.value(negativeInputFieldValue);
     return true;
   },
 
-  handleSubmit: function(e){
+  handleSubmit: function(){
     var amountString = this.refs.inputField.value();
     var date         = this.refs.dateField.value();
     var tags         = this.refs.tagsField.value();
@@ -46,9 +60,9 @@ var AccountingEntryForm = React.createClass({
     this.resetInputField();
 
     return this.props.onSubmit({
-      amount : amount,
-      tags   : tags,
-      date   : date
+      amount: amount,
+      tags: tags,
+      date: date
     });
   },
 

@@ -1,5 +1,6 @@
+'use strict';
+
 var moment            = require('moment');
-var _                 = require('lodash');
 var AccountingEntries = require('../accounting_entries');
 
 describe('AccountingEntries', function() {
@@ -10,7 +11,9 @@ describe('AccountingEntries', function() {
   });
 
   describe('findByMonth', function() {
+    /* eslint camelcase:0 */
     var accountingEntry_1, accountingEntry_2, accountingEntry_3, accountingEntry_4;
+
     beforeEach(function() {
       accountingEntry_1 = accountingEntries.add({id: 0, date: moment().month(0)});
       accountingEntry_2 = accountingEntries.add({id: 1, date: moment().month(0)});
@@ -25,6 +28,7 @@ describe('AccountingEntries', function() {
       expect(matches.indexOf(accountingEntry_1)).not.toEqual(-1);
       expect(matches.indexOf(accountingEntry_2)).not.toEqual(-1);
       expect(matches.indexOf(accountingEntry_3)).not.toEqual(-1);
+      expect(matches.indexOf(accountingEntry_4)).toEqual(-1);
     });
   });
 
@@ -46,6 +50,8 @@ describe('AccountingEntries', function() {
   });
 
   describe('expenseByMonth', function() {
+    var expenses;
+
     beforeEach(function() {
       accountingEntries.add({amount: -5, date: moment().month(0)});
       accountingEntries.add({amount: -5, date: moment().month(0)});

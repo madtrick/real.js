@@ -1,3 +1,5 @@
+'use strict';
+
 var Reflux   = require('reflux');
 var Promise  = require('promise');
 var _        = require('lodash');
@@ -8,14 +10,14 @@ var actions  = require('../actions');
 module.exports = Reflux.createStore({
   init: function(){
     this.collection = new Profiles();
-    this.listenTo(actions.fetchProfiles, this.handleAction_fetchProfiles);
+    this.listenTo(actions.fetchProfiles, this.handleActionFetchProfiles);
   },
 
   profiles: function(){
     return this.collection;
   },
 
-  handleAction_fetchProfiles: function(payload){
+  handleActionFetchProfiles: function(payload){
     var store    = this;
     var promises = _.map(payload.ids, function(id){
         return Gapi.profile(id).then(function(profile){

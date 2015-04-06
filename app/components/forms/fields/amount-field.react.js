@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React  = require('react');
 
-var AmountField  = React.createClass({
+module.exports = React.createClass({
   value: function(value) {
     if (value || value === '') {
       this._DOMNode().value = value;
@@ -12,19 +13,19 @@ var AmountField  = React.createClass({
     }
   },
 
-  render: function(attribute) {
+  render: function() {
     return (
       <div className="input-group">
         <div className="input-group-addon"><i className="fa fa-eur"></i></div>
         <input
-          ref="inputField"
-          type="number"
           className="form-control input-xlarge"
+          defaultValue={this.props.defaultValue}
           id="amount"
           placeholder="Enter amount"
+          ref="inputField"
           required="required"
           step="any"
-          defaultValue={this.props.defaultValue}
+          type="number"
         />
       </div>
     );
@@ -34,5 +35,3 @@ var AmountField  = React.createClass({
     return this.refs.inputField.getDOMNode();
   }
 });
-
-module.exports = AmountField;

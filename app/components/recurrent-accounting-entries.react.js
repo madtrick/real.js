@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React                           = require('react');
 var Reflux                          = require('reflux');
@@ -11,7 +12,7 @@ var mixins = [
   Reflux.connect(RecurrentAccountingEntriesStore, 'recurrentEntries')
 ];
 
-var RecurrentAccountinEntries = React.createClass({
+module.exports = React.createClass({
   mixins: mixins,
 
   render: function() {
@@ -22,14 +23,16 @@ var RecurrentAccountinEntries = React.createClass({
         <Link
           className="btn btn-default"
           to="/recurrent-accounting-entry-new"
-        >+ Recurrent entry</Link>
+        >
+          + Recurrent entry
+        </Link>
         <ul className="r-recurrent-accounting-entries">
           {
             recurrentAccountingEntries.map(function (rae) {
               return (
                 <RecurrentItem
-                  key={rae.get('id')}
                   item={rae}
+                  key={rae.get('id')}
                 />
               );
             })
@@ -39,4 +42,3 @@ var RecurrentAccountinEntries = React.createClass({
     );
   }
 });
-module.exports = RecurrentAccountinEntries;

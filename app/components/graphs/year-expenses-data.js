@@ -1,13 +1,15 @@
+'use strict';
+
 var _               = require('lodash');
 var Transformations = require('../../classes/graphs-data/transformations');
 
-var YearExpensesData = {
+module.exports = {
   data: function(entries) {
     var result, lastyDayInMonth;
     var date = new Date();
 
     result = _.times(date.getMonth() + 1, function(month){
-      if (month == date.getMonth()){
+      if (month === date.getMonth()){
         lastyDayInMonth = date.getDate();
       } else {
         lastyDayInMonth = new Date(date.getYear(), month + 1, 0).getDate();
@@ -22,5 +24,3 @@ var YearExpensesData = {
     return new Transformations().accumulate(result);
   }
 };
-
-module.exports = YearExpensesData;

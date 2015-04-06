@@ -1,13 +1,17 @@
+'use strict';
+
 var Reflux                     = require('reflux');
 var _                          = require('lodash');
 var RecurrentAccountingEntries = require('../collections/recurrent-accounting-entries');
-var actions                    = require("../actions");
+var actions                    = require('../actions');
 
 module.exports = Reflux.createStore({
   init: function () {
     this.collection = new RecurrentAccountingEntries();
-    this.listenTo(actions.createRecurrentAccountingEntry, this.handleAction_createRecurrentAccountingEntry);
-    this.listenTo(actions.updateRecurrentAccountingEntry, this.handleAction_updateRecurrentAccountingEntry);
+    this.listenTo(actions.createRecurrentAccountingEntry,
+                  this.handleActionCreateRecurrentAccountingEntry);
+    this.listenTo(actions.updateRecurrentAccountingEntry,
+                  this.handleActionUpdateRecurrentAccountingEntry);
 
     this.loadEntries();
   },
@@ -23,8 +27,8 @@ module.exports = Reflux.createStore({
     });
   },
 
-  handleAction_createRecurrentAccountingEntry: function(payload){
-    var model = new this.collection.model(
+  handleActionCreateRecurrentAccountingEntry: function(payload){
+    var model = this.collection.add(
       {
         period: payload.period,
         amount: payload.amount,
@@ -37,18 +41,19 @@ module.exports = Reflux.createStore({
     });
   },
 
-  handleAction_updateRecurrentAccountingEntry: function (payload) {
+  handleActionUpdateRecurrentAccountingEntry: function (payload) {
     var model = this.collection.get(payload.entry_id);
+    /*eslint camelcase: [2, {properties: "never"}]*/
     model.save(
       {
-        last_run : payload.last_run,
-        period   : payload.period,
-        amount   : payload.amount,
-        tags     : payload.tags
+        last_run: payload.last_run,
+        period: payload.period,
+        amount: payload.amount,
+        tags: payload.tags
       },
       {
-        success : _.bind(this.handleSuccessfulModelSave, this),
-        error   : _.bind(this.handleFailedModelSave, this)
+        success: _.bind(this.handleSuccessfulModelSave, this),
+        error: _.bind(this.handleFailedModelSave, this)
       }
     );
   },
@@ -58,14 +63,14 @@ module.exports = Reflux.createStore({
   },
 
   handleFailedCollectionFetch: function() {
-    actions.addError("Couldn't fetch recurrent entries. Try again");
+    actions.addError('Couldn\'t fetch recurrent entries. Try again');
   },
 
-  handleSuccessfulModelSave: function(model){
+  handleSuccessfulModelSave: function(){
     this.loadEntries();
   },
 
-  handleFailedModelSave: function(model){
-    actions.addError("Couldn't save recurrent entry. Try again");
+  handleFailedModelSave: function(){
+    actions.addError('Couldn\'t save recurrent entry. Try again');
   }
 });

@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React               = require('react');
 var TestUtils           = require('react/addons').addons.TestUtils;
@@ -7,7 +8,7 @@ var tagsFieldMock = React.createClass({
   value: function() {
     return ['tag1', 'tag2'];
   },
-  render: function(){return <div></div>;}
+  render: function(){return <div></div>; }
 });
 var AccountingEntryForm = require('../accounting-entry-form.react');
 AccountingEntryForm.__set__('TagsField', tagsFieldMock);
@@ -28,7 +29,6 @@ describe('AccountingEntryForm', function() {
 
     beforeEach(function() {
       var form;
-      var baseForm;
 
       form        = TestUtils.findRenderedDOMComponentWithTag(accountingEntryFrom, 'form');
       amountField = accountingEntryFrom.refs.inputField;

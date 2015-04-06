@@ -1,3 +1,5 @@
+'use strict';
+
 var _               = require('lodash');
 var Adapters        = require('../../classes/graphs-data/adapters');
 var Transformations = require('../../classes/graphs-data/transformations');

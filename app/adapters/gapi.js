@@ -1,21 +1,22 @@
+/* global gapi */
+'use strict';
+
 var Promise = require('promise');
 var config  = require('../../config');
 
-var scope    = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/plus.login'];
-var gapiAuthOptions = { client_id : config.googleClientId, scope: scope };
+var scope    = [
+  'https://www.googleapis.com/auth/userinfo.email',
+  'https://www.googleapis.com/auth/plus.login'
+];
 
-window.onLoadGapi = onLoadGapi;
-function onLoadGapi(resolve, reject){
-  gapiAdapter._loadResolve();
-}
-
-var gapiAdapter = {
+var gapiAdapter;
+module.exports = gapiAdapter = {
   load: function(){
     return new Promise(function(resolve){
       var tag            = document.createElement('script'),
           firstScriptTag = document.getElementsByTagName('script')[0];
 
-      tag.src = "https://apis.google.com/js/client.js?onload=onLoadGapi";
+      tag.src = 'https://apis.google.com/js/client.js?onload=onLoadGapi';
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       gapiAdapter._loadResolve = resolve;
@@ -28,32 +29,41 @@ var gapiAdapter = {
         immediate: true,
         client_id: config.googleClientId,
         scope: scope
-      }, function(response){
-        if (response.error)
+      }, function(inmendiateAuthResponse){
+        if (inmendiateAuthResponse.error) {
+          /*eslint camelcase: [2, {properties: "never"}]*/
           gapi.auth.authorize({
             immediate: false,
             client_id: config.googleClientId,
             scope: scope
-          }, function(response){
-            response.error ? reject() : resolve;
+          }, function(noInmediateAuthResponse){
+            if (noInmediateAuthResponse.error) {
+              reject();
+            } else {
+              resolve();
+            }
           });
-        else
+        } else {
           resolve();
+        }
       });
     });
   },
   profile: function(id){
-    return new Promise(function(resolve, reject){
+    return new Promise(function(resolve){
       gapi.client
         .request({path: 'plus/v1/people/' + id})
         .execute(function(response){
           resolve({
             id: id,
-            image: response.image.url.replace("size=50", "size=80px")
+            image: response.image.url.replace('size=50', 'size=80px')
           });
       });
     });
   }
 
 };
-module.exports = gapiAdapter;
+
+window.onLoadGapi = function(){
+  gapiAdapter._loadResolve();
+}

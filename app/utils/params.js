@@ -1,3 +1,5 @@
+'use strict';
+
 var qs = require('qs');
 
 function sanitizeQueryString(queryString){

@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React       = require('react/addons');
 var RRouter     = require('rrouter');
@@ -22,7 +23,13 @@ var RecurrentAccountingEntryNew = React.createClass({
             ref="tagsField"
           />
 
-          <button type="submit" className="btn btn-xlarge btn-success" data-behaviour='income'>Save</button>
+        <button
+          className="btn btn-xlarge btn-success"
+          data-behaviour='income'
+          type="submit"
+        >
+          Save
+        </button>
       </BaseForm>
     );
   },

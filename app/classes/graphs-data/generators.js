@@ -1,8 +1,10 @@
+'use strict';
+
 var redefine = require('redefine');
 var _        = require('lodash');
 var moment   = require('moment');
 
-var Generators = redefine.Class({
+module.exports = redefine.Class({
   everyDay: function(from, to, what) {
     var dateFrom     = moment([from.getFullYear(), from.getMonth(), from.getDate()]);
     var dateTo       = moment([to.getFullYear(), to.getMonth(), to.getDate()]);
@@ -13,8 +15,5 @@ var Generators = redefine.Class({
       // will accumulate all aditions
       return {date: moment(dateFrom).add(n + 1, 'days').toDate(), value: what};
     });
-  },
-
+  }
 });
-
-module.exports = Generators;

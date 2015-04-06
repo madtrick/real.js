@@ -1,3 +1,5 @@
+'use strict';
+
 var Generators = require('../generators');
 var moment     = require('moment');
 

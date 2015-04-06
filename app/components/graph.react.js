@@ -1,12 +1,13 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React = require('react');
 var _     = require('lodash');
 
-var Graph = React.createClass({
+module.exports = React.createClass({
   getInitialState: function (){
     var graphId        = _.uniqueId('graph-');
-    var legendsDOMElId = graphId + "-legends";
+    var legendsDOMElId = graphId + '-legends';
 
     return {graphId: graphId, legendsDOMElId: legendsDOMElId};
   },
@@ -23,14 +24,19 @@ var Graph = React.createClass({
     return (
       <div>
         {!this._isDataValid(this.props.data) && <h1>Invalid data. Can not render the graph</h1>}
-        <div id={this.state.graphId} className='r-graph-container'></div>;
+        <div
+          className='r-graph-container'
+          id={this.state.graphId}
+        ></div>;
         <div id={this.state.legendsDOMElId}></div>
       </div>
     )
   },
 
   _prepareGraph: function(data) {
-    if (!this._isDataValid(data)) return;
+    if (!this._isDataValid(data)) {
+      return;
+    }
 
     /*
      * NOTE
@@ -44,23 +50,27 @@ var Graph = React.createClass({
      * The graphs seems to be rendered ok anyway
      */
 
+    /*eslint camelcase: [2, {properties: "never"}]*/
+    /*global MG*/
     MG.data_graphic({
-      title         : this.props.title,
-      description   : "By setting the graphic's target a class name of main-area-solid, markers don't extend down to the bottom of the graphic, which better draws attention to, say, spikes.",
-      data          : data,
-      legend        : this.props.labels,
-      legend_target : '#' + this.state.legendsDOMElId,
-      interpolate   : 'step',
-      target        : '#' + this.state.graphId,
-      x_accessor    : 'date',
-      y_accessor    : 'value'
+      title: this.props.title,
+      description: 'Description',
+      data: data,
+      legend: this.props.labels,
+      legend_target: '#' + this.state.legendsDOMElId,
+      interpolate: 'step',
+      target: '#' + this.state.graphId,
+      x_accessor: 'date',
+      y_accessor: 'value'
     });
   },
 
   _isDataValid: function(data){
     var that = this;
 
-    if (data.length == 0) return false;
+    if (data.length === 0) {
+      return false;
+    }
 
     var isArrayOfArrays   = _.all(data, function(element){ return _.isArray(element); });
     var hasEmptySubArrays = isArrayOfArrays && _.any(data, function(element){
@@ -70,5 +80,3 @@ var Graph = React.createClass({
     return  !hasEmptySubArrays;
   }
 });
-
-module.exports = Graph;

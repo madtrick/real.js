@@ -1,3 +1,5 @@
+'use strict';
+
 var Transformations = require('../transformations.js');
 
 describe('Transformations', function() {

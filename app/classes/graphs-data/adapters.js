@@ -1,3 +1,5 @@
+'use strict';
+
 var redefine = require('redefine');
 var _        = require('lodash');
 

@@ -1,15 +1,17 @@
+'use strict';
+
 var BackboneAssociations = require('backbone-associations');
 var BackboneSuperSync    = require('backbone-super-sync');
 var _                    = require('lodash');
 var Auth                 = require('../utils/auth');
 
-require("../vendor/backbone-mutators");
+require('../vendor/backbone-mutators');
 
 function sync(method, model, options){
-    var options = options || {};
+    var extendedOptions = options || {};
 
-    options.headers                  = options.headers || {};
-    options.headers['Authorization'] = 'Token token=' + Auth.token();
+    extendedOptions.headers               = extendedOptions.headers || {};
+    extendedOptions.headers.Authorization = 'Token token=' + Auth.token();
 
     /*
      * Hackish way to handle error on the connection.
@@ -23,11 +25,11 @@ function sync(method, model, options){
      */
     BackboneSuperSync.editRequest = function (request) {
       request.on('error', function(){
-        _.result(options, 'error');
+        _.result(extendedOptions, 'error');
       });
     };
 
-    return BackboneSuperSync.call(this, method, model, options);
+    return BackboneSuperSync.call(this, method, model, extendedOptions);
 }
 
 BackboneAssociations.sync = sync;
@@ -41,7 +43,8 @@ BackboneAssociations.Collection.prototype.fetch = function (options) {
   try {
     return originalCollectionFetch.call(this, options)
     .then( function () {
-      return self.isFetching = false;
+      self.isFetching = false;
+      return;
     });
   } catch (e) {
     this.isFetching = false;

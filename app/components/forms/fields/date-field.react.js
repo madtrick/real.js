@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+'use strict';
 
 var React  = require('react');
 var moment = require('moment');
@@ -12,7 +13,7 @@ var DateField  = React.createClass({
     return this.state.date;
   },
 
-  render: function(attribute) {
+  render: function() {
     /*
      * IMPORTANT NOTE
      *
@@ -31,30 +32,31 @@ var DateField  = React.createClass({
         <div className="input-group-addon"><i className="fa fa-calendar"></i></div>
         <input
           className="form-control input-xlarge"
-          onClick={this.showDatePicker}
           onChange={function(){}} //function to remove React warnings
+          onClick={this.showDatePicker}
           type="text"
           value={this.state.date}
         />
         <input
+          className="date-field__date"
+          max="2015-12-31"
+          min="2014-11-01"
+          onChange={this.setSelectedDate}
           ref="dateField"
           type="date"
-          min="2014-11-01"
-          max="2015-12-31"
-          className="date-field__date"
-          onChange={this.setSelectedDate}
         />
       </div>
     )
   },
 
-  showDatePicker: function(e) {
+  showDatePicker: function() {
     //e.prevenDefault(); //not available until we update to React 0.12
+    /* global $ */
     $(this.refs.dateField.getDOMNode()).click();
     return false;
   },
 
-  setSelectedDate: function(e) {
+  setSelectedDate: function() {
     this.setState({ date: this.refs.dateField.getDOMNode().value });
     return false;
   }

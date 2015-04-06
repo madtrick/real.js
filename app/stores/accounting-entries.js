@@ -1,5 +1,6 @@
+'use strict';
+
 var Reflux            = require('reflux');
-var _                 = require('lodash');
 var actions           = require('../actions');
 var AccountingEntries = require('../collections/accounting_entries');
 
@@ -8,18 +9,18 @@ require('./users'); //require it just to include it on the bundle
 module.exports = Reflux.createStore({
   init: function () {
     this.collection = new AccountingEntries();
-    this.listenTo(actions.fetchAccountingEntries, this.handleAction_fetchEntries);
-    this.listenTo(actions.fetchAccountingEntry, this.handleAction_fetchEntry);
-    this.listenTo(actions.createAccountingEntry, this.handleAction_createEntry);
-    this.listenTo(actions.updateAccountingEntry, this.handleAction_updateEntry);
+    this.listenTo(actions.fetchAccountingEntries, this.handleActionFetchEntries);
+    this.listenTo(actions.fetchAccountingEntry, this.handleActionFetchEntry);
+    this.listenTo(actions.createAccountingEntry, this.handleActionCreateEntry);
+    this.listenTo(actions.updateAccountingEntry, this.handleActionUpdateEntry);
   },
 
-  handleAction_createEntry: function (payload) {
+  handleActionCreateEntry: function (payload) {
     var self  = this;
-    var model = new this.collection.model({
-      amount : payload.amount,
-      tags   : payload.tags,
-      date   : payload.date
+    var model = this.collection.add({
+      amount: payload.amount,
+      tags: payload.tags,
+      date: payload.date
     });
 
     model.save([], {})
@@ -27,12 +28,12 @@ module.exports = Reflux.createStore({
       self.collection.add(model);
       self.trigger(self.collection);
     })
-    .catch( function(e) {
-      actions.addError("Couldn't save the entry. Try again");
+    .catch( function() {
+      actions.addError('Couldn\'t save the entry. Try again');
     });
   },
 
-  handleAction_fetchEntry: function(payload) {
+  handleActionFetchEntry: function(payload) {
    var self = this;
     this.collection.fetch({})
     .then( function () {
@@ -49,26 +50,26 @@ module.exports = Reflux.createStore({
     });
   },
 
-  handleAction_fetchEntries: function () {
+  handleActionFetchEntries: function () {
     var self = this;
 
     this.collection.fetch({})
     .then(function (){
       actions.fetchUsers()
-      .then( function (users) {
+      .then( function () {
         self.trigger(self.collection);
       });
     })
-    .catch(function (e) {
-      actions.addError("Couldn't fetch entries. Try again");
+    .catch(function () {
+      actions.addError('Couldn\'t fetch entries. Try again');
     });
   },
 
-  handleAction_updateEntry: function(payload) {
+  handleActionUpdateEntry: function(payload) {
     var model = this.collection.get(payload.entry_id);
     model.save({amount: payload.amount, tags: payload.tags, date: payload.date})
     .catch( function () {
-      actions.addError("Couldn't save the entry. Try again");
+      actions.addError('Couldn\'t save the entry. Try again');
     });
   }
 });

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 (function (root, factory, undef) {
     'use strict';
 

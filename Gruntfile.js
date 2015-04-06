@@ -1,12 +1,11 @@
 /*global module:false*/
 module.exports = function(grunt) {
+  'use strict';
 
-  // Project configuration.
   grunt.initConfig({
-    // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     watch: {
-      browserify : {
+      browserify: {
         files: ['index.html', 'app/**/*', '!**/__tests__/**'],
         tasks: ['browserify'],
         options: {
@@ -30,12 +29,12 @@ module.exports = function(grunt) {
         ext: '.js'
       }
     },
-    browserify : {
-      options:      {
+    browserify: {
+      options: {
         browserifyOptions: {
           debug: true //enable sourceMaps. Will be appended to the bundle file
         },
-        transform:  [ require('grunt-react').browserify, 'envify' ]
+        transform: [ require('grunt-react').browserify, 'envify' ]
       },
       app: {
         src: 'app/app.react.js',
@@ -47,8 +46,8 @@ module.exports = function(grunt) {
         options: {
           debug: true,
           port: 8001,
-          keepalive:true,
-          livereload:true
+          keepalive: true,
+          livereload: true
         }
       }
     },
@@ -70,7 +69,7 @@ module.exports = function(grunt) {
     },
     wiredep: {
       target: {
-        src: "index.html",
+        src: 'index.html',
         exclude: [
           'bower_components/react/react.js',
           'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/'
@@ -84,13 +83,18 @@ module.exports = function(grunt) {
       }
     },
     usemin: {
-      html: 'dist/index.html',
+      html: 'dist/index.html'
     },
     copy: {
       dist: {
         files: [
           {expand: false, src: 'index.html', dest: 'dist/index.html'},
-          {expand: true, flatten: true, src: 'bower_components/font-awesome/fonts/*', dest: 'dist/fonts/'}
+          {
+            expand: true,
+            flatten: true,
+            src: 'bower_components/font-awesome/fonts/*',
+            dest: 'dist/fonts/'
+          }
         ]
       }
     },
@@ -115,7 +119,7 @@ module.exports = function(grunt) {
         recursive: false
       }
     },
-    filerev :{
+    filerev: {
       files: {
         src: [
           'dist/*.js',
@@ -125,6 +129,9 @@ module.exports = function(grunt) {
     },
     clean: {
       dist: 'dist/'
+    },
+    eslint: {
+      target: 'app/**/*.js'
     }
   });
 
@@ -145,6 +152,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sed');
   grunt.loadNpmTasks('grunt-filerev');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-eslint');
 
   grunt.registerTask('default', ['env:dev', 'concurrent:target']);
 
