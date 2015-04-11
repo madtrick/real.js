@@ -2,21 +2,19 @@
 'use strict';
 
 var React       = require('react/addons');
-var RRouter     = require('rrouter');
 var BaseForm    = require('./forms/base-form.react');
 var TagsField   = require('./forms/fields/tags-field.react');
 var AmountField = require('./forms/fields/amount-field.react');
 var actions     = require('../actions');
-var MainLayout  = require('../components/layouts/main.react');
-
-var RoutingContextMixin = RRouter.RoutingContextMixin;
 
 var RecurrentAccountingEntryNew = React.createClass({
-  mixins: [RoutingContextMixin],
+  contextTypes: {
+      router: React.PropTypes.func
+  },
 
   render: function () {
     return (
-      <MainLayout>
+      <div>
         <BaseForm onSubmit={this.handleSubmit}>
             <AmountField
               ref="inputField"
@@ -33,7 +31,7 @@ var RecurrentAccountingEntryNew = React.createClass({
             Save
           </button>
         </BaseForm>
-      </MainLayout>
+      </div>
     );
   },
 
@@ -49,7 +47,7 @@ var RecurrentAccountingEntryNew = React.createClass({
       }
     );
 
-    this.navigateTo('recurrent-accounting-entries');
+    this.context.router.transitionTo('recurrent-accounting-entries');
   }
 });
 

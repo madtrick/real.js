@@ -3,9 +3,8 @@
 
 var React                           = require('react');
 var Reflux                          = require('reflux');
-var Link                            = require('rrouter').Link;
+var Link                            = require('react-router').Link;
 var RecurrentAccountingEntriesStore = require('../stores/recurrent-accounting-entries');
-var MainLayout                      = require('./layouts/main.react');
 var RecurrentItem                   = require('./recurrent-item.react');
 
 var mixins = [
@@ -19,11 +18,11 @@ module.exports = React.createClass({
     var recurrentAccountingEntries = this.state.recurrentEntries;
 
     return (
-      <MainLayout>
+      <div>
         <Link
           className="btn btn-default"
-          to="/recurrent-accounting-entry-new"
-        >
+          to="recurrent-accounting-entry-new"
+          >
           + Recurrent entry
         </Link>
         <ul className="r-recurrent-accounting-entries">
@@ -38,7 +37,7 @@ module.exports = React.createClass({
             })
           }
         </ul>
-      </MainLayout>
+      </div>
     );
   }
 });

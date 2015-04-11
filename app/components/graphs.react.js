@@ -6,7 +6,6 @@ var Reflux                 = require('reflux');
 var AccountingEntriesStore = require('../stores/accounting-entries');
 var actions                = require('../actions');
 var Graph                  = require('./graph.react');
-var MainLayout             = require('./layouts/main.react');
 var MonthlyAccTagsData     = require('./graphs/monthly-acc-tags-data');
 var YearExpensesData       = require('./graphs/year-expenses-data');
 
@@ -33,7 +32,7 @@ var Graphs = React.createClass({
       );
     }
     return (
-      <MainLayout>
+      <div>
         {
           !this.state.entries ?
             <span>Loading <i className="fa fa-spinner fa-spin"></i></span>
@@ -50,7 +49,7 @@ var Graphs = React.createClass({
               />
             </div>
         }
-      </MainLayout>
+      </div>
     );
   }
 });

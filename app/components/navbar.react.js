@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react');
-var Link  = require('rrouter').Link;
+var Link  = require('react-router').Link;
 
 var Navbar = React.createClass({
   render: function() {
@@ -27,13 +27,13 @@ var Navbar = React.createClass({
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li>
-                <Link to="/graphs">Graphs</Link>
+                <Link to="graphs">Graphs</Link>
               </li>
               <li>
-                <Link to="/accounting-entries-list">Accounting entries</Link>
+                <Link to="accounting-entries-list">Accounting entries</Link>
               </li>
               <li>
-                <Link to="/recurrent-accounting-entries">Recurrent entries</Link>
+                <Link to="recurrent-accounting-entries">Recurrent entries</Link>
               </li>
             </ul>
           </div>

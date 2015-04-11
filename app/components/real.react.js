@@ -5,7 +5,6 @@ var React                  = require('react');
 var Reflux                 = require('reflux');
 var AccountingEntriesStore = require('../stores/accounting-entries');
 var actions                = require('../actions');
-var MainLayout             = require('./layouts/main.react');
 var AccountingEntries      = require('./accounting-entries.react');
 var AccountingEntryAdd     = require('./accounting-entry-add.react');
 
@@ -22,7 +21,7 @@ module.exports = React.createClass({
 
   render: function(){
     return (
-      <MainLayout>
+      <div>
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
@@ -52,8 +51,7 @@ module.exports = React.createClass({
             <AccountingEntryAdd/>
           </div>
         </footer>
-      </MainLayout>
+      </div>
     );
   }
-
 });

@@ -4,7 +4,6 @@
 var React                  = require('react');
 var Reflux                 = require('reflux');
 var moment                 = require('moment');
-var MainLayout             = require('./layouts/main.react');
 var AccountingEntries      = require('./accounting-entries.react');
 var AccountingEntriesStore = require('../stores/accounting-entries');
 var actions                = require('../actions');
@@ -34,7 +33,7 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      <MainLayout>
+      <div>
       {
         !this.state.entries ?
           <span>Loading <i className="fa fa-spinner fa-spin"></i></span>
@@ -59,7 +58,7 @@ module.exports = React.createClass({
             />
           </div>
       }
-      </MainLayout>
+      </div>
     )
   }
 });

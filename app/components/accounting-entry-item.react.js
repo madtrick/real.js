@@ -3,9 +3,9 @@
 
 var React       = require('react');
 var moment      = require('moment');
-var Link        = require('rrouter').Link;
+var Link        = require('react-router').Link;
 var NullProfile = require('../models/null-profile');
-var TagsList     = require('./helpers.react').TagsList;
+var TagsList    = require('./helpers.react').TagsList;
 
 module.exports = React.createClass({
   render: function(){
@@ -25,10 +25,10 @@ module.exports = React.createClass({
             this.props.actions && this.props.actions.edit &&
               <div className="r-accounting-entry-item__action">
                 <Link
-                  accountingEntryId={entry.id}
-                  to="/edit"
-                >
-                edit
+                  params={{accountingEntryId: entry.id}}
+                  to="edit"
+                  >
+                  edit
                 </Link>
               </div>
           }
