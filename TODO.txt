@@ -1,15 +1,20 @@
+# Version 0.1.0
+- Remove the bus
+- Swith to react-router
+  - After this update react
+- Reduce load size
+- Check if we still need the 'isFetching' flag in the entries collection
+- Redirect to the previous view after editing an entry
+- Don't reload entries/users/... when navigating within the app
+- Tag editions are persisted
+
+
+# Upcoming
 - Prettify the view for adding recurrent accounting entries
-  - Wrap it with the main layout
 - Prettify the graphs
 - Prettify the accounting entry listing
 - Prettify the main view
 - Add more graphs
-- Reduce load size
-- Don't reload entries/users/... when navigating within the app
 - Do not use backbone-associations as we don't need associations any more
-- Swith to react-router
-  - After this update react
-- Redirect to the previous view after editing an entry
 - Show a badge with the number of pending recurrent entries (if any)
 - Move to ES6
-- Remove the bus
