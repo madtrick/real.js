@@ -49,16 +49,16 @@ var DateField  = React.createClass({
     )
   },
 
-  showDatePicker: function() {
-    //e.prevenDefault(); //not available until we update to React 0.12
+  showDatePicker: function(e) {
+    e.prevenDefault();
     /* global $ */
     $(this.refs.dateField.getDOMNode()).click();
     return false;
   },
 
-  setSelectedDate: function() {
+  setSelectedDate: function(e) {
+    e.prevenDefault();
     this.setState({ date: this.refs.dateField.getDOMNode().value });
-    return false;
   }
 });
 

@@ -44,6 +44,7 @@
     "backbone-associations": "^0.6.2",
     "backbone-super-sync": "0.0.14",
     "backbone.cocktail": "^0.5.9",
+    "classnames": "^1.2.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.2.1",
     "grunt-sass": "^0.14.0",

@@ -18,8 +18,8 @@ module.exports = React.createClass({
     );
   },
 
-  handleSubmit: function(){
+  handleSubmit: function(event){
+    event.preventDefault();
     this.props.onSubmit();
-    return false;
   }
 });

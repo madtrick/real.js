@@ -1,16 +1,15 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React    = require('react/addons');
-var TagsList = require('./helpers.react').TagsList;
-var actions  = require('../actions');
-
-var classSet = React.addons.classSet;
+var React      = require('react');
+var classnames = require('classnames');
+var TagsList   = require('./helpers.react').TagsList;
+var actions    = require('../actions');
 
 module.exports = React.createClass({
   render: function () {
     var recurrentAccountingEntry = this.props.item;
-    var buttonClassName = classSet({
+    var buttonClassName = classnames({
       'r-recurrent-item__btn btn btn-xs btn-primary': true,
       'disabled': !recurrentAccountingEntry.isOverdue()
     });

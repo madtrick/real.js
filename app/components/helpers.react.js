@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React    = require('react/addons');
-var classSet = React.addons.classSet;
-var _        = require('lodash');
+var React      = require('react');
+var classnames = require('classnames');
+var _          = require('lodash');
 
 exports.TagsList = React.createClass({
   render: function(){
@@ -12,7 +12,7 @@ exports.TagsList = React.createClass({
 
     classes                       = {'r-tag-list': true};
     classes[this.props.className] = true;
-    tagListClassName              = classSet(classes);
+    tagListClassName              = classnames(classes);
 
     return (
       <div className={tagListClassName}>

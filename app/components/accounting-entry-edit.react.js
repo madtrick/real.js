@@ -27,7 +27,6 @@ module.exports = React.createClass({
   handleSubmit: function(values) {
     /*eslint camelcase: [2, {properties: "never"}]*/
     actions.updateAccountingEntry(_.extend(values, {entry_id: this.state.entry.id}));
-    return false;
   },
 
   render: function() {

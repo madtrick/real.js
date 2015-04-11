@@ -15,7 +15,6 @@ module.exports = React.createClass({
   handleSubmit: function(args) {
     actions.createAccountingEntry({amount: args.amount, tags: _.clone(args.tags), date: args.date});
     this.setState({tags: []});
-    return false;
   },
 
   render: function() {

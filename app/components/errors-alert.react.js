@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React       = require('react/addons');
+var React       = require('react');
+var classnames  = require('classnames');
 var Reflux      = require('reflux');
 var _           = require('lodash');
 var ErrorsStore = require('../stores/errors');
@@ -15,7 +16,7 @@ var ErrorsAlert = React.createClass({
 
   render: function() {
     var errors     = this.state.errors;
-    var classNames = React.addons.classSet({
+    var classNames = classnames({
       'alert': true,
       'alert-danger': true,
       'hidden': errors.length < 1

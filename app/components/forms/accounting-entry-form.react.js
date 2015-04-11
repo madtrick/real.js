@@ -47,7 +47,6 @@ var AccountingEntryForm = React.createClass({
     var negativeInputFieldValue = (inputFieldValue < 0 ? 1 : -1) * inputFieldValue;
 
     this.refs.inputField.value(negativeInputFieldValue);
-    return true;
   },
 
   handleSubmit: function(){
