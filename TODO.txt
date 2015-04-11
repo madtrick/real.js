@@ -1,5 +1,4 @@
 # Version 0.1.0
-- Remove the bus
 - Swith to react-router
   - After this update react
 - Reduce load size

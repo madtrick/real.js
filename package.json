@@ -50,7 +50,6 @@
     "grunt-sass": "^0.14.0",
     "hellojs": "MrSwitch/hello.js",
     "lodash": "^2.4.1",
-    "microevent": "^1.0.0",
     "moment": "^2.8.3",
     "promise": "^6.0.0",
     "qs": "^2.2.4",
