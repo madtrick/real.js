@@ -14,41 +14,6 @@ Auth.start(config.googleClientId, config.googleRedirectUri, function(){
     .then(Gapi.init)
     .then(
       function(){
-        //var routes = (
-        //  <Routes>
-        //    <Route
-        //      name="main"
-        //      path="/"
-        //      view={Real}
-        //    />
-        //    <Route
-        //      name="graphs"
-        //      path="/graphs"
-        //      view={Graphs}
-        //    />
-        //    <Route
-        //      name="edit"
-        //      path="/edit/:accountingEntryId"
-        //      view={AccountingEntryEdit}
-        //    />
-        //    <Route
-        //      name="accounting-entries-list"
-        //      path="/accounting-entries-list"
-        //      view={AccountingEntriesList}
-        //    />
-        //    <Route
-        //      name="recurrent-accounting-entries"
-        //      path="/recurrent-accounting-entries"
-        //      view={RecurrentAccountingEntries}
-        //    />
-        //    <Route
-        //      name="recurrent-accounting-entry-new"
-        //      path="/recurrent-accounting-entries/new"
-        //      view={RecurrentAccountingEntryNew}
-        //    />
-        //  </Routes>
-        //);
-
         try {
           Router.run();
         } catch (e) {
