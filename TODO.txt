@@ -1,6 +1,6 @@
 # Version 0.1.0
 - Swith to react-router
-  - After this update react
+  - Fix all warnings
 - Reduce load size
 - Check if we still need the 'isFetching' flag in the entries collection
 - Redirect to the previous view after editing an entry
@@ -17,3 +17,10 @@
 - Do not use backbone-associations as we don't need associations any more
 - Show a badge with the number of pending recurrent entries (if any)
 - Move to ES6
+- Properly nest the routes
+  - "/accounting-entries"
+  - "/accounting-entries/edit"
+  - "/recurrent-accounting-entries"
+  - "/recurrent-accounting-entries/new"
+  - "/recurrent-accounting-entries/edit"
+- Revisit error handling in the stores
