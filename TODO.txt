@@ -1,6 +1,4 @@
 # Version 0.1.0
-- Swith to react-router
-  - Fix all warnings
 - Reduce load size
 - Check if we still need the 'isFetching' flag in the entries collection
 - Redirect to the previous view after editing an entry
