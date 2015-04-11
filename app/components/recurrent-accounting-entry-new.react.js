@@ -7,6 +7,7 @@ var BaseForm    = require('./forms/base-form.react');
 var TagsField   = require('./forms/fields/tags-field.react');
 var AmountField = require('./forms/fields/amount-field.react');
 var actions     = require('../actions');
+var MainLayout  = require('../components/layouts/main.react');
 
 var RoutingContextMixin = RRouter.RoutingContextMixin;
 
@@ -15,22 +16,24 @@ var RecurrentAccountingEntryNew = React.createClass({
 
   render: function () {
     return (
-      <BaseForm onSubmit={this.handleSubmit}>
-          <AmountField
-            ref="inputField"
-          />
-          <TagsField
-            ref="tagsField"
-          />
+      <MainLayout>
+        <BaseForm onSubmit={this.handleSubmit}>
+            <AmountField
+              ref="inputField"
+            />
+            <TagsField
+              ref="tagsField"
+            />
 
-        <button
-          className="btn btn-xlarge btn-success"
-          data-behaviour='income'
-          type="submit"
-        >
-          Save
-        </button>
-      </BaseForm>
+          <button
+            className="btn btn-xlarge btn-success"
+            data-behaviour='income'
+            type="submit"
+          >
+            Save
+          </button>
+        </BaseForm>
+      </MainLayout>
     );
   },
 
