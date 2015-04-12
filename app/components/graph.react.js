@@ -51,7 +51,6 @@ module.exports = React.createClass({
      */
 
     /*eslint camelcase: [2, {properties: "never"}]*/
-    /*global MG*/
     MG.data_graphic({
       title: this.props.title,
       description: 'Description',

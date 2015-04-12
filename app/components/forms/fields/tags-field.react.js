@@ -6,7 +6,6 @@ var _     = require('lodash');
 
 module.exports = React.createClass({
   componentDidMount: function(){
-    /* global Taggle */
     this.taggle = new Taggle('tags');
     this.setTags(this.props);
   },

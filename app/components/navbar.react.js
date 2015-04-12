@@ -21,25 +21,44 @@ var Navbar = React.createClass({
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">Real</a>
+            <a className="navbar-brand" href="#" onClick={this.closeDropdown}>Real</a>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li>
-                <Link to="graphs">Graphs</Link>
+                <Link
+                  onClick={this.closeDropdown}
+                  to="graphs"
+                >
+                Graphs
+                </Link>
               </li>
               <li>
-                <Link to="accounting-entries-list">Accounting entries</Link>
+                <Link
+                  onClick={this.closeDropdown}
+                  to="accounting-entries-list"
+                >
+                Accounting entries
+                </Link>
               </li>
               <li>
-                <Link to="recurrent-accounting-entries">Recurrent entries</Link>
+                <Link
+                  onClick={this.closeDropdown}
+                  to="recurrent-accounting-entries"
+                >
+                Recurrent entries
+                </Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     )
+  },
+
+  closeDropdown: function() {
+    $('.navbar-collapse').collapse('hide');
   }
 });
 

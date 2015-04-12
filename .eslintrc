@@ -10,6 +10,12 @@
     "browser": true,
     "builtin": true
   },
+  "globals": {
+    "$": true,
+    "gapi": true,
+    "Taggle": true,
+    "MG": true
+  },
   "rules": {
     "block-scoped-var": 2,
     "camelcase": 2,

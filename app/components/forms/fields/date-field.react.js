@@ -51,7 +51,6 @@ var DateField  = React.createClass({
 
   showDatePicker: function(e) {
     e.prevenDefault();
-    /* global $ */
     $(this.refs.dateField.getDOMNode()).click();
     return false;
   },
