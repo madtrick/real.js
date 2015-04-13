@@ -1,5 +1,4 @@
 # Version 0.1.0
-- Reduce load size
 - Check if we still need the 'isFetching' flag in the entries collection
 - Redirect to the previous view after editing an entry
 - Don't reload entries/users/... when navigating within the app
