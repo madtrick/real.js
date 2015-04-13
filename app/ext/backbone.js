@@ -33,21 +33,3 @@ function sync(method, model, options){
 }
 
 BackboneAssociations.sync = sync;
-
-var originalCollectionFetch = BackboneAssociations.Collection.prototype.fetch;
-BackboneAssociations.Collection.prototype.fetch = function (options) {
-  var self        = this;
-  this.isFetching = true;
-
-  //TODO. creo que esto ya no hace falta
-  try {
-    return originalCollectionFetch.call(this, options)
-    .then( function () {
-      self.isFetching = false;
-      return;
-    });
-  } catch (e) {
-    this.isFetching = false;
-    throw e;
-  }
-};

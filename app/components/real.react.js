@@ -26,7 +26,7 @@ module.exports = React.createClass({
           <div className="row">
             <div className="col-xs-12">
               {
-                this.state && this.state.entries && !this.state.entries.isFetching ?
+                this.state && this.state.entries  ?
                   <div>
                     <AccountingEntries
                       actions={{edit: true}}
