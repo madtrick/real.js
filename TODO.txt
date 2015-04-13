@@ -1,9 +1,5 @@
-# Version 0.1.0
-- Don't reload entries/users/... when navigating within the app
-- Tag editions are persisted
-
-
 # Upcoming
+- Don't reload entries/users/... when navigating within the app
 - Prettify the view for adding recurrent accounting entries
 - Prettify the graphs
 - Prettify the accounting entry listing
@@ -20,3 +16,4 @@
   - "/recurrent-accounting-entries/edit"
 - Revisit error handling in the stores
 - investigate possible usage of https in heroku
+- take a look to inmutable data
