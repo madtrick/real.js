@@ -26,7 +26,12 @@ module.exports = React.createClass({
 
   handleSubmit: function(values) {
     /*eslint camelcase: [2, {properties: "never"}]*/
-    actions.updateAccountingEntry(_.extend(values, {entry_id: this.state.entry.id}));
+    var self = this;
+    actions
+    .updateAccountingEntry(_.extend(values, {entry_id: this.state.entry.id}))
+    .then( function () {
+      self.context.router.transitionTo('main');
+    });
   },
 
   render: function() {

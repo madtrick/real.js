@@ -15,7 +15,7 @@ var RecurrentAccountingEntryNew     = require('./components/recurrent-accounting
 var Graphs                          = require('./components/graphs.react');
 
 var routes = (
-  <Route handler={Main} path="/" >
+  <Route handler={Main} name="main" path="/" >
     <Route handler={AccountingEntriesList} name="accounting-entries-list" />
     <Route handler={Graphs} name="graphs" />
     <Route handler={RecurrentAccountingEntries} name="recurrent-accounting-entries" />

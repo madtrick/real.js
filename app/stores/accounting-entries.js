@@ -66,8 +66,13 @@ module.exports = Reflux.createStore({
   },
 
   handleActionUpdateEntry: function(payload) {
+    var self  = this;
     var model = this.collection.get(payload.entry_id);
     model.save({amount: payload.amount, tags: payload.tags, date: payload.date})
+    .then( function () {
+      actions.updateAccountingEntry.completed(self.model);
+      self.trigger(model);
+    })
     .catch( function () {
       actions.addError('Couldn\'t save the entry. Try again');
     });
