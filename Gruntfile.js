@@ -100,7 +100,7 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        sourceMap: false
+        sourceMap: true
       }
     },
     env: {
