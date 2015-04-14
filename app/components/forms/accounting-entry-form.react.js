@@ -7,7 +7,7 @@ var TagsField   = require('./fields/tags-field.react');
 var DateField   = require('./fields/date-field.react');
 var AmountField = require('./fields/amount-field.react');
 
-var AccountingEntryForm = React.createClass({
+module.exports = React.createClass({
   render: function(){
     return (
       <BaseForm onSubmit={this.handleSubmit}>
@@ -68,7 +68,4 @@ var AccountingEntryForm = React.createClass({
   resetInputField: function () {
     this.refs.inputField.value('');
   }
-
 });
-
-module.exports = AccountingEntryForm;
