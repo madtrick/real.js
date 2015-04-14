@@ -17,3 +17,4 @@
 - Revisit error handling in the stores
 - investigate possible usage of https in heroku
 - take a look to inmutable data
+- Add repository to package.json
