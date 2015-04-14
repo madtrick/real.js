@@ -23,21 +23,23 @@ module.exports = React.createClass({
             tags={this.props.tags}
           />
 
-        <button
-          className="btn btn-xlarge btn-success"
-          data-behaviour='income'
-          type="submit"
-        >
-        Income
-        </button>
-        <button
-          className="btn btn-xlarge btn-danger"
-          data-behaviour='expense'
-          onClick={this.handleExpense}
-          type="submit"
-        >
-          Expense
-        </button>
+        <div class="accounting-entry-form__buttons">
+          <button
+            className="btn btn-xlarge btn-success"
+            data-behaviour='income'
+            type="submit"
+          >
+          Income
+          </button>
+          <button
+            className="btn btn-xlarge btn-danger"
+            data-behaviour='expense'
+            onClick={this.handleExpense}
+            type="submit"
+          >
+            Expense
+          </button>
+        </div>
       </BaseForm>
   );
   },
