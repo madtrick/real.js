@@ -28,6 +28,7 @@ var DateField  = React.createClass({
      * Remove the limits once fixed
      */
     return (
+      <div className="form-group">
       <div className="input-group date-field-container">
         <div className="input-group-addon"><i className="fa fa-calendar"></i></div>
         <input
@@ -46,6 +47,7 @@ var DateField  = React.createClass({
           type="date"
         />
       </div>
+    </div>
     )
   },
 

@@ -15,18 +15,20 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      <div className="input-group">
-        <div className="input-group-addon"><i className="fa fa-eur"></i></div>
-        <input
-          className="form-control input-xlarge"
-          defaultValue={this.props.defaultValue}
-          id="amount"
-          placeholder="Enter amount"
-          ref="inputField"
-          required="required"
-          step="any"
-          type="number"
-        />
+      <div className="form-group">
+        <div className="input-group">
+          <div className="input-group-addon"><i className="fa fa-eur"></i></div>
+          <input
+            className="form-control input-xlarge"
+            defaultValue={this.props.defaultValue}
+            id="amount"
+            placeholder="Enter amount"
+            ref="inputField"
+            required="required"
+            step="any"
+            type="number"
+          />
+          </div>
       </div>
     );
   },

@@ -11,7 +11,7 @@ module.exports = React.createClass({
         onSubmit={this.handleSubmit}
         role="form"
       >
-        <div className="form-group r-accounting-entry-form-group">
+        <div className="r-accounting-entry-form-group">
           {this.props.children}
         </div>
       </form>
