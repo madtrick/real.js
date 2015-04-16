@@ -32,7 +32,7 @@ var DateField  = React.createClass({
         <div className="input-group-addon"><i className="fa fa-calendar"></i></div>
         <input
           className="form-control input-xlarge"
-          onChange={function(){}} //function to remove React warnings
+          onChange={function (){}} // function to remove react warning
           onClick={this.showDatePicker}
           type="text"
           value={this.state.date}
@@ -50,13 +50,12 @@ var DateField  = React.createClass({
   },
 
   showDatePicker: function(e) {
-    e.prevenDefault();
+    e.stopPropagation();
     $(this.refs.dateField.getDOMNode()).click();
-    return false;
   },
 
   setSelectedDate: function(e) {
-    e.prevenDefault();
+    e.stopPropagation();
     this.setState({ date: this.refs.dateField.getDOMNode().value });
   }
 });
