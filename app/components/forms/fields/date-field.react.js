@@ -31,7 +31,7 @@ var DateField  = React.createClass({
       <div className="input-group date-field-container">
         <div className="input-group-addon"><i className="fa fa-calendar"></i></div>
         <input
-          className="form-control input-xlarge"
+          className="form-control"
           onChange={function (){}} // function to remove react warning
           onClick={this.showDatePicker}
           type="text"

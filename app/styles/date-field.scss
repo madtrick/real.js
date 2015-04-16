@@ -4,7 +4,12 @@
 
 .date-field-container {
   position: static;
+  
+  .form-control {
+    font-size: 20px;
+  }
 }
+
 .date-field__date {
   // Setting display: none is not valid
   // as later we won't be able programatically
