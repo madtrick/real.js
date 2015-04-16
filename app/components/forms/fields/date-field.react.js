@@ -38,15 +38,15 @@ var DateField  = React.createClass({
           type="text"
           value={this.state.date}
         />
-        <input
-          className="date-field__date"
-          max="2015-12-31"
-          min="2014-11-01"
-          onChange={this.setSelectedDate}
-          ref="dateField"
-          type="date"
-        />
       </div>
+      <input
+        className="date-field__date"
+        max="2015-12-31"
+        min="2014-11-01"
+        onChange={this.setSelectedDate}
+        ref="dateField"
+        type="date"
+      />
     </div>
     )
   },
