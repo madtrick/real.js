@@ -39,11 +39,17 @@
     list-style: none;
   }
 
+  li:first-of-type input{
+    border: 1px solid red;
+    margin-left: 14px;
+    margin-top: 14px;
+  }
+
   input {
     float: left;
     max-width: 100%;
     width: 100% !important;
-    margin-top: 8px;
+    margin-top: 14px;
     border: none;
     outline: 0;
   }
@@ -52,6 +58,7 @@
 .taggle {
   background-color: #E2E1DF;
   margin: 8px;
+  margin-top: 14px;
   padding: 4px;
   border-radius: 3px;
 }

@@ -23,7 +23,7 @@ module.exports = React.createClass({
             tags={this.props.tags}
           />
 
-        <div class="accounting-entry-form__buttons">
+        <div className="accounting-entry-form__buttons">
           <button
             className="btn btn-xlarge btn-success"
             data-behaviour='income'
