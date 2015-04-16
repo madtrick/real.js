@@ -40,7 +40,6 @@
   }
 
   li:first-of-type input{
-    border: 1px solid red;
     margin-left: 14px;
     margin-top: 14px;
   }
@@ -61,6 +60,10 @@
   margin-top: 14px;
   padding: 4px;
   border-radius: 3px;
+
+  .close {
+    margin-left: 2px;
+  }
 }
 
 .taggle_sizer {
