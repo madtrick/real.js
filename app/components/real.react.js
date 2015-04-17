@@ -36,8 +36,10 @@ module.exports = React.createClass({
                       profiles={this.state.profiles}
                     />
                     <div className="r-expenses-summary">
-                      Expenses this month:
-                      {this.state.entries.expenseByMonth((new Date()).getMonth())}
+                      This month:
+                      <span className="r-expenses-summary__monthly">
+                        {this.state.entries.expenseByMonth((new Date()).getMonth())}
+                      </span>
                     </div>
                   </div>
                   :
