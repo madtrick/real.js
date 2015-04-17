@@ -59,6 +59,7 @@ module.exports = React.createClass({
 
 
     this.resetInputField();
+    this.resetDateField();
 
     return this.props.onSubmit({
       amount: amount,
@@ -69,5 +70,9 @@ module.exports = React.createClass({
 
   resetInputField: function () {
     this.refs.inputField.value('');
+  },
+
+  resetDateField: function () {
+    this.refs.dateField.reset();
   }
 });

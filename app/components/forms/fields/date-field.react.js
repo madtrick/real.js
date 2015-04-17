@@ -9,6 +9,10 @@ var DateField  = React.createClass({
     return {date: moment().format('YYYY-MM-DD')};
   },
 
+  reset: function () {
+    this.setState(this.getInitialState());
+  },
+
   value: function() {
     return this.state.date;
   },
