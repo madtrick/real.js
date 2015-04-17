@@ -1,0 +1,53 @@
+.r-accounting-entry-item {
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 3px;
+  border-radius: 4px;
+  height: 36px;
+}
+
+.r-accounting-entry-item__amount,
+.r-accounting-entry-item__details {
+  float: right;
+}
+
+.r-accounting-entry-item__tags,
+.r-accounting-entry-item__picture {
+  float: left;
+}
+
+.r-accounting-entry-item__action {
+  text-align: center;
+}
+
+.r-accounting-entry-item__picture {
+  margin-left: 6px;
+
+  img {
+    width: 30px;
+    height: auto;
+    border-radius: 14px;
+    border-width: 2px;
+  }
+}
+
+.r-accounting-entry-item__amount {
+  font-size: 22px;
+  width: 24%;
+  text-align: right;
+  margin-left: 20px;
+  margin-right: 15px;
+}
+
+.r-accounting-entry-item__details {
+  font-size: 11px;
+}
+
+.r-accounting-entry-item__tags {
+  margin-right: 20px;
+}
+
+.r-tag-list__label {
+  font-weight: normal;
+}
+
