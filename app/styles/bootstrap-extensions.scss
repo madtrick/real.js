@@ -1,3 +1,5 @@
+@import 'colors';
+
 .btn-xlarge {
   padding: 18px;
   width: 100%;
@@ -7,4 +9,18 @@
 .input-xlarge {
   height:55px;
   font-size: 29px;
+}
+
+.btn {
+  font-weight: lighter;
+}
+
+.btn-success {
+  background-color: $balloon;
+  border-color: $balloon;
+}
+
+.btn-danger {
+  background-color: $sugar-heart;
+  border-color: $sugar-heart;
 }
